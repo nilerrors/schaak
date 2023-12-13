@@ -1,0 +1,14 @@
+# ninja log v5
+793	4503	7241912727479503	CMakeFiles/schaken.dir/schaken_autogen/mocs_compilation.cpp.obj	1b3c5fc424228f50
+11	139	7241916026179746	schaken_autogen/timestamp	976ff4ccdc4dff7d
+11	139	7241916026179746	schaken_autogen/mocs_compilation.cpp	976ff4ccdc4dff7d
+815	3793	7241912720474045	CMakeFiles/schaken.dir/SchaakStuk.cpp.obj	d386d7ec61934653
+805	3825	7241912720765264	CMakeFiles/schaken.dir/game.cpp.obj	e4c446e33ff0b36b
+157	2051	7241915710282336	CMakeFiles/schaken.dir/main.cpp.obj	e6751173ce64bed4
+4506	6712	7241912749726682	CMakeFiles/schaken.dir/guicode/message.cpp.obj	c73c937f8593c5ce
+3826	6440	7241912747003818	CMakeFiles/schaken.dir/guicode/fileIO.cpp.obj	5bb53597c88257e2
+3801	6799	7241912750575808	CMakeFiles/schaken.dir/SchaakGUI.cpp.obj	82d26aa5d282d30e
+810	10100	7241912783594073	CMakeFiles/schaken.dir/guicode/ChessWindow.cpp.obj	d7c741c67708c518
+801	10152	7241912784028007	CMakeFiles/schaken.dir/guicode/chessboard.cpp.obj	de8e6168e7834e0
+2054	2368	7241915713406492	schaken.exe	b48b99e3f8caf3b0
+1	305	7242000581591564	build.ninja	a9c644b165ff10b7
