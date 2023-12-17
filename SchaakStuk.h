@@ -1,11 +1,14 @@
 //  Student:
 //  Rolnummer:
-//  Opmerkingen: (bvb aanpassingen van de opgave)
-//
+//  Opmerkingen:
+//              * Er is een private property toegevoegd aan de SchaakStuk klasse
+//              * die de huidige positie van het schaakstuk bewaart.
 
 #ifndef SCHAKEN_SCHAAKSTUK_H
 #define SCHAKEN_SCHAAKSTUK_H
+
 #include <guicode/chessboard.h>
+#include <vector>
 
 class Game;
 
@@ -20,9 +23,17 @@ public:
                                         // setItem(x,y,SchaakStuk*) van
                                         // SchaakGUI
 
+    virtual std::vector<std::pair<int,int>> geldige_zetten(const Game& game) const = 0;
+
     zw getKleur() const { return kleur; }
+
+    const std::pair<int, int>& getPositie() const { return positie; }
+    void setPositie(const std::pair<int, int>& newPositie) { positie = newPositie; }
+    void setPositie(int rij, int kolom) { positie = std::pair(rij, kolom); }
+
 private:
     zw kleur;
+    std::pair<int, int> positie;
 };
 
 class Pion:public SchaakStuk {
@@ -31,6 +42,8 @@ public:
     virtual Piece piece() const override {
         return Piece(Piece::Pawn,getKleur()==wit?Piece::White:Piece::Black);
     }
+
+    virtual std::vector<std::pair<int,int>> geldige_zetten(const Game& game) const;
 };
 
 class Toren:public SchaakStuk {
@@ -40,6 +53,8 @@ public:
     Piece piece() const override {
         return Piece(Piece::Rook,getKleur()==wit?Piece::White:Piece::Black);
     }
+
+    virtual std::vector<std::pair<int,int>> geldige_zetten(const Game& game) const;
 };
 
 class Paard:public SchaakStuk {
@@ -49,6 +64,8 @@ public:
     Piece piece() const override {
         return Piece(Piece::Knight,getKleur()==wit?Piece::White:Piece::Black);
     }
+
+    virtual std::vector<std::pair<int,int>> geldige_zetten(const Game& game) const;
 };
 
 class Loper:public SchaakStuk {
@@ -58,6 +75,8 @@ public:
     Piece piece() const override {
         return Piece(Piece::Bishop,getKleur()==wit?Piece::White:Piece::Black);
     }
+
+    virtual std::vector<std::pair<int,int>> geldige_zetten(const Game& game) const;
 };
 
 class Koning:public SchaakStuk {
@@ -67,6 +86,8 @@ public:
     Piece piece() const override {
         return Piece(Piece::King,getKleur()==wit?Piece::White:Piece::Black);
     }
+
+    virtual std::vector<std::pair<int,int>> geldige_zetten(const Game& game) const;
 };
 
 class Koningin:public SchaakStuk {
@@ -76,6 +97,8 @@ public:
     Piece piece() const override {
         return Piece(Piece::Queen,getKleur()==wit?Piece::White:Piece::Black);
     }
+
+    virtual std::vector<std::pair<int,int>> geldige_zetten(const Game& game) const;
 };
 
 #endif //SCHAKEN_SCHAAKSTUK_H

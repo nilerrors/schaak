@@ -362,6 +362,7 @@ schaken_autogen/timestamp: \
 	C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaak/cmake-build-debug-mingw/CMakeFiles/3.26.4/CMakeRCCompiler.cmake \
 	C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaak/cmake-build-debug-mingw/CMakeFiles/3.26.4/CMakeSystem.cmake \
 	C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaak/cmake-build-debug-mingw/schaken_autogen/moc_predefs.h \
+	C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaak/consts.h \
 	C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaak/game.cpp \
 	C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaak/game.h \
 	C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaak/guicode/ChessWindow.cpp \

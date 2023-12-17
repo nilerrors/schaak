@@ -189,7 +189,7 @@ build schaken_autogen/timestamp schaken_autogen/mocs_compilation.cpp | ${cmake_n
 #############################################
 # Phony custom command for CMakeFiles\schaken_autogen_timestamp_deps
 
-build CMakeFiles/schaken_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/schaken_autogen_timestamp_deps: phony C$:/Qt/5.15.2/mingw81_64/lib/libQt5Widgets.a C$:/Qt/5.15.2/mingw81_64/lib/libQt5Core.a C$:/Qt/5.15.2/mingw81_64/bin/moc.exe C$:/Qt/5.15.2/mingw81_64/lib/libQt5Gui.a
+build CMakeFiles/schaken_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/schaken_autogen_timestamp_deps: phony C$:/Qt/5.15.2/mingw81_64/lib/libQt5Core.a C$:/Qt/5.15.2/mingw81_64/lib/libQt5Widgets.a C$:/Qt/5.15.2/mingw81_64/lib/libQt5Gui.a C$:/Qt/5.15.2/mingw81_64/bin/moc.exe
 
 
 #############################################
