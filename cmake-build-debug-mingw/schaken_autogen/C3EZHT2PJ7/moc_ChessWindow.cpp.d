@@ -300,6 +300,8 @@ C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaak/cmake-build-debug-mingw/scha
   C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtwidgets-config.h \
   C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtwidgetsglobal.h \
   C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qwidget.h \
+  C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaak/ArrayList.h \
+  C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaak/MatrixPair.h \
   C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaak/SchaakStuk.h \
   C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaak/consts.h \
   C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaak/game.h \

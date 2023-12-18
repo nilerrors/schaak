@@ -69,12 +69,13 @@ void Game::setStartBord() {
 bool Game::move(SchaakStuk* s, int r, int k) {
     if (outOfBounds(r, k)) return false;
     if (s == nullptr) return false;
-    if (s->getPositie().first == r && s->getPositie().second == k) return false;
+    if (s->getPositie().getRow() == r && s->getPositie().getColumn() == k) return false;
 
-    std::vector<std::pair<int, int>> zetten = s->geldige_zetten(*this);
-    for (const auto& zet : zetten) {
-        if (zet.first == r && zet.second == k) {
-            setPiece(s->getPositie().first, s->getPositie().second, nullptr);
+    ArrayList<MatrixPair> zetten = s->geldige_zetten(*this);
+    for (int i = 0; i < zetten.getSize(); i++) {
+        MatrixPair zet = zetten.getItem(i);
+        if (zet.getRow() == r && zet.getColumn() == k) {
+            setPiece(s->getPositie().getRow(), s->getPositie().getColumn(), nullptr);
             setPiece(r, k, s);
             return true;
         }
@@ -97,7 +98,6 @@ bool Game::pat(zw kleur) { return false; }
 // Geeft een pointer naar het schaakstuk dat op rij r, kolom k staat
 // Als er geen schaakstuk staat op deze positie, geef nullptr terug
 SchaakStuk* Game::getPiece(int r, int k) const {
-    // Hier komt jouw code om op te halen welk stuk op rij r, kolom k staat
     if (outOfBounds(r, k)) return nullptr;
     return bord[r * COL_SIZE + k];
 }
@@ -107,7 +107,6 @@ SchaakStuk* Game::getPiece(int r, int k) const {
 // Bewaar in jouw datastructuur de *pointer* naar het schaakstuk,
 // niet het schaakstuk zelf.
 void Game::setPiece(int r, int k, SchaakStuk* s) {
-    // Hier komt jouw code om een stuk neer te zetten op het bord
     if (outOfBounds(r, k)) return;
     delete bord[r * COL_SIZE + k];
     bord[r * COL_SIZE + k] = nullptr;
@@ -122,13 +121,9 @@ bool Game::outOfBounds(int r, int k) const {
 
 bool Game::getTurn() const { return turn; }
 
-const std::pair<int, int>& Game::getMovePosition() const {
+const MatrixPair& Game::getMovePosition() const {
     return movePosition;
 }
-
-// int Game::getMovePositionRij() const { return movePositionRij; }
-
-// int Game::getMovePositionKolom() const { return movePositionKolom; }
 
 void Game::changeTurn() {
     if (turn == zw::wit)
@@ -138,18 +133,13 @@ void Game::changeTurn() {
 }
 
 void Game::clearMovePosition() {
-    movePosition = std::make_pair(-1, -1);
-    // movePositionRij = -1;
-    // movePositionKolom = -1;
+    movePosition = MatrixPair(-1, -1);
 }
 
 void Game::setMovePosition(int r, int k) {
-    movePosition = std::make_pair(r, k);
-    // movePositionRij = r;
-    // movePositionKolom = r;
+    movePosition = MatrixPair(r, k);
 }
 
 bool Game::movePositionUnset() const {
-    return movePosition.first == -1 && movePosition.second == -1;
-    // return movePositionRij == -1 && movePositionKolom == -1;
+    return movePosition.getRow() == -1 && movePosition.getColumn() == -1;
 }

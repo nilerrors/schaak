@@ -7,57 +7,58 @@
 
 #include "game.h"
 
-std::vector<std::pair<int, int>> Pion::geldige_zetten(const Game& game) const {
-    std::vector<std::pair<int, int>> zetten = {};
+ArrayList<MatrixPair> Pion::geldige_zetten(const Game& game) const {
+    ArrayList<MatrixPair> zetten = {};
 
-    int currentRow = this->getPositie().first;
-    int currentCol = this->getPositie().second;
+    int currentRow = this->getPositie().getRow();
+    int currentCol = this->getPositie().getColumn();
 
     if (getKleur() == zw::wit) {
         if (currentRow == 6) {
             if (game.getPiece(currentRow - 2, currentCol) == nullptr) {
-                zetten.push_back(std::make_pair(currentRow - 2, currentCol));
+                zetten.add(MatrixPair(currentRow - 2, currentCol));
             }
         }
         if (game.getPiece(currentRow - 1, currentCol) == nullptr) {
-            zetten.push_back(std::make_pair(currentRow + 1, currentCol));
+            zetten.add(MatrixPair(currentRow + 1, currentCol));
         }
         if (game.getPiece(currentRow - 1, currentCol - 1) != nullptr &&
             game.getPiece(currentRow - 1, currentCol - 1)->getKleur() ==
                 zw::zwart) {
-            zetten.push_back(std::make_pair(currentRow - 1, currentCol - 1));
+            zetten.add(MatrixPair(currentRow - 1, currentCol - 1));
         }
         if (game.getPiece(currentRow - 1, currentCol + 1) != nullptr &&
             game.getPiece(currentRow - 1, currentCol + 1)->getKleur() ==
                 zw::zwart) {
-            zetten.push_back(std::make_pair(currentRow - 1, currentCol + 1));
+            zetten.add(MatrixPair(currentRow - 1, currentCol + 1));
         }
     } else {
         if (currentRow == 1) {
             if (game.getPiece(currentRow + 2, currentCol) == nullptr) {
-                zetten.push_back(std::make_pair(currentRow + 2, currentCol));
+                zetten.add(MatrixPair(currentRow + 2, currentCol));
             }
         }
         if (game.getPiece(currentRow + 1, currentCol) == nullptr) {
-            zetten.push_back(std::make_pair(currentRow + 1, currentCol));
+            zetten.add(MatrixPair(currentRow + 1, currentCol));
         }
         if (game.getPiece(currentRow + 1, currentCol - 1) != nullptr &&
             game.getPiece(currentRow + 1, currentCol - 1)->getKleur() ==
                 zw::zwart) {
-            zetten.push_back(std::make_pair(currentRow + 1, currentCol - 1));
+            zetten.add(MatrixPair(currentRow + 1, currentCol - 1));
         }
         if (game.getPiece(currentRow + 1, currentCol + 1) != nullptr &&
             game.getPiece(currentRow + 1, currentCol + 1)->getKleur() ==
                 zw::zwart) {
-            zetten.push_back(std::make_pair(currentRow + 1, currentCol + 1));
+            zetten.add(MatrixPair(currentRow + 1, currentCol + 1));
         }
     }
 
     // filteration; remove all invalid positions; out of bounds
-    std::vector<std::pair<int, int>> validZetten;
-    for (const auto& pos : zetten) {
-        if (!game.outOfBounds(pos.first, pos.second)) {
-            validZetten.push_back(pos);
+    ArrayList<MatrixPair> validZetten;
+    for (int i = 0; i < zetten.getSize(); i++) {
+        MatrixPair pos = zetten.getItem(i);
+        if (!game.outOfBounds(pos.getRow(), pos.getColumn())) {
+            validZetten.add(pos);
         }
     }
     zetten = validZetten;
@@ -65,18 +66,18 @@ std::vector<std::pair<int, int>> Pion::geldige_zetten(const Game& game) const {
     return zetten;
 }
 
-std::vector<std::pair<int, int>> Toren::geldige_zetten(const Game& game) const {
-    std::vector<std::pair<int, int>> zetten = {};
+ArrayList<MatrixPair> Toren::geldige_zetten(const Game& game) const {
+    ArrayList<MatrixPair> zetten = {};
 
-    int currentRow = this->getPositie().first;
-    int currentCol = this->getPositie().second;
+    int currentRow = this->getPositie().getRow();
+    int currentCol = this->getPositie().getColumn();
 
     // alle mogelijke verticale zetten
     for (int i = 0; i < ROW_SIZE; i++) {
         if (game.getPiece(i, currentCol) == nullptr) {
-            zetten.push_back(std::make_pair(i, currentCol));
+            zetten.add(MatrixPair(i, currentCol));
         } else if (game.getPiece(i, currentCol)->getKleur() != getKleur()) {
-            zetten.push_back(std::make_pair(i, currentCol));
+            zetten.add(MatrixPair(i, currentCol));
             break;
         } else {
             break;
@@ -85,9 +86,9 @@ std::vector<std::pair<int, int>> Toren::geldige_zetten(const Game& game) const {
     // alle mogelijke horizontale zetten
     for (int i = 0; i < COL_SIZE; i++) {
         if (game.getPiece(currentRow, i) == nullptr) {
-            zetten.push_back(std::make_pair(currentRow, i));
+            zetten.add(MatrixPair(currentRow, i));
         } else if (game.getPiece(currentRow, i)->getKleur() != getKleur()) {
-            zetten.push_back(std::make_pair(currentRow, i));
+            zetten.add(MatrixPair(currentRow, i));
             break;
         } else {
             break;
@@ -97,27 +98,28 @@ std::vector<std::pair<int, int>> Toren::geldige_zetten(const Game& game) const {
     return zetten;
 }
 
-std::vector<std::pair<int, int>> Paard::geldige_zetten(const Game& game) const {
-    std::vector<std::pair<int, int>> zetten = {};
+ArrayList<MatrixPair> Paard::geldige_zetten(const Game& game) const {
+    ArrayList<MatrixPair> zetten = {};
 
-    int currentRow = this->getPositie().first;
-    int currentCol = this->getPositie().second;
+    int currentRow = this->getPositie().getRow();
+    int currentCol = this->getPositie().getColumn();
 
     // alle mogelijke zetten
-    zetten.push_back(std::make_pair(currentRow - 2, currentCol - 1));
-    zetten.push_back(std::make_pair(currentRow - 2, currentCol + 1));
-    zetten.push_back(std::make_pair(currentRow - 1, currentCol - 2));
-    zetten.push_back(std::make_pair(currentRow - 1, currentCol + 2));
-    zetten.push_back(std::make_pair(currentRow + 1, currentCol - 2));
-    zetten.push_back(std::make_pair(currentRow + 1, currentCol + 2));
-    zetten.push_back(std::make_pair(currentRow + 2, currentCol - 1));
-    zetten.push_back(std::make_pair(currentRow + 2, currentCol + 1));
+    zetten.add(MatrixPair(currentRow - 2, currentCol - 1));
+    zetten.add(MatrixPair(currentRow - 2, currentCol + 1));
+    zetten.add(MatrixPair(currentRow - 1, currentCol - 2));
+    zetten.add(MatrixPair(currentRow - 1, currentCol + 2));
+    zetten.add(MatrixPair(currentRow + 1, currentCol - 2));
+    zetten.add(MatrixPair(currentRow + 1, currentCol + 2));
+    zetten.add(MatrixPair(currentRow + 2, currentCol - 1));
+    zetten.add(MatrixPair(currentRow + 2, currentCol + 1));
 
     // filteration; remove all invalid positions; out of bounds
-    std::vector<std::pair<int, int>> validZetten;
-    for (const auto& pos : zetten) {
-        if (!game.outOfBounds(pos.first, pos.second)) {
-            validZetten.push_back(pos);
+    ArrayList<MatrixPair> validZetten;
+    for (int i = 0; i < zetten.getSize(); i++) {
+        MatrixPair pos = zetten.getItem(i);
+        if (!game.outOfBounds(pos.getRow(), pos.getColumn())) {
+            validZetten.add(pos);
         }
     }
     zetten = validZetten;
@@ -125,19 +127,19 @@ std::vector<std::pair<int, int>> Paard::geldige_zetten(const Game& game) const {
     return zetten;
 }
 
-std::vector<std::pair<int, int>> Loper::geldige_zetten(const Game& game) const {
-    std::vector<std::pair<int, int>> zetten = {};
+ArrayList<MatrixPair> Loper::geldige_zetten(const Game& game) const {
+    ArrayList<MatrixPair> zetten = {};
 
-    int currentRow = this->getPositie().first;
-    int currentCol = this->getPositie().second;
+    int currentRow = this->getPositie().getRow();
+    int currentCol = this->getPositie().getColumn();
 
     // alle mogelijke zetten naar links boven
     for (int i = 1; i < ROW_SIZE; i++) {
         if (game.getPiece(currentRow - i, currentCol - i) == nullptr) {
-            zetten.push_back(std::make_pair(currentRow - i, currentCol - i));
+            zetten.add(MatrixPair(currentRow - i, currentCol - i));
         } else if (game.getPiece(currentRow - i, currentCol - i)->getKleur() !=
                    getKleur()) {
-            zetten.push_back(std::make_pair(currentRow - i, currentCol - i));
+            zetten.add(MatrixPair(currentRow - i, currentCol - i));
             break;
         } else {
             break;
@@ -146,10 +148,10 @@ std::vector<std::pair<int, int>> Loper::geldige_zetten(const Game& game) const {
     // alle mogelijke zetten naar rechts boven
     for (int i = 1; i < ROW_SIZE; i++) {
         if (game.getPiece(currentRow - i, currentCol + i) == nullptr) {
-            zetten.push_back(std::make_pair(currentRow - i, currentCol + i));
+            zetten.add(MatrixPair(currentRow - i, currentCol + i));
         } else if (game.getPiece(currentRow - i, currentCol + i)->getKleur() !=
                    getKleur()) {
-            zetten.push_back(std::make_pair(currentRow - i, currentCol + i));
+            zetten.add(MatrixPair(currentRow - i, currentCol + i));
             break;
         } else {
             break;
@@ -158,10 +160,10 @@ std::vector<std::pair<int, int>> Loper::geldige_zetten(const Game& game) const {
     // alle mogelijke zetten naar links beneden
     for (int i = 1; i < ROW_SIZE; i++) {
         if (game.getPiece(currentRow + i, currentCol - i) == nullptr) {
-            zetten.push_back(std::make_pair(currentRow + i, currentCol - i));
+            zetten.add(MatrixPair(currentRow + i, currentCol - i));
         } else if (game.getPiece(currentRow + i, currentCol - i)->getKleur() !=
                    getKleur()) {
-            zetten.push_back(std::make_pair(currentRow + i, currentCol - i));
+            zetten.add(MatrixPair(currentRow + i, currentCol - i));
             break;
         } else {
             break;
@@ -170,10 +172,10 @@ std::vector<std::pair<int, int>> Loper::geldige_zetten(const Game& game) const {
     // alle mogelijke zetten naar rechts beneden
     for (int i = 1; i < ROW_SIZE; i++) {
         if (game.getPiece(currentRow + i, currentCol + i) == nullptr) {
-            zetten.push_back(std::make_pair(currentRow + i, currentCol + i));
+            zetten.add(MatrixPair(currentRow + i, currentCol + i));
         } else if (game.getPiece(currentRow + i, currentCol + i)->getKleur() !=
                    getKleur()) {
-            zetten.push_back(std::make_pair(currentRow + i, currentCol + i));
+            zetten.add(MatrixPair(currentRow + i, currentCol + i));
             break;
         } else {
             break;
@@ -181,10 +183,11 @@ std::vector<std::pair<int, int>> Loper::geldige_zetten(const Game& game) const {
     }
 
     // filteration; remove all invalid positions; out of bounds
-    std::vector<std::pair<int, int>> validZetten;
-    for (const auto& pos : zetten) {
-        if (!game.outOfBounds(pos.first, pos.second)) {
-            validZetten.push_back(pos);
+    ArrayList<MatrixPair> validZetten;
+    for (int i = 0; i < zetten.getSize(); i++) {
+        MatrixPair pos = zetten.getItem(i);
+        if (!game.outOfBounds(pos.getRow(), pos.getColumn())) {
+            validZetten.add(pos);
         }
     }
     zetten = validZetten;
@@ -192,27 +195,28 @@ std::vector<std::pair<int, int>> Loper::geldige_zetten(const Game& game) const {
     return zetten;
 }
 
-std::vector<std::pair<int, int>> Koning::geldige_zetten(const Game& game) const {
-    std::vector<std::pair<int, int>> zetten = {};
+ArrayList<MatrixPair> Koning::geldige_zetten(const Game& game) const {
+    ArrayList<MatrixPair> zetten = {};
 
-    int currentRow = this->getPositie().first;
-    int currentCol = this->getPositie().second;
+    int currentRow = this->getPositie().getRow();
+    int currentCol = this->getPositie().getColumn();
 
     // alle mogelijke zetten
-    zetten.push_back(std::make_pair(currentRow - 1, currentCol - 1));
-    zetten.push_back(std::make_pair(currentRow - 1, currentCol));
-    zetten.push_back(std::make_pair(currentRow - 1, currentCol + 1));
-    zetten.push_back(std::make_pair(currentRow, currentCol - 1));
-    zetten.push_back(std::make_pair(currentRow, currentCol + 1));
-    zetten.push_back(std::make_pair(currentRow + 1, currentCol - 1));
-    zetten.push_back(std::make_pair(currentRow + 1, currentCol));
-    zetten.push_back(std::make_pair(currentRow + 1, currentCol + 1));
+    zetten.add(MatrixPair(currentRow - 1, currentCol - 1));
+    zetten.add(MatrixPair(currentRow - 1, currentCol));
+    zetten.add(MatrixPair(currentRow - 1, currentCol + 1));
+    zetten.add(MatrixPair(currentRow, currentCol - 1));
+    zetten.add(MatrixPair(currentRow, currentCol + 1));
+    zetten.add(MatrixPair(currentRow + 1, currentCol - 1));
+    zetten.add(MatrixPair(currentRow + 1, currentCol));
+    zetten.add(MatrixPair(currentRow + 1, currentCol + 1));
 
     // filteration; remove all invalid positions; out of bounds
-    std::vector<std::pair<int, int>> validZetten;
-    for (const auto& pos : zetten) {
-        if (!game.outOfBounds(pos.first, pos.second)) {
-            validZetten.push_back(pos);
+    ArrayList<MatrixPair> validZetten;
+    for (int i = 0; i < zetten.getSize(); i++) {
+        MatrixPair pos = zetten.getItem(i);
+        if (!game.outOfBounds(pos.getRow(), pos.getColumn())) {
+            validZetten.add(pos);
         }
     }
     zetten = validZetten;
@@ -221,18 +225,18 @@ std::vector<std::pair<int, int>> Koning::geldige_zetten(const Game& game) const 
     return zetten;
 }
 
-std::vector<std::pair<int, int>> Koningin::geldige_zetten(const Game& game) const {
-    std::vector<std::pair<int, int>> zetten = {};
+ArrayList<MatrixPair> Koningin::geldige_zetten(const Game& game) const {
+    ArrayList<MatrixPair> zetten = {};
 
-    int currentRow = this->getPositie().first;
-    int currentCol = this->getPositie().second;
+    int currentRow = this->getPositie().getRow();
+    int currentCol = this->getPositie().getColumn();
 
     // alle mogelijke verticale zetten
     for (int i = 0; i < ROW_SIZE; i++) {
         if (game.getPiece(i, currentCol) == nullptr) {
-            zetten.push_back(std::make_pair(i, currentCol));
+            zetten.add(MatrixPair(i, currentCol));
         } else if (game.getPiece(i, currentCol)->getKleur() != getKleur()) {
-            zetten.push_back(std::make_pair(i, currentCol));
+            zetten.add(MatrixPair(i, currentCol));
             break;
         } else {
             break;
@@ -241,9 +245,9 @@ std::vector<std::pair<int, int>> Koningin::geldige_zetten(const Game& game) cons
     // alle mogelijke horizontale zetten
     for (int i = 0; i < COL_SIZE; i++) {
         if (game.getPiece(currentRow, i) == nullptr) {
-            zetten.push_back(std::make_pair(currentRow, i));
+            zetten.add(MatrixPair(currentRow, i));
         } else if (game.getPiece(currentRow, i)->getKleur() != getKleur()) {
-            zetten.push_back(std::make_pair(currentRow, i));
+            zetten.add(MatrixPair(currentRow, i));
             break;
         } else {
             break;
@@ -252,10 +256,10 @@ std::vector<std::pair<int, int>> Koningin::geldige_zetten(const Game& game) cons
     // alle mogelijke zetten naar links boven
     for (int i = 1; i < ROW_SIZE; i++) {
         if (game.getPiece(currentRow - i, currentCol - i) == nullptr) {
-            zetten.push_back(std::make_pair(currentRow - i, currentCol - i));
+            zetten.add(MatrixPair(currentRow - i, currentCol - i));
         } else if (game.getPiece(currentRow - i, currentCol - i)->getKleur() !=
                    getKleur()) {
-            zetten.push_back(std::make_pair(currentRow - i, currentCol - i));
+            zetten.add(MatrixPair(currentRow - i, currentCol - i));
             break;
         } else {
             break;
@@ -264,10 +268,10 @@ std::vector<std::pair<int, int>> Koningin::geldige_zetten(const Game& game) cons
     // alle mogelijke zetten naar rechts boven
     for (int i = 1; i < ROW_SIZE; i++) {
         if (game.getPiece(currentRow - i, currentCol + i) == nullptr) {
-            zetten.push_back(std::make_pair(currentRow - i, currentCol + i));
+            zetten.add(MatrixPair(currentRow - i, currentCol + i));
         } else if (game.getPiece(currentRow - i, currentCol + i)->getKleur() !=
                    getKleur()) {
-            zetten.push_back(std::make_pair(currentRow - i, currentCol + i));
+            zetten.add(MatrixPair(currentRow - i, currentCol + i));
             break;
         } else {
             break;
@@ -276,10 +280,10 @@ std::vector<std::pair<int, int>> Koningin::geldige_zetten(const Game& game) cons
     // alle mogelijke zetten naar links beneden
     for (int i = 1; i < ROW_SIZE; i++) {
         if (game.getPiece(currentRow + i, currentCol - i) == nullptr) {
-            zetten.push_back(std::make_pair(currentRow + i, currentCol - i));
+            zetten.add(MatrixPair(currentRow + i, currentCol - i));
         } else if (game.getPiece(currentRow + i, currentCol - i)->getKleur() !=
                    getKleur()) {
-            zetten.push_back(std::make_pair(currentRow + i, currentCol - i));
+            zetten.add(MatrixPair(currentRow + i, currentCol - i));
             break;
         } else {
             break;
@@ -288,10 +292,10 @@ std::vector<std::pair<int, int>> Koningin::geldige_zetten(const Game& game) cons
     // alle mogelijke zetten naar rechts beneden
     for (int i = 1; i < ROW_SIZE; i++) {
         if (game.getPiece(currentRow + i, currentCol + i) == nullptr) {
-            zetten.push_back(std::make_pair(currentRow + i, currentCol + i));
+            zetten.add(MatrixPair(currentRow + i, currentCol + i));
         } else if (game.getPiece(currentRow + i, currentCol + i)->getKleur() !=
                    getKleur()) {
-            zetten.push_back(std::make_pair(currentRow + i, currentCol + i));
+            zetten.add(MatrixPair(currentRow + i, currentCol + i));
             break;
         } else {
             break;
@@ -299,10 +303,11 @@ std::vector<std::pair<int, int>> Koningin::geldige_zetten(const Game& game) cons
     }
 
     // filteration; remove all invalid positions; out of bounds
-    std::vector<std::pair<int, int>> validZetten;
-    for (const auto& pos : zetten) {
-        if (!game.outOfBounds(pos.first, pos.second)) {
-            validZetten.push_back(pos);
+    ArrayList<MatrixPair> validZetten;
+    for (int i = 0; i < zetten.getSize(); i++) {
+        MatrixPair pos = zetten.getItem(i);
+        if (!game.outOfBounds(pos.getRow(), pos.getColumn())) {
+            validZetten.add(pos);
         }
     }
     zetten = validZetten;

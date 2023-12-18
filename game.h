@@ -8,12 +8,12 @@
 
 #include "consts.h"
 #include "SchaakStuk.h"
+#include "ArrayList.h"
+#include "MatrixPair.h"
 
 class Game {
-// variabelen om de status van het spel/bord te bewaren
     zw turn = zw::wit;
-    // int movePositionRij = -1, movePositionKolom = -1;
-   std::pair<int, int> movePosition = std::pair(-1, -1); // -1, -1; niet geselecteerd.
+    MatrixPair movePosition = MatrixPair(-1, -1); // -1, -1; niet geselecteerd.
 
 public:
     Game();
@@ -32,17 +32,13 @@ public:
     void setPiece(int r, int k, SchaakStuk* s);
 
     bool getTurn() const;
-   const std::pair<int, int>& getMovePosition() const;
-    // int getMovePositionRij() const;
-    // int getMovePositionKolom() const;
+    const MatrixPair& getMovePosition() const;
     bool movePositionUnset() const;
     void changeTurn();
     void clearMovePosition();
     void setMovePosition(int r, int k);
 
 private:
-    // Hier zet jij jouw datastructuur neer om het bord te bewaren ...
-
     // 8 rijen, 8 kolommen = 64 plaatsen
     // het aantal plaatsen is statisch en kan veranderen
     //

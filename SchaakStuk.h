@@ -8,7 +8,8 @@
 #define SCHAKEN_SCHAAKSTUK_H
 
 #include <guicode/chessboard.h>
-#include <vector>
+#include "ArrayList.h"
+#include "MatrixPair.h"
 
 class Game;
 
@@ -23,17 +24,17 @@ public:
                                         // setItem(x,y,SchaakStuk*) van
                                         // SchaakGUI
 
-    virtual std::vector<std::pair<int,int>> geldige_zetten(const Game& game) const = 0;
+    virtual ArrayList<MatrixPair> geldige_zetten(const Game& game) const = 0;
 
     zw getKleur() const { return kleur; }
 
-    const std::pair<int, int>& getPositie() const { return positie; }
-    void setPositie(const std::pair<int, int>& newPositie) { positie = newPositie; }
-    void setPositie(int rij, int kolom) { positie = std::pair(rij, kolom); }
+    const MatrixPair& getPositie() const { return positie; }
+    void setPositie(const MatrixPair& newPositie) { positie = newPositie; }
+    void setPositie(int rij, int kolom) { positie = MatrixPair(rij, kolom); }
 
 private:
     zw kleur;
-    std::pair<int, int> positie;
+    MatrixPair positie;
 };
 
 class Pion:public SchaakStuk {
@@ -43,7 +44,7 @@ public:
         return Piece(Piece::Pawn,getKleur()==wit?Piece::White:Piece::Black);
     }
 
-    virtual std::vector<std::pair<int,int>> geldige_zetten(const Game& game) const;
+    virtual ArrayList<MatrixPair> geldige_zetten(const Game& game) const;
 };
 
 class Toren:public SchaakStuk {
@@ -54,7 +55,7 @@ public:
         return Piece(Piece::Rook,getKleur()==wit?Piece::White:Piece::Black);
     }
 
-    virtual std::vector<std::pair<int,int>> geldige_zetten(const Game& game) const;
+    virtual ArrayList<MatrixPair> geldige_zetten(const Game& game) const;
 };
 
 class Paard:public SchaakStuk {
@@ -65,7 +66,7 @@ public:
         return Piece(Piece::Knight,getKleur()==wit?Piece::White:Piece::Black);
     }
 
-    virtual std::vector<std::pair<int,int>> geldige_zetten(const Game& game) const;
+    virtual ArrayList<MatrixPair> geldige_zetten(const Game& game) const;
 };
 
 class Loper:public SchaakStuk {
@@ -76,7 +77,7 @@ public:
         return Piece(Piece::Bishop,getKleur()==wit?Piece::White:Piece::Black);
     }
 
-    virtual std::vector<std::pair<int,int>> geldige_zetten(const Game& game) const;
+    virtual ArrayList<MatrixPair> geldige_zetten(const Game& game) const;
 };
 
 class Koning:public SchaakStuk {
@@ -87,7 +88,7 @@ public:
         return Piece(Piece::King,getKleur()==wit?Piece::White:Piece::Black);
     }
 
-    virtual std::vector<std::pair<int,int>> geldige_zetten(const Game& game) const;
+    virtual ArrayList<MatrixPair> geldige_zetten(const Game& game) const;
 };
 
 class Koningin:public SchaakStuk {
@@ -98,7 +99,7 @@ public:
         return Piece(Piece::Queen,getKleur()==wit?Piece::White:Piece::Black);
     }
 
-    virtual std::vector<std::pair<int,int>> geldige_zetten(const Game& game) const;
+    virtual ArrayList<MatrixPair> geldige_zetten(const Game& game) const;
 };
 
 #endif //SCHAKEN_SCHAAKSTUK_H

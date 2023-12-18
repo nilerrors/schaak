@@ -38,14 +38,16 @@ void SchaakGUI::clicked(int r, int k) {
         g.setMovePosition(r, k);
     } else {
         SchaakStuk* moveStuk =
-            g.getPiece(g.getMovePosition().first, g.getMovePosition().second);
+            g.getPiece(g.getMovePosition().getRow(), g.getMovePosition().getColumn());
 
-        if (stuk->getPositie() == moveStuk->getPositie()) {
+        if (stuk->getPositie().getRow() == moveStuk->getPositie().getColumn() && stuk->getPositie().getRow() == moveStuk->getPositie().getColumn()) {
             g.clearMovePosition();
         } else {
             bool geldigeMove = false;
-            for (const auto& zet : stuk->geldige_zetten(g)) {
-                if (stuk->getPositie() == zet) {
+            ArrayList<MatrixPair> geldigeZetten = stuk->geldige_zetten(g);
+            for (int i = 0; i < geldigeZetten.getSize(); i++) {
+                MatrixPair zet = geldigeZetten.getItem(i);
+                if (stuk->getPositie().getRow() == zet.getRow() && stuk->getPositie().getColumn() == zet.getColumn()) {
                     geldigeMove = true;
                     g.move(moveStuk, r, k);
                     g.clearMovePosition();

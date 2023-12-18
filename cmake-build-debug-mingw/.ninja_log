@@ -1,26 +1,15 @@
 # ninja log v5
-683	4201	7245515139706527	CMakeFiles/schaken.dir/schaken_autogen/mocs_compilation.cpp.obj	e2b660989a837cb0
-18	169	7245515562216919	schaken_autogen/timestamp	c4ad985b6ae34b71
-18	169	7245515562216919	schaken_autogen/mocs_compilation.cpp	c4ad985b6ae34b71
-18	169	7245515562216919	C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaak/cmake-build-debug-mingw/schaken_autogen/mocs_compilation.cpp	c4ad985b6ae34b71
-18	169	7245515562216919	C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaak/cmake-build-debug-mingw/schaken_autogen/timestamp	c4ad985b6ae34b71
-179	2855	7245515589035742	CMakeFiles/schaken.dir/game.cpp.obj	da85bf0e4dd12f6b
-687	4249	7245515140187542	CMakeFiles/schaken.dir/main.cpp.obj	1b50cf139c50d1bc
-699	4337	7245515141057539	CMakeFiles/schaken.dir/SchaakGUI.cpp.obj	5adcaf3b30f0c96b
-8917	13313	7245509282678770	CMakeFiles/schaken.dir/guicode/message.cpp.obj	9018cd90db139ad3
-709	3985	7245515137532774	CMakeFiles/schaken.dir/SchaakStuk.cpp.obj	a6d03f5474945e31
-9864	13937	7245509288954911	CMakeFiles/schaken.dir/guicode/fileIO.cpp.obj	55ae73dfdae68fd3
-692	9167	7245515189322326	CMakeFiles/schaken.dir/guicode/ChessWindow.cpp.obj	c60496d88dbcfb35
-2924	17863	7245509328193124	CMakeFiles/schaken.dir/guicode/chessboard.cpp.obj	1f60def5dbb933f3
-2856	3372	7245515594145408	schaken.exe	b48b99e3f8caf3b0
-26	655	7245520846028931	schaken_autogen/timestamp	c4ad985b6ae34b71
-26	655	7245520846028931	schaken_autogen/mocs_compilation.cpp	c4ad985b6ae34b71
-26	655	7245520846028931	C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaak/cmake-build-debug-mingw/schaken_autogen/timestamp	c4ad985b6ae34b71
-26	655	7245520846028931	C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaak/cmake-build-debug-mingw/schaken_autogen/mocs_compilation.cpp	c4ad985b6ae34b71
-670	3616	7245520876135757	CMakeFiles/schaken.dir/game.cpp.obj	da85bf0e4dd12f6b
-675	3845	7245520878399182	CMakeFiles/schaken.dir/SchaakStuk.cpp.obj	a6d03f5474945e31
-656	4076	7245520880725887	CMakeFiles/schaken.dir/schaken_autogen/mocs_compilation.cpp.obj	e2b660989a837cb0
-660	4126	7245520881249785	CMakeFiles/schaken.dir/main.cpp.obj	1b50cf139c50d1bc
-683	4260	7245520882569766	CMakeFiles/schaken.dir/SchaakGUI.cpp.obj	5adcaf3b30f0c96b
-666	8648	7245520926441169	CMakeFiles/schaken.dir/guicode/ChessWindow.cpp.obj	c60496d88dbcfb35
-8648	9024	7245520930164611	schaken.exe	b48b99e3f8caf3b0
+4	1474	7246353556663069	schaken_autogen/timestamp	c4ad985b6ae34b71
+4	1474	7246353556663069	schaken_autogen/mocs_compilation.cpp	c4ad985b6ae34b71
+4	1474	7246353556663069	C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaak/cmake-build-debug-mingw/schaken_autogen/timestamp	c4ad985b6ae34b71
+4	1474	7246353556663069	C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaak/cmake-build-debug-mingw/schaken_autogen/mocs_compilation.cpp	c4ad985b6ae34b71
+1565	5979	7246353603012970	CMakeFiles/schaken.dir/SchaakStuk.cpp.obj	a6d03f5474945e31
+1476	6706	7246353610592403	CMakeFiles/schaken.dir/schaken_autogen/mocs_compilation.cpp.obj	e2b660989a837cb0
+1525	6803	7246353611731035	CMakeFiles/schaken.dir/SchaakGUI.cpp.obj	5adcaf3b30f0c96b
+1486	6840	7246353612062147	CMakeFiles/schaken.dir/main.cpp.obj	1b50cf139c50d1bc
+6804	6959	7246353613186413	CMakeFiles/schaken.dir/ArrayList.cpp.obj	3ee8cad6e0fcfe25
+5991	9844	7246353642149245	CMakeFiles/schaken.dir/game.cpp.obj	da85bf0e4dd12f6b
+6841	10343	7246353647152614	CMakeFiles/schaken.dir/guicode/message.cpp.obj	9018cd90db139ad3
+6709	10386	7246353647577613	CMakeFiles/schaken.dir/guicode/fileIO.cpp.obj	55ae73dfdae68fd3
+1498	14736	7246353691018716	CMakeFiles/schaken.dir/guicode/chessboard.cpp.obj	1f60def5dbb933f3
+1512	14749	7246353691148749	CMakeFiles/schaken.dir/guicode/ChessWindow.cpp.obj	c60496d88dbcfb35
