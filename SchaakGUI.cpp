@@ -37,17 +37,16 @@ void SchaakGUI::clicked(int r, int k) {
 
         g.setMovePosition(r, k);
     } else {
-        SchaakStuk* moveStuk =
-            g.getPiece(g.getMovePosition().getRow(), g.getMovePosition().getColumn());
+        SchaakStuk* moveStuk = g.getPiece(g.getMovePosition().getRow(),
+                                          g.getMovePosition().getColumn());
 
-        if (stuk->getPositie().getRow() == moveStuk->getPositie().getColumn() && stuk->getPositie().getRow() == moveStuk->getPositie().getColumn()) {
-            g.clearMovePosition();
-        } else {
+        if (stuk == nullptr || (r != moveStuk->getPositie().getColumn() &&
+                                k != moveStuk->getPositie().getColumn())) {
             bool geldigeMove = false;
-            ArrayList<MatrixPair> geldigeZetten = stuk->geldige_zetten(g);
+            ArrayList<MatrixPair> geldigeZetten = moveStuk->geldige_zetten(g);
             for (int i = 0; i < geldigeZetten.getSize(); i++) {
                 MatrixPair zet = geldigeZetten.getItem(i);
-                if (stuk->getPositie().getRow() == zet.getRow() && stuk->getPositie().getColumn() == zet.getColumn()) {
+                if (r == zet.getRow() && k == zet.getColumn()) {
                     geldigeMove = true;
                     g.move(moveStuk, r, k);
                     g.clearMovePosition();
@@ -58,6 +57,8 @@ void SchaakGUI::clicked(int r, int k) {
             if (!geldigeMove) {
                 message("Deze zet is ongeldig.");
             }
+        } else {
+            g.clearMovePosition();
         }
     }
 

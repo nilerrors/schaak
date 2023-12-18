@@ -110,9 +110,10 @@ void Game::setPiece(int r, int k, SchaakStuk* s) {
     if (outOfBounds(r, k)) return;
     delete bord[r * COL_SIZE + k];
     bord[r * COL_SIZE + k] = nullptr;
-
-    s->setPositie(r, k);
-    bord[r * COL_SIZE + k] = s;
+    if (s != nullptr) {
+        s->setPositie(r, k);
+        bord[r * COL_SIZE + k] = s;
+    }
 }
 
 bool Game::outOfBounds(int r, int k) const {

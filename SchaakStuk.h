@@ -34,7 +34,7 @@ public:
 
 private:
     zw kleur;
-    MatrixPair positie;
+    MatrixPair positie = MatrixPair(-1, -1);
 };
 
 class Pion:public SchaakStuk {

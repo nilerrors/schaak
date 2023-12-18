@@ -49,7 +49,7 @@ file(GLOB QT_DLL "C:\\Qt\\5.15.2\\mingw81_64\\bin\\*dll")
 file(COPY ${QT_DLL} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
 
 set(CMAKE_CXX_STANDARD 17)
-set(SOURCE_FILES main.cpp guicode/ChessWindow.cpp guicode/ChessWindow.h guicode/chessboard.cpp guicode/chessboard.h game.cpp game.h SchaakStuk.cpp SchaakStuk.h guicode/resources.h SchaakGUI.cpp SchaakGUI.h guicode/message.cpp guicode/message.h guicode/fileIO.cpp guicode/fileIO.h MatrixPair.h ArrayList.h ArrayList.cpp)
-add_executable(schaken ${SOURCE_FILES})
+set(SOURCE_FILES main.cpp guicode/ChessWindow.cpp guicode/ChessWindow.h guicode/chessboard.cpp guicode/chessboard.h game.cpp game.h SchaakStuk.cpp SchaakStuk.h guicode/resources.h SchaakGUI.cpp SchaakGUI.h guicode/message.cpp guicode/message.h guicode/fileIO.cpp guicode/fileIO.h)
+add_executable(schaken MatrixPair.h ArrayList.h ${SOURCE_FILES})
 
 qt5_use_modules(schaken Core Widgets Gui)

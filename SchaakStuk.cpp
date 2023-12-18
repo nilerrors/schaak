@@ -8,7 +8,7 @@
 #include "game.h"
 
 ArrayList<MatrixPair> Pion::geldige_zetten(const Game& game) const {
-    ArrayList<MatrixPair> zetten = {};
+    ArrayList<MatrixPair> zetten;
 
     int currentRow = this->getPositie().getRow();
     int currentCol = this->getPositie().getColumn();
@@ -67,7 +67,7 @@ ArrayList<MatrixPair> Pion::geldige_zetten(const Game& game) const {
 }
 
 ArrayList<MatrixPair> Toren::geldige_zetten(const Game& game) const {
-    ArrayList<MatrixPair> zetten = {};
+    ArrayList<MatrixPair> zetten;
 
     int currentRow = this->getPositie().getRow();
     int currentCol = this->getPositie().getColumn();
@@ -99,7 +99,7 @@ ArrayList<MatrixPair> Toren::geldige_zetten(const Game& game) const {
 }
 
 ArrayList<MatrixPair> Paard::geldige_zetten(const Game& game) const {
-    ArrayList<MatrixPair> zetten = {};
+    ArrayList<MatrixPair> zetten;
 
     int currentRow = this->getPositie().getRow();
     int currentCol = this->getPositie().getColumn();
@@ -128,7 +128,7 @@ ArrayList<MatrixPair> Paard::geldige_zetten(const Game& game) const {
 }
 
 ArrayList<MatrixPair> Loper::geldige_zetten(const Game& game) const {
-    ArrayList<MatrixPair> zetten = {};
+    ArrayList<MatrixPair> zetten;
 
     int currentRow = this->getPositie().getRow();
     int currentCol = this->getPositie().getColumn();
@@ -196,7 +196,7 @@ ArrayList<MatrixPair> Loper::geldige_zetten(const Game& game) const {
 }
 
 ArrayList<MatrixPair> Koning::geldige_zetten(const Game& game) const {
-    ArrayList<MatrixPair> zetten = {};
+    ArrayList<MatrixPair> zetten;
 
     int currentRow = this->getPositie().getRow();
     int currentCol = this->getPositie().getColumn();
@@ -226,7 +226,7 @@ ArrayList<MatrixPair> Koning::geldige_zetten(const Game& game) const {
 }
 
 ArrayList<MatrixPair> Koningin::geldige_zetten(const Game& game) const {
-    ArrayList<MatrixPair> zetten = {};
+    ArrayList<MatrixPair> zetten;
 
     int currentRow = this->getPositie().getRow();
     int currentCol = this->getPositie().getColumn();
