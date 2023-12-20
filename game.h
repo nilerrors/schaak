@@ -15,12 +15,15 @@ class Game {
     // variabelen om de status van het spel/bord te bewaren
     zw turn = zw::wit;
     std::pair<int, int> movePosition = std::make_pair(-1, -1); // -1, -1; niet geselecteerd.
-   public:
+
+public:
     Game();
     ~Game();
+    Game(const Game& game);  // copy constructor
 
-    bool move(SchaakStuk* s, int r,
-              int k);  // Verplaats stuk s naar rij r en kolom k
+    bool move(SchaakStuk* s, int r, int k);  // Verplaats stuk s naar rij r en kolom k
+
+    bool causesSchaak(SchaakStuk* stuk, int r, int k) const;
 
     bool schaak(zw kleur);
     bool schaakmat(zw kleur);
@@ -41,7 +44,7 @@ class Game {
 
     std::pair<int, int> getKoningPosition(zw kleur) const;
 
-   private:
+private:
     // 8 rijen, 8 kolommen = 64 plaatsen
     // het aantal plaatsen is statisch en kan veranderen
     //

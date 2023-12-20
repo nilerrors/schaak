@@ -6,6 +6,7 @@
 
 #include "guicode/fileIO.h"
 #include "guicode/message.h"
+#include <iostream>
 
 // Constructor
 SchaakGUI::SchaakGUI() : ChessWindow(nullptr) { update(); }
@@ -31,9 +32,15 @@ void SchaakGUI::clicked(int r, int k) {
 
     SchaakStuk* stuk = g.getPiece(r, k);
 
+    std::cout << "Geklikte positie: (" << std::to_string(r) << ", " << std::to_string(k) << ")" << std::endl;
+    std::cout << "\tEr staat: " << (stuk == nullptr ? "Niets" : std::to_string(stuk->piece().type())) << std::endl;
+
     if (g.movePositionUnset()) {
         if (stuk == nullptr) return;
-        if (stuk->getKleur() != g.getTurn()) return;
+        if (stuk->getKleur() != g.getTurn()) {
+            message("Het is de beurt van " + QString(g.getTurn() == zw::wit ? "wit" : "zwart") + ".");
+            return;
+        }
 
         g.setMovePosition(r, k);
         setTileSelect(r, k, true);
@@ -59,6 +66,12 @@ void SchaakGUI::clicked(int r, int k) {
             }
             if (!geldigeMove) {
                 message("Deze zet is ongeldig.");
+
+                g.setMovePosition(moveStuk->getPositie().first, moveStuk->getPositie().second);
+                setTileSelect(moveStuk->getPositie().first, moveStuk->getPositie().second, true);
+                for (const auto &zet : moveStuk->geldige_zetten(g)) {
+                    setTileFocus(zet.first, zet.second, true);
+                }
             }
         } else {
             g.clearMovePosition();

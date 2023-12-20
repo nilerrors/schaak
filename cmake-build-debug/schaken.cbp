@@ -8,18 +8,18 @@
 		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\;CMake Files\..\..\..\..\..\..\Qt\;CMake Files\..\..\..\..\..\..\Qt\5.15.2\;CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\;CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\;CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\;CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Core\;CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Widgets\;CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug"/>
+				<Option working_dir="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="schaken">
-				<Option output="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/schaken" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug"/>
+				<Option output="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/schaken.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -27,33 +27,33 @@
 					<Add option="-DQT_CORE_LIB"/>
 					<Add option="-DQT_WIDGETS_LIB"/>
 					<Add option="-DQT_GUI_LIB"/>
-					<Add directory="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug"/>
-					<Add directory="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken"/>
-					<Add directory="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/schaken_autogen/include"/>
-					<Add directory="/mnt/c/Qt/5.15.2/mingw81_64/include"/>
-					<Add directory="/mnt/c/Qt/5.15.2/mingw81_64/include/QtCore"/>
-					<Add directory="/mnt/c/Qt/5.15.2/mingw81_64/./mkspecs/win32-g++"/>
-					<Add directory="/mnt/c/Qt/5.15.2/mingw81_64/include/QtWidgets"/>
-					<Add directory="/mnt/c/Qt/5.15.2/mingw81_64/include/QtGui"/>
-					<Add directory="/mnt/c/Qt/5.15.2/mingw81_64/include/QtANGLE"/>
-					<Add directory="/usr/include/c++/11"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
-					<Add directory="/usr/include/c++/11/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
+					<Add directory="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug"/>
+					<Add directory="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken"/>
+					<Add directory="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/schaken_autogen/include"/>
+					<Add directory="C:/Qt/5.15.2/mingw81_64/include"/>
+					<Add directory="C:/Qt/5.15.2/mingw81_64/include/QtCore"/>
+					<Add directory="C:/Qt/5.15.2/mingw81_64/./mkspecs/win32-g++"/>
+					<Add directory="C:/Qt/5.15.2/mingw81_64/include/QtWidgets"/>
+					<Add directory="C:/Qt/5.15.2/mingw81_64/include/QtGui"/>
+					<Add directory="C:/Qt/5.15.2/mingw81_64/include/QtANGLE"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 schaken"/>
-					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 schaken"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="schaken/fast">
-				<Option output="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/schaken" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug"/>
+				<Option output="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/schaken.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -61,206 +61,206 @@
 					<Add option="-DQT_CORE_LIB"/>
 					<Add option="-DQT_WIDGETS_LIB"/>
 					<Add option="-DQT_GUI_LIB"/>
-					<Add directory="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug"/>
-					<Add directory="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken"/>
-					<Add directory="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/schaken_autogen/include"/>
-					<Add directory="/mnt/c/Qt/5.15.2/mingw81_64/include"/>
-					<Add directory="/mnt/c/Qt/5.15.2/mingw81_64/include/QtCore"/>
-					<Add directory="/mnt/c/Qt/5.15.2/mingw81_64/./mkspecs/win32-g++"/>
-					<Add directory="/mnt/c/Qt/5.15.2/mingw81_64/include/QtWidgets"/>
-					<Add directory="/mnt/c/Qt/5.15.2/mingw81_64/include/QtGui"/>
-					<Add directory="/mnt/c/Qt/5.15.2/mingw81_64/include/QtANGLE"/>
-					<Add directory="/usr/include/c++/11"/>
-					<Add directory="/usr/include/x86_64-linux-gnu/c++/11"/>
-					<Add directory="/usr/include/c++/11/backward"/>
-					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/11/include"/>
-					<Add directory="/usr/local/include"/>
-					<Add directory="/usr/include/x86_64-linux-gnu"/>
-					<Add directory="/usr/include"/>
+					<Add directory="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug"/>
+					<Add directory="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken"/>
+					<Add directory="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/schaken_autogen/include"/>
+					<Add directory="C:/Qt/5.15.2/mingw81_64/include"/>
+					<Add directory="C:/Qt/5.15.2/mingw81_64/include/QtCore"/>
+					<Add directory="C:/Qt/5.15.2/mingw81_64/./mkspecs/win32-g++"/>
+					<Add directory="C:/Qt/5.15.2/mingw81_64/include/QtWidgets"/>
+					<Add directory="C:/Qt/5.15.2/mingw81_64/include/QtGui"/>
+					<Add directory="C:/Qt/5.15.2/mingw81_64/include/QtANGLE"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../include"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include-fixed"/>
+					<Add directory="C:/Program Files/JetBrains/CLion 2023.2.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/../../../../x86_64-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 schaken/fast"/>
-					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 schaken/fast"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug"/>
+				<Option working_dir="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug"/>
+				<Option working_dir="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="schaken_autogen">
-				<Option working_dir="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug"/>
+				<Option working_dir="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 schaken_autogen"/>
-					<CompileFile command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/gmake -j8 -f &quot;/mnt/c/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 schaken_autogen"/>
+					<CompileFile command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/bin/mingw32-make.exe -f &quot;C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/SchaakGUI.cpp">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/SchaakGUI.cpp">
 			<Option target="schaken"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/SchaakGUI.h">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/SchaakGUI.h">
 			<Option target="schaken"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/SchaakStuk.cpp">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/SchaakStuk.cpp">
 			<Option target="schaken"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/SchaakStuk.h">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/SchaakStuk.h">
 			<Option target="schaken"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/schaken_autogen/mocs_compilation.cpp">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/schaken_autogen/mocs_compilation.cpp">
 			<Option target="schaken"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/game.cpp">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/game.cpp">
 			<Option target="schaken"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/game.h">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/game.h">
 			<Option target="schaken"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/guicode/ChessWindow.cpp">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/guicode/ChessWindow.cpp">
 			<Option target="schaken"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/guicode/ChessWindow.h">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/guicode/ChessWindow.h">
 			<Option target="schaken"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/guicode/chessboard.cpp">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/guicode/chessboard.cpp">
 			<Option target="schaken"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/guicode/chessboard.h">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/guicode/chessboard.h">
 			<Option target="schaken"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/guicode/fileIO.cpp">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/guicode/fileIO.cpp">
 			<Option target="schaken"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/guicode/fileIO.h">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/guicode/fileIO.h">
 			<Option target="schaken"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/guicode/message.cpp">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/guicode/message.cpp">
 			<Option target="schaken"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/guicode/message.h">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/guicode/message.h">
 			<Option target="schaken"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/guicode/resources.h">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/guicode/resources.h">
 			<Option target="schaken"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/main.cpp">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/main.cpp">
 			<Option target="schaken"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/CMakeLists.txt">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Core/Qt5CoreConfig.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Core/Qt5CoreConfig.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Core\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Core/Qt5CoreConfigExtras.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Core/Qt5CoreConfigExtras.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Core\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Core/Qt5CoreConfigExtrasMkspecDir.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Core/Qt5CoreConfigExtrasMkspecDir.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Core\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Core/Qt5CoreConfigVersion.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Core/Qt5CoreConfigVersion.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Core\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Core/Qt5CoreMacros.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Core/Qt5CoreMacros.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Core\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Widgets\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Widgets\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Widgets\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Widgets\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Widgets/Qt5Widgets_QWindowsVistaStylePlugin.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Widgets/Qt5Widgets_QWindowsVistaStylePlugin.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Widgets\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5GuiConfig.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5GuiConfig.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5GuiConfigExtras.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5GuiConfigExtras.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5GuiConfigVersion.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5GuiConfigVersion.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QGifPlugin.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QGifPlugin.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QICNSPlugin.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QICNSPlugin.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QICOPlugin.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QICOPlugin.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QJpegPlugin.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QJpegPlugin.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QMinimalIntegrationPlugin.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QMinimalIntegrationPlugin.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QOffscreenIntegrationPlugin.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QOffscreenIntegrationPlugin.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QSvgIconPlugin.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QSvgIconPlugin.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QSvgPlugin.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QSvgPlugin.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QTgaPlugin.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QTgaPlugin.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QTiffPlugin.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QTiffPlugin.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QTuioTouchPlugin.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QTuioTouchPlugin.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QVirtualKeyboardPlugin.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QVirtualKeyboardPlugin.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QWbmpPlugin.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QWbmpPlugin.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QWebGLIntegrationPlugin.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QWebGLIntegrationPlugin.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QWebpPlugin.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QWebpPlugin.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QWindowsDirect2DIntegrationPlugin.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QWindowsDirect2DIntegrationPlugin.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QWindowsIntegrationPlugin.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QWindowsIntegrationPlugin.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QXdgDesktopPortalThemePlugin.cmake">
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/../../../../../../Qt/5.15.2/mingw81_64/lib/cmake/Qt5Gui/Qt5Gui_QXdgDesktopPortalThemePlugin.cmake">
 			<Option virtualFolder="CMake Files\..\..\..\..\..\..\Qt\5.15.2\mingw81_64\lib\cmake\Qt5Gui\"/>
 		</Unit>
 	</Project>

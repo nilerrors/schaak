@@ -1,24 +1,12 @@
-C:\Windows\system32\wsl.exe --distribution Ubuntu-22.04 --exec /bin/bash -c "export CMAKE_COLOR_DIAGNOSTICS=ON && export CLION_IDE=TRUE && export JETBRAINS_IDE=TRUE && cd '/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug' && /usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G 'CodeBlocks - Unix Makefiles' -S '/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken' -B '/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug'"
--- The C compiler identification is GNU 11.4.0
--- The CXX compiler identification is GNU 11.4.0
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Check for working C compiler: /usr/bin/cc - skipped
--- Detecting C compile features
--- Detecting C compile features - done
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: /usr/bin/c++ - skipped
--- Detecting CXX compile features
--- Detecting CXX compile features - done
-CMake Warning (dev) at /mnt/c/Qt/5.15.2/mingw81_64/lib/cmake/Qt5Core/Qt5CoreMacros.cmake:44 (message):
+"C:\Program Files\JetBrains\CLion 2023.2.2\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" -S "C:\Users\MCS 7390 LATITUDE\Desktop\UNIV\IP\schaken" -B "C:\Users\MCS 7390 LATITUDE\Desktop\UNIV\IP\schaken\cmake-build-debug"
+CMake Warning (dev) at C:/Qt/5.15.2/mingw81_64/lib/cmake/Qt5Core/Qt5CoreMacros.cmake:44 (message):
   qt5_use_modules is not part of the official API, and might be removed in Qt
   6.
 Call Stack (most recent call first):
-  /mnt/c/Qt/5.15.2/mingw81_64/lib/cmake/Qt5Core/Qt5CoreMacros.cmake:431 (_qt5_warn_deprecated)
+  C:/Qt/5.15.2/mingw81_64/lib/cmake/Qt5Core/Qt5CoreMacros.cmake:431 (_qt5_warn_deprecated)
   CMakeLists.txt:50 (qt5_use_modules)
 This warning is for project developers.  Use -Wno-dev to suppress it.
 
--- Configuring done
--- Generating done
--- Build files have been written to: /mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug
+-- Configuring done (0.1s)
+-- Generating done (0.1s)
+-- Build files have been written to: C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug

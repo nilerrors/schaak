@@ -22,8 +22,7 @@ public:
 
     zw getKleur() const { return kleur; }
 
-    virtual std::vector<std::pair<int, int>> geldige_zetten(
-        const Game& game) const = 0;
+    std::vector<std::pair<int, int>> geldige_zetten(const Game& game);
 
     const std::pair<int, int>& getPositie() const { return positie; }
     void setPositie(const std::pair<int, int>& newPositie) {
@@ -32,6 +31,9 @@ public:
     void setPositie(int rij, int kolom) {
         positie = std::make_pair(rij, kolom);
     }
+
+//protected:
+    virtual std::vector<std::pair<int, int>> alle_mogelijke_zetten(const Game& game) const = 0;
 
 private:
     zw kleur;
@@ -46,7 +48,7 @@ public:
                      getKleur() == wit ? Piece::White : Piece::Black);
     }
 
-    virtual std::vector<std::pair<int, int>> geldige_zetten(
+    virtual std::vector<std::pair<int, int>> alle_mogelijke_zetten(
         const Game& game) const;
 };
 
@@ -59,7 +61,7 @@ public:
                      getKleur() == wit ? Piece::White : Piece::Black);
     }
 
-    virtual std::vector<std::pair<int, int>> geldige_zetten(
+    virtual std::vector<std::pair<int, int>> alle_mogelijke_zetten(
         const Game& game) const;
 };
 
@@ -72,7 +74,7 @@ public:
                      getKleur() == wit ? Piece::White : Piece::Black);
     }
 
-    virtual std::vector<std::pair<int, int>> geldige_zetten(
+    virtual std::vector<std::pair<int, int>> alle_mogelijke_zetten(
         const Game& game) const;
 };
 
@@ -85,7 +87,7 @@ public:
                      getKleur() == wit ? Piece::White : Piece::Black);
     }
 
-    virtual std::vector<std::pair<int, int>> geldige_zetten(
+    virtual std::vector<std::pair<int, int>> alle_mogelijke_zetten(
         const Game& game) const;
 };
 
@@ -98,7 +100,7 @@ public:
                      getKleur() == wit ? Piece::White : Piece::Black);
     }
 
-    virtual std::vector<std::pair<int, int>> geldige_zetten(
+    virtual std::vector<std::pair<int, int>> alle_mogelijke_zetten(
         const Game& game) const;
 };
 
@@ -111,7 +113,7 @@ public:
                      getKleur() == wit ? Piece::White : Piece::Black);
     }
 
-    virtual std::vector<std::pair<int, int>> geldige_zetten(
+    virtual std::vector<std::pair<int, int>> alle_mogelijke_zetten(
         const Game& game) const;
 };
 

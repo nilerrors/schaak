@@ -1,7 +1,10 @@
 //  Student:
 //  Rolnummer:
-//  Opmerkingen: (bvb aanpassingen van de opgave)
-//
+//  Opmerkingen:
+///              * i.p.v. de "schaak" functie direct te gebruiken
+///                 heb ik ervoor gekozen om een aparte functie "causesSchaak" te maken die
+///                 die een schaakstuk* en een positie (r, k) krijgt en gebaseerd daarop
+///                 teruggeeft of dat het schaak is.
 
 #include "game.h"
 
@@ -10,6 +13,43 @@ Game::Game() {
         bord.push_back(nullptr);
     }
     setStartBord();
+}
+
+// Copy constructor
+Game::Game(const Game& game) {
+    for (int i = 0; i < BORD_SIZE; i++) {
+        bord.push_back(nullptr);
+    }
+
+    turn = game.turn;
+    movePosition = game.movePosition;
+    for (auto &stuk : game.bord) {
+        if (stuk == nullptr) continue;
+
+        SchaakStuk* schaakStuk = nullptr;
+        switch (stuk->piece().type()) {
+            case Piece::Pawn:
+                schaakStuk = new Pion(stuk->getKleur());
+                break;
+            case Piece::King:
+                schaakStuk = new Koning(stuk->getKleur());
+                break;
+            case Piece::Bishop:
+                schaakStuk = new Loper(stuk->getKleur());
+                break;
+            case Piece::Knight:
+                schaakStuk = new Paard(stuk->getKleur());
+                break;
+            case Piece::Queen:
+                schaakStuk = new Koningin(stuk->getKleur());
+                break;
+            case Piece::Rook:
+                schaakStuk = new Toren(stuk->getKleur());
+                break;
+        }
+        schaakStuk->setPositie(stuk->getPositie());
+        setPiece(stuk->getPositie().first, stuk->getPositie().second, schaakStuk);
+    }
 }
 
 Game::~Game() {
@@ -75,24 +115,22 @@ bool Game::move(SchaakStuk* s, int r, int k) {
     if (stukPositie.first == r && stukPositie.second == k) return false;
 
     std::vector<std::pair<int, int>> zetten = s->geldige_zetten(*this);
-    for (const auto& zet : zetten) {
-        if (zet.first == r && zet.second == k) {
-            setPiece(stukPositie.first, stukPositie.second, nullptr);
-            setPiece(r, k, s);
+//    for (const auto& zet : zetten) {
+//        if (zet.first == r && zet.second == k) {
+//            setPiece(stukPositie.first, stukPositie.second, nullptr);
+//            setPiece(r, k, s);
+//
+//            return true;
+//        }
+//    }
 
-            // Als deze beweging schaak veroorzaakt gaan we
-            // de originele positie herstellen
-            if (schaak(s->getKleur())) {
-                setPiece(stukPositie.first, stukPositie.second, s);
-                setPiece(r, k, nullptr);
-                return false;
-            }
+    setPiece(r, k, nullptr);
+    setPiece(r, k, s);
+    setPiece(stukPositie.first, stukPositie.second, nullptr);
 
-            return true;
-        }
-    }
+    return true;
 
-    return false;
+//    return false;
 }
 
 // Geeft true als kleur schaak staat
@@ -103,7 +141,8 @@ bool Game::schaak(zw kleur) {
     for (const auto &stuk : bord) {
         if (stuk == nullptr) continue;
         if (stuk->getKleur() == kleurComplement) {
-            for (const auto &zet : stuk->geldige_zetten(*this)) {
+            for (const auto &zet : stuk->alle_mogelijke_zetten(*this)) {
+                if (outOfBounds(zet.first, zet.second)) continue;
                 if (zet.first == koningPosition.first && zet.second == koningPosition.second) {
                     return true;
                 }
@@ -135,11 +174,10 @@ SchaakStuk* Game::getPiece(int r, int k) const {
 // niet het schaakstuk zelf.
 void Game::setPiece(int r, int k, SchaakStuk* s) {
     if (outOfBounds(r, k)) return;
-    bord[r * COL_SIZE + k] = nullptr;
     if (s != nullptr) {
         s->setPositie(r, k);
-        bord[r * COL_SIZE + k] = s;
     }
+    bord[r * COL_SIZE + k] = s;
 }
 
 bool Game::outOfBounds(int r, int k) const {
@@ -179,4 +217,21 @@ std::pair<int, int> Game::getKoningPosition(zw kleur) const {
     }
 
     return position;
+}
+
+bool Game::causesSchaak(SchaakStuk *s, int r, int k) const {
+    if (s == nullptr) return false;
+    std::pair<int, int> stukPositie = s->getPositie();
+    if (stukPositie.first == r && stukPositie.second == k) return false;
+
+    // Nieuw spel die de huidige spel data meekrijgt,
+    // zodat we niet alle functies non-const moeten maken
+    // en ook de huidige data niet overschrijven
+    Game game(*this);
+    SchaakStuk* gameSchaakstuk = game.getPiece(stukPositie.first, stukPositie.second);
+
+    game.setPiece(r, k, gameSchaakstuk);
+    game.setPiece(stukPositie.first, stukPositie.second, nullptr);
+
+    return game.schaak(gameSchaakstuk->getKleur());
 }
