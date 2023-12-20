@@ -1,5 +1,0 @@
-C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaak/cmake-build-debug-mingw/CMakeFiles/schaken.dir
-C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaak/cmake-build-debug-mingw/CMakeFiles/edit_cache.dir
-C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaak/cmake-build-debug-mingw/CMakeFiles/rebuild_cache.dir
-C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaak/cmake-build-debug-mingw/CMakeFiles/schaken_autogen_timestamp_deps.dir
-C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaak/cmake-build-debug-mingw/CMakeFiles/schaken_autogen.dir

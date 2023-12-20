@@ -8,18 +8,19 @@
 
 #include "consts.h"
 #include "SchaakStuk.h"
-#include "ArrayList.h"
-#include "MatrixPair.h"
+#include <vector>
+#include <utility>
 
 class Game {
+    // variabelen om de status van het spel/bord te bewaren
     zw turn = zw::wit;
-    MatrixPair movePosition = MatrixPair(-1, -1); // -1, -1; niet geselecteerd.
-
-public:
+    std::pair<int, int> movePosition = std::make_pair(-1, -1); // -1, -1; niet geselecteerd.
+   public:
     Game();
     ~Game();
 
-    bool move(SchaakStuk* s,int r, int k); // Verplaats stuk s naar rij r en kolom k
+    bool move(SchaakStuk* s, int r,
+              int k);  // Verplaats stuk s naar rij r en kolom k
 
     bool schaak(zw kleur);
     bool schaakmat(zw kleur);
@@ -32,23 +33,22 @@ public:
     void setPiece(int r, int k, SchaakStuk* s);
 
     bool getTurn() const;
-    const MatrixPair& getMovePosition() const;
+    const std::pair<int, int>& getMovePosition() const;
     bool movePositionUnset() const;
     void changeTurn();
     void clearMovePosition();
     void setMovePosition(int r, int k);
 
-private:
+    std::pair<int, int> getKoningPosition(zw kleur) const;
+
+   private:
     // 8 rijen, 8 kolommen = 64 plaatsen
     // het aantal plaatsen is statisch en kan veranderen
     //
-    // Array zorgt voor effecientie.
     // Een element op een bepaalde plaats kan geraadpleegd worden,
     // door de volgende formule toe te passen:
     // rij * COL_SIZE + kolom
-    SchaakStuk* bord[64];
+    std::vector<SchaakStuk *> bord;
 };
 
-#endif //SCHAKEN_GAME_H
-
-
+#endif  // SCHAKEN_GAME_H

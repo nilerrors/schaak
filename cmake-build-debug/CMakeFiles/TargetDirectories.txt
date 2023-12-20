@@ -1,0 +1,4 @@
+/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/CMakeFiles/schaken.dir
+/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/CMakeFiles/edit_cache.dir
+/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/CMakeFiles/schaken_autogen.dir

@@ -7,19 +7,19 @@
 
 Game::Game() {
     for (int i = 0; i < BORD_SIZE; i++) {
-        bord[i] = nullptr;
+        bord.push_back(nullptr);
     }
     setStartBord();
 }
 
 Game::~Game() {
-    for (int i = 0; i < BORD_SIZE; i++) {
-        delete bord[i];
-        bord[i] = nullptr;
+    for (auto &stuk : bord) {
+        delete stuk;
+        stuk = nullptr;
     }
 }
 
-// Zet het bord klaar; voeg de stukken op de jusite plaats toe
+// Zet het bord klaar; voeg de stukken op de juiste plaats toe
 void Game::setStartBord() {
     // Zet de zwarte schaakstukken
     // in de eerste twee rijen
@@ -69,14 +69,25 @@ void Game::setStartBord() {
 bool Game::move(SchaakStuk* s, int r, int k) {
     if (outOfBounds(r, k)) return false;
     if (s == nullptr) return false;
-    if (s->getPositie().getRow() == r && s->getPositie().getColumn() == k) return false;
 
-    ArrayList<MatrixPair> zetten = s->geldige_zetten(*this);
-    for (int i = 0; i < zetten.getSize(); i++) {
-        MatrixPair zet = zetten.getItem(i);
-        if (zet.getRow() == r && zet.getColumn() == k) {
-            setPiece(s->getPositie().getRow(), s->getPositie().getColumn(), nullptr);
+    std::pair<int, int> stukPositie = s->getPositie();
+
+    if (stukPositie.first == r && stukPositie.second == k) return false;
+
+    std::vector<std::pair<int, int>> zetten = s->geldige_zetten(*this);
+    for (const auto& zet : zetten) {
+        if (zet.first == r && zet.second == k) {
+            setPiece(stukPositie.first, stukPositie.second, nullptr);
             setPiece(r, k, s);
+
+            // Als deze beweging schaak veroorzaakt gaan we
+            // de originele positie herstellen
+            if (schaak(s->getKleur())) {
+                setPiece(stukPositie.first, stukPositie.second, s);
+                setPiece(r, k, nullptr);
+                return false;
+            }
+
             return true;
         }
     }
@@ -85,7 +96,23 @@ bool Game::move(SchaakStuk* s, int r, int k) {
 }
 
 // Geeft true als kleur schaak staat
-bool Game::schaak(zw kleur) { return false; }
+bool Game::schaak(zw kleur) {
+    std::pair<int, int> koningPosition = getKoningPosition(kleur);
+    zw kleurComplement = kleur == zw::wit ? zw::zwart : zw::wit;
+
+    for (const auto &stuk : bord) {
+        if (stuk == nullptr) continue;
+        if (stuk->getKleur() == kleurComplement) {
+            for (const auto &zet : stuk->geldige_zetten(*this)) {
+                if (zet.first == koningPosition.first && zet.second == koningPosition.second) {
+                    return true;
+                }
+            }
+        }
+    }
+
+    return false;
+}
 
 // Geeft true als kleur schaakmat staat
 bool Game::schaakmat(zw kleur) { return false; }
@@ -108,7 +135,6 @@ SchaakStuk* Game::getPiece(int r, int k) const {
 // niet het schaakstuk zelf.
 void Game::setPiece(int r, int k, SchaakStuk* s) {
     if (outOfBounds(r, k)) return;
-    delete bord[r * COL_SIZE + k];
     bord[r * COL_SIZE + k] = nullptr;
     if (s != nullptr) {
         s->setPositie(r, k);
@@ -122,7 +148,7 @@ bool Game::outOfBounds(int r, int k) const {
 
 bool Game::getTurn() const { return turn; }
 
-const MatrixPair& Game::getMovePosition() const {
+const std::pair<int, int>& Game::getMovePosition() const {
     return movePosition;
 }
 
@@ -133,14 +159,24 @@ void Game::changeTurn() {
         turn = zw::wit;
 }
 
-void Game::clearMovePosition() {
-    movePosition = MatrixPair(-1, -1);
-}
+void Game::clearMovePosition() { movePosition = std::make_pair(-1, -1); }
 
 void Game::setMovePosition(int r, int k) {
-    movePosition = MatrixPair(r, k);
+    movePosition = std::make_pair(r, k);
 }
 
 bool Game::movePositionUnset() const {
-    return movePosition.getRow() == -1 && movePosition.getColumn() == -1;
+    return movePosition.first == -1 && movePosition.second == -1;
+}
+
+std::pair<int, int> Game::getKoningPosition(zw kleur) const {
+    std::pair<int, int> position = std::make_pair(-1, -1);
+    for (const auto &stuk : bord) {
+        if (stuk == nullptr) continue;
+        if (stuk->piece().type() == Piece::King && stuk->getKleur() == kleur) {
+            position = std::make_pair(stuk->getPositie().first, stuk->getPositie().second);
+        }
+    }
+
+    return position;
 }

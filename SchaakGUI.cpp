@@ -26,7 +26,7 @@ void SchaakGUI::update() {
 // geklikt wordt. x,y geeft de positie aan waar er geklikt
 // werd; r is de 0-based rij, k de 0-based kolom
 void SchaakGUI::clicked(int r, int k) {
-    removeAllMarking();  // Alle markeringen weg
+    removeAllMarking();
     update();
 
     SchaakStuk* stuk = g.getPiece(r, k);
@@ -36,17 +36,20 @@ void SchaakGUI::clicked(int r, int k) {
         if (stuk->getKleur() != g.getTurn()) return;
 
         g.setMovePosition(r, k);
+        setTileSelect(r, k, true);
+        for (const auto &zet : stuk->geldige_zetten(g)) {
+            setTileFocus(zet.first, zet.second, true);
+        }
     } else {
-        SchaakStuk* moveStuk = g.getPiece(g.getMovePosition().getRow(),
-                                          g.getMovePosition().getColumn());
+        SchaakStuk* moveStuk = g.getPiece(g.getMovePosition().first,
+                                          g.getMovePosition().second);
 
-        if (stuk == nullptr || (r != moveStuk->getPositie().getColumn() &&
-                                k != moveStuk->getPositie().getColumn())) {
+        if (stuk == nullptr || (r != moveStuk->getPositie().first &&
+                                k != moveStuk->getPositie().second)) {
             bool geldigeMove = false;
-            ArrayList<MatrixPair> geldigeZetten = moveStuk->geldige_zetten(g);
-            for (int i = 0; i < geldigeZetten.getSize(); i++) {
-                MatrixPair zet = geldigeZetten.getItem(i);
-                if (r == zet.getRow() && k == zet.getColumn()) {
+            std::vector<std::pair<int, int>> geldigeZetten = moveStuk->geldige_zetten(g);
+            for (const auto &zet : geldigeZetten) {
+                if (r == zet.first && k == zet.second) {
                     geldigeMove = true;
                     g.move(moveStuk, r, k);
                     g.clearMovePosition();

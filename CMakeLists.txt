@@ -35,21 +35,16 @@ set(CMAKE_AUTOMOC ON)
 #=====================================================
 # Windows
 #=====================================================
-set(Qt5Core_DIR "C:\\Qt\\5.15.2\\mingw81_64\\lib\\cmake\\Qt5Core\\")
-set(Qt5Widgets_DIR "C:\\Qt\\5.15.2\\mingw81_64\\lib\\cmake\\Qt5Widgets\\")
-set(Qt5Gui_DIR "C:\\Qt\\5.15.2\\mingw81_64\\lib\\cmake\\Qt5Gui\\")
+set(Qt5Core_DIR "C:\\Qt\\5.15.2\\mingw81_64\\lib\\cmake\\Qt5Core")
+set(Qt5Widgets_DIR "C:\\Qt\\5.15.2\\mingw81_64\\lib\\cmake\\Qt5Widgets")
+set(Qt5Gui_DIR "C:\\Qt\\5.15.2\\mingw81_64\\lib\\cmake\\Qt5Gui")
 
 find_package( Qt5Core REQUIRED )
 find_package( Qt5Widgets REQUIRED )
 find_package( Qt5Gui REQUIRED )
 
-link_directories("C:\\Qt\\5.15.2\\mingw81_64\\lib\\")
-
-file(GLOB QT_DLL "C:\\Qt\\5.15.2\\mingw81_64\\bin\\*dll")
-file(COPY ${QT_DLL} DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
-
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 11)
 set(SOURCE_FILES main.cpp guicode/ChessWindow.cpp guicode/ChessWindow.h guicode/chessboard.cpp guicode/chessboard.h game.cpp game.h SchaakStuk.cpp SchaakStuk.h guicode/resources.h SchaakGUI.cpp SchaakGUI.h guicode/message.cpp guicode/message.h guicode/fileIO.cpp guicode/fileIO.h)
-add_executable(schaken MatrixPair.h ArrayList.h ${SOURCE_FILES})
+add_executable(schaken ${SOURCE_FILES})
 
 qt5_use_modules(schaken Core Widgets Gui)
