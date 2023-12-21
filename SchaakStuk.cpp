@@ -1,7 +1,10 @@
 //  Student:
 //  Rolnummer:
-//  Opmerkingen: (bvb aanpassingen van de opgave)
-//
+//  Opmerkingen:
+///              * geldige_zetten is een non-virtual functie
+///                die de virtual functie alle_mogelijke_zetten
+///                gebruikt
+///
 
 #include "SchaakStuk.h"
 

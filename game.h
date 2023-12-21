@@ -15,6 +15,7 @@ class Game {
     // variabelen om de status van het spel/bord te bewaren
     zw turn = zw::wit;
     std::pair<int, int> movePosition = std::make_pair(-1, -1); // -1, -1; niet geselecteerd.
+    bool gameEnded = false;
 
 public:
     Game();
@@ -24,18 +25,26 @@ public:
     bool move(SchaakStuk* s, int r, int k);  // Verplaats stuk s naar rij r en kolom k
 
     bool causesSchaak(SchaakStuk* stuk, int r, int k) const;
-
     bool schaak(zw kleur);
     bool schaakmat(zw kleur);
     bool pat(zw kleur);
     void setStartBord();
+
+    // threats and kills
+    std::vector<std::pair<int, int>> threats() const;
+    std::vector<std::pair<int, int>> kills(SchaakStuk* stuk) const;
+
+    std::vector<SchaakStuk *> alleSchaakstukken(zw kleur) const;
+
+    void endGame() { gameEnded = true; }
+    bool getGameEnded() { return gameEnded; }
 
     bool outOfBounds(int r, int k) const;
 
     SchaakStuk* getPiece(int r, int k) const;
     void setPiece(int r, int k, SchaakStuk* s);
 
-    bool getTurn() const;
+    zw getTurn() const;
     const std::pair<int, int>& getMovePosition() const;
     bool movePositionUnset() const;
     void changeTurn();

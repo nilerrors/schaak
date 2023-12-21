@@ -6,7 +6,26 @@
 ///                 die een schaakstuk* en een positie (r, k) krijgt en gebaseerd daarop
 ///                 teruggeeft of dat het schaak is.
 
+#include <iostream>
 #include "game.h"
+
+std::string pieceToString(Piece piece) {
+    switch (piece.type()) {
+        case Piece::Pawn:
+            return "Pion";
+        case Piece::King:
+            return "Koning";
+        case Piece::Bishop:
+            return "Loper";
+        case Piece::Knight:
+            return "Paard";
+        case Piece::Queen:
+            return "Koningin";
+        case Piece::Rook:
+            return "Toren";
+    }
+    return "Niets";
+}
 
 Game::Game() {
     for (int i = 0; i < BORD_SIZE; i++) {
@@ -107,6 +126,10 @@ void Game::setStartBord() {
 // en verandert er niets aan het schaakbord.
 // Anders wordt de move uitgevoerd en wordt true teruggegeven
 bool Game::move(SchaakStuk* s, int r, int k) {
+    // Deze functie gaat ervan uit dat de gegeven
+    // positie een geldige positie is om naar te bewegen
+    // met het gegeven schaakstuk
+
     if (outOfBounds(r, k)) return false;
     if (s == nullptr) return false;
 
@@ -114,23 +137,11 @@ bool Game::move(SchaakStuk* s, int r, int k) {
 
     if (stukPositie.first == r && stukPositie.second == k) return false;
 
-    std::vector<std::pair<int, int>> zetten = s->geldige_zetten(*this);
-//    for (const auto& zet : zetten) {
-//        if (zet.first == r && zet.second == k) {
-//            setPiece(stukPositie.first, stukPositie.second, nullptr);
-//            setPiece(r, k, s);
-//
-//            return true;
-//        }
-//    }
-
     setPiece(r, k, nullptr);
     setPiece(r, k, s);
     setPiece(stukPositie.first, stukPositie.second, nullptr);
 
     return true;
-
-//    return false;
 }
 
 // Geeft true als kleur schaak staat
@@ -144,6 +155,14 @@ bool Game::schaak(zw kleur) {
             for (const auto &zet : stuk->alle_mogelijke_zetten(*this)) {
                 if (outOfBounds(zet.first, zet.second)) continue;
                 if (zet.first == koningPosition.first && zet.second == koningPosition.second) {
+                    std::cout << (kleurComplement == zw::wit ? "Witte " : "Zwarte ")
+                    << pieceToString(stuk->piece())
+                    << " (" << stuk->getPositie().first << ", " << stuk->getPositie().second << ")"
+                    << " staat in schaak positie tegenover de "
+                    << (kleur == zw::wit ? "witte " : "zwarte ") << "Koning"
+                    << " (" << koningPosition.first << ", " << koningPosition.second << ") "
+                    << std::endl;
+
                     return true;
                 }
             }
@@ -154,12 +173,62 @@ bool Game::schaak(zw kleur) {
 }
 
 // Geeft true als kleur schaakmat staat
-bool Game::schaakmat(zw kleur) { return false; }
+bool Game::schaakmat(zw kleur) {
+    // Nieuw spel die de huidige spel data meekrijgt,
+    // zodat we niet alle functies non-const moeten maken
+    // en ook de huidige data niet overschrijven
+    Game game(*this);
+    if (game.pat(kleur)) return false;
+
+    for (auto &s : game.bord) {
+        if (s == nullptr) continue;
+        if (s->getKleur() != kleur) continue;
+        std::pair<int, int> stukPositie = s->getPositie();
+
+        for (auto &zet : s->geldige_zetten(game)) {
+            SchaakStuk* gameSchaakstuk = game.getPiece(stukPositie.first, stukPositie.second);
+
+            game.setPiece(zet.first, zet.second, gameSchaakstuk);
+            game.setPiece(stukPositie.first, stukPositie.second, nullptr);
+
+            if (!game.schaak(gameSchaakstuk->getKleur())) {
+                return false;
+            }
+            std::cout << "als "
+            << (gameSchaakstuk->getKleur() == zw::wit ? "wit " : "zwart ")
+            << pieceToString(gameSchaakstuk->piece())
+            << " (" << stukPositie.first << ", " << stukPositie.second << ") "
+            << "bewogen wordt naar (" << zet.first << ", " << zet.second << ")"
+            << std::endl;
+
+            // herstel originele positie
+            game.setPiece(stukPositie.first, stukPositie.second, gameSchaakstuk);
+            game.setPiece(zet.first, zet.second, nullptr);
+        }
+    }
+
+    return true;
+}
 
 // Geeft true als kleur pat staat
 // (pat = geen geldige zet mogelijk, maar kleur staat niet schaak;
 // dit resulteert in een gelijkspel)
-bool Game::pat(zw kleur) { return false; }
+bool Game::pat(zw kleur) {
+    // Nieuw spel die de huidige spel data meekrijgt,
+    // zodat we niet alle functies non-const moeten maken
+    // en ook de huidige data niet overschrijven
+    Game game(*this);
+
+    if (schaak(kleur)) return false;
+
+    for (auto &s : game.bord) {
+        if (s == nullptr) continue;
+        if (s->getKleur() != kleur) continue;
+        if (!s->geldige_zetten(game).empty()) return false;
+    }
+
+    return true;
+}
 
 // Geeft een pointer naar het schaakstuk dat op rij r, kolom k staat
 // Als er geen schaakstuk staat op deze positie, geef nullptr terug
@@ -184,7 +253,7 @@ bool Game::outOfBounds(int r, int k) const {
     return r < 0 || k < 0 || r >= ROW_SIZE || k >= COL_SIZE;
 }
 
-bool Game::getTurn() const { return turn; }
+zw Game::getTurn() const { return turn; }
 
 const std::pair<int, int>& Game::getMovePosition() const {
     return movePosition;
@@ -233,5 +302,93 @@ bool Game::causesSchaak(SchaakStuk *s, int r, int k) const {
     game.setPiece(r, k, gameSchaakstuk);
     game.setPiece(stukPositie.first, stukPositie.second, nullptr);
 
-    return game.schaak(gameSchaakstuk->getKleur());
+    if (game.schaak(gameSchaakstuk->getKleur())) {
+        std::cout << "\tals "
+                  << (gameSchaakstuk->getKleur() == zw::wit ? "wit " : "zwart ")
+                  << pieceToString(gameSchaakstuk->piece())
+                  << " (" << stukPositie.first << ", " << stukPositie.second << ") "
+                  << "bewogen wordt naar (" << r << ", " << k << ")"
+                  << std::endl;
+
+        return true;
+    }
+
+    return false;
+}
+
+std::vector<std::pair<int, int>> Game::threats() const {
+    // geeft alle bedreigde schaakstukken
+    std::vector<std::pair<int, int>> all_threats;
+    for (auto &stuk : bord) {
+        if (stuk == nullptr) continue;
+        for (const auto &zet : stuk->geldige_zetten(*this)) {
+            SchaakStuk* opPositie = getPiece(zet.first, zet.second);
+            if (opPositie == nullptr) continue;
+            if (opPositie->getKleur() != stuk->getKleur()) {
+                all_threats.push_back(zet);
+            }
+        }
+    }
+
+    return all_threats;
+}
+
+std::vector<std::pair<int, int>> Game::kills(SchaakStuk* s) const {
+    std::vector<std::pair<std::pair<int, int>, SchaakStuk*>> all_kills;
+    auto sGeldigeZetten = s->geldige_zetten(*this);
+    for (auto &stuk : alleSchaakstukken(
+            s->getKleur() == zw::wit ? zw::zwart : zw::wit)) {
+        for (const auto &zet : stuk->geldige_zetten(*this)) {
+            if (stuk->piece().type() == Piece::Pawn && stuk->getPositie().second == zet.second) {
+                // de pion kan niet recht voor hem iemand vermoorden
+                // die zetten moeten we skippen
+                if (stuk->getKleur() == zw::wit &&
+                    (stuk->getPositie().first - 1 == zet.first ||
+                        stuk->getPositie().first - 2 == zet.first)) {
+                    continue;
+                } else if (stuk->getKleur() == zw::zwart &&
+                            (stuk->getPositie().first + 1 == zet.first ||
+                            stuk->getPositie().first + 2 == zet.first))
+                    continue;
+            }
+
+            SchaakStuk* opPositie = getPiece(zet.first, zet.second);
+            for (const auto &sZet : sGeldigeZetten) {
+                if (sZet.first == zet.first && sZet.second == zet.second) {
+                    all_kills.push_back(std::make_pair(zet, stuk));
+                }
+            }
+        }
+    }
+
+    std::cout << "Totaal aantal kills van "
+    << (s->getKleur() == zw::wit ? "wit " : "zwart ")
+    << pieceToString(s->piece()) << " : "
+    << all_kills.size()
+    << std::endl;
+    for (auto zet : all_kills) {
+        std::cout << "\t(" << zet.first.first << ", " << zet.first.second << ")"
+        << " door " << (zet.second->getKleur() == zw::wit ? "wit " : "zwart ")
+        << pieceToString(zet.second->piece())
+        << " (" << zet.second->getPositie().first << ", " << zet.second->getPositie().second << ") "
+        << std::endl;
+    }
+
+    std::vector<std::pair<int, int>> kills;
+    for (const auto &kill : all_kills) {
+        kills.push_back(kill.first);
+    }
+
+    return kills;
+}
+
+std::vector<SchaakStuk *> Game::alleSchaakstukken(zw kleur) const {
+    std::vector<SchaakStuk *> alleStukken;
+    for (auto &stuk : bord) {
+        if (stuk == nullptr) continue;
+        if (stuk->getKleur() == kleur) {
+            alleStukken.push_back(stuk);
+        }
+    }
+    return alleStukken;
 }

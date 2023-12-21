@@ -9,11 +9,15 @@
 
 class Game;
 
-enum zw { zwart, wit };
+enum zw {
+    zwart, wit
+};
 
 class SchaakStuk {
 public:
     SchaakStuk(zw kleur) : kleur(kleur) {}
+
+    virtual ~SchaakStuk() {}
 
     virtual Piece piece() const = 0;  // Verander deze functie niet!
                                       // Deze functie wordt gebruikt door
