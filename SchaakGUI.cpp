@@ -36,6 +36,31 @@ void SchaakGUI::update() {
     } else if (g.pat(zw::wit) || g.pat(zw::zwart)) {
         g.endGame();
         message("Pat! Gelijkspel.");
+    } else {
+        removeAllMarking();
+        if (displayThreats()) {
+            // kleurt alle bedreigde schaakstukken
+            // van beide kanten
+            for (const auto &zet : g.threats()) {
+                setPieceThreat(zet.first, zet.second, true);
+            }
+        }
+        if (!g.movePositionUnset()) {
+            SchaakStuk* moveStuk = g.getPiece(g.getMovePosition().first,
+                                              g.getMovePosition().second);
+
+            setTileSelect(g.getMovePosition().first,g.getMovePosition().second, true);
+            if (displayKills()) {
+                for (const auto &zet : g.kills(moveStuk)) {
+                    setTileThreat(zet.first, zet.second, true);
+                }
+            }
+            if (displayMoves()) {
+                for (const auto &zet : moveStuk->geldige_zetten(g)) {
+                    setTileFocus(zet.first, zet.second, true);
+                }
+            }
+        }
     }
 }
 
@@ -62,8 +87,6 @@ void SchaakGUI::clicked(int r, int k) {
 
     if (g.movePositionUnset()) {
         g.setMovePosition(r, k);
-
-        removeAllMarking();
     } else {
         SchaakStuk* moveStuk = g.getPiece(g.getMovePosition().first,
                                           g.getMovePosition().second);
@@ -96,55 +119,52 @@ void SchaakGUI::clicked(int r, int k) {
         }
     }
 
-    removeAllMarking();
-    if (displayThreats()) {
-        // kleurt alle bedreigde schaakstukken
-        // van beide kanten
-        for (const auto &zet : g.threats()) {
-            setPieceThreat(zet.first, zet.second, true);
-        }
-    }
-    if (!g.movePositionUnset()) {
-        SchaakStuk* moveStuk = g.getPiece(g.getMovePosition().first,
-                                          g.getMovePosition().second);
-
-        setTileSelect(g.getMovePosition().first,g.getMovePosition().second, true);
-        if (displayKills()) {
-            for (const auto &zet : g.kills(moveStuk)) {
-                setTileThreat(zet.first, zet.second, true);
-            }
-        }
-        if (displayMoves()) {
-            for (const auto &zet : moveStuk->geldige_zetten(g)) {
-                setTileFocus(zet.first, zet.second, true);
-            }
-        }
-    }
-
     update();
 }
 
-void SchaakGUI::newGame() {}
+void SchaakGUI::newGame() {
+    removeAllMarking();
+    g.setStartBord();
+    update();
+}
 
 void SchaakGUI::save() {
     QFile file;
     if (openFileToWrite(file)) {
         QDataStream out(&file);
-        out << QString("Rb") << QString("Hb") << QString("Bb") << QString("Qb")
-            << QString("Kb") << QString("Bb") << QString("Hb") << QString("Rb");
-        for (int i = 0; i < 8; i++) {
-            out << QString("Pb");
-        }
-        for (int r = 3; r < 7; r++) {
-            for (int k = 0; k < 8; k++) {
-                out << QString(".");
+
+        for (int r = 0; r < ROW_SIZE; r++) {
+            for (int k = 0; k < COL_SIZE; k++) {
+                SchaakStuk* piece = g.getPiece(r, k);
+                if (piece == nullptr) {
+                    out << QString(".");
+                    continue;
+                }
+
+                switch (piece->piece().type()) {
+                    case Piece::Pawn:
+                        out << QString(piece->getKleur() == zw::wit ? "Pw" : "Pb");
+                        break;
+                    case Piece::Rook:
+                        out << QString(piece->getKleur() == zw::wit ? "Rw" : "Rb");
+                        break;
+                    case Piece::King:
+                        out << QString(piece->getKleur() == zw::wit ? "Kw" : "Kb");
+                        break;
+                    case Piece::Queen:
+                        out << QString(piece->getKleur() == zw::wit ? "Qw" : "Qb");
+                        break;
+                    case Piece::Bishop:
+                        out << QString(piece->getKleur() == zw::wit ? "Bw" : "Bb");
+                        break;
+                    case Piece::Knight:
+                        out << QString(piece->getKleur() == zw::wit ? "Kw" : "Kb");
+                        break;
+                    case Piece::None:
+                        break;
+                }
             }
         }
-        for (int i = 0; i < 8; i++) {
-            out << QString("Pw");
-        }
-        out << QString("Rw") << QString("Hw") << QString("Bw") << QString("Qw")
-            << QString("Kw") << QString("Bw") << QString("Hw") << QString("Rw");
     }
 }
 
@@ -153,24 +173,40 @@ void SchaakGUI::open() {
     if (openFileToRead(file)) {
         try {
             QDataStream in(&file);
-            QString debugstring;
             for (int r = 0; r < 8; r++) {
                 for (int k = 0; k < 8; k++) {
                     QString piece;
                     in >> piece;
-                    debugstring += "\t" + piece;
+                    if (piece == ".") {
+                        g.setPiece(r, k, nullptr);
+                    } else {
+                        zw kleur = piece.endsWith("w") ? zw::wit : zw::zwart;
+                        if (piece.startsWith("P")) {
+                            g.setPiece(r, k, new Pion(kleur));
+                        } else if (piece.startsWith("R")) {
+                            g.setPiece(r, k, new Toren(kleur));
+                        } else if (piece.startsWith("K")) {
+                            g.setPiece(r, k, new Paard(kleur));
+                        } else if (piece.startsWith("B")) {
+                            g.setPiece(r, k, new Loper(kleur));
+                        } else if (piece.startsWith("H")) {
+                            g.setPiece(r, k, new Koning(kleur));
+                        } else if (piece.startsWith("Q")) {
+                            g.setPiece(r, k, new Koningin(kleur));
+                        } else {
+                            throw QString("Ongeldige formaat");
+                        }
+                    }
                     if (in.status() != QDataStream::Ok) {
                         throw QString("Ongeldig formaat");
                     }
                 }
-                debugstring += "\n";
             }
-            message(debugstring);
+            update();
         } catch (QString& Q) {
             message(Q);
         }
     }
-    update();
 }
 
 void SchaakGUI::undo() { message("UNDO"); }
