@@ -10,8 +10,8 @@
 
 #include "game.h"
 
-std::vector<std::pair<int, int>> Pion::alle_mogelijke_zetten(const Game& game) const {
-    std::vector<std::pair<int, int>> zetten;
+Positions Pion::alle_mogelijke_zetten(const Game& game) const {
+    Positions zetten;
 
     int currentRow = this->getPositie().first;
     int currentCol = this->getPositie().second;
@@ -59,8 +59,8 @@ std::vector<std::pair<int, int>> Pion::alle_mogelijke_zetten(const Game& game) c
     return zetten;
 }
 
-std::vector<std::pair<int, int>> Toren::alle_mogelijke_zetten(const Game& game) const {
-    std::vector<std::pair<int, int>> zetten;
+Positions Toren::alle_mogelijke_zetten(const Game& game) const {
+    Positions zetten;
 
     int currentRow = this->getPositie().first;
     int currentCol = this->getPositie().second;
@@ -117,8 +117,8 @@ std::vector<std::pair<int, int>> Toren::alle_mogelijke_zetten(const Game& game) 
     return zetten;
 }
 
-std::vector<std::pair<int, int>> Paard::alle_mogelijke_zetten(const Game& game) const {
-    std::vector<std::pair<int, int>> zetten;
+Positions Paard::alle_mogelijke_zetten(const Game& game) const {
+    Positions zetten;
 
     int currentRow = this->getPositie().first;
     int currentCol = this->getPositie().second;
@@ -136,8 +136,8 @@ std::vector<std::pair<int, int>> Paard::alle_mogelijke_zetten(const Game& game) 
     return zetten;
 }
 
-std::vector<std::pair<int, int>> Loper::alle_mogelijke_zetten(const Game& game) const {
-    std::vector<std::pair<int, int>> zetten;
+Positions Loper::alle_mogelijke_zetten(const Game& game) const {
+    Positions zetten;
 
     int currentRow = this->getPositie().first;
     int currentCol = this->getPositie().second;
@@ -198,9 +198,8 @@ std::vector<std::pair<int, int>> Loper::alle_mogelijke_zetten(const Game& game) 
     return zetten;
 }
 
-std::vector<std::pair<int, int>> Koning::alle_mogelijke_zetten(
-    const Game& game) const {
-    std::vector<std::pair<int, int>> zetten;
+Positions Koning::alle_mogelijke_zetten(const Game& game) const {
+    Positions zetten;
 
     int currentRow = this->getPositie().first;
     int currentCol = this->getPositie().second;
@@ -218,9 +217,8 @@ std::vector<std::pair<int, int>> Koning::alle_mogelijke_zetten(
     return zetten;
 }
 
-std::vector<std::pair<int, int>> Koningin::alle_mogelijke_zetten(
-    const Game& game) const {
-    std::vector<std::pair<int, int>> zetten;
+Positions Koningin::alle_mogelijke_zetten(const Game& game) const {
+    Positions zetten;
 
     int currentRow = this->getPositie().first;
     int currentCol = this->getPositie().second;
@@ -329,9 +327,9 @@ std::vector<std::pair<int, int>> Koningin::alle_mogelijke_zetten(
     return zetten;
 }
 
-std::vector<std::pair<int, int>> SchaakStuk::geldige_zetten(const Game& game) {
+Positions SchaakStuk::geldige_zetten(const Game& game) {
     // filteration; remove all invalid positions; out of bounds
-    std::vector<std::pair<int, int>> validZetten;
+    Positions validZetten;
     for (const auto& pos : alle_mogelijke_zetten(game)) {
         if (game.outOfBounds(pos.first, pos.second)) continue;
         if (game.causesSchaak(this, pos.first, pos.second)) continue;

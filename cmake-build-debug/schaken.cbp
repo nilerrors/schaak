@@ -116,6 +116,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/Position.h">
+			<Option target="schaken"/>
+		</Unit>
 		<Unit filename="C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/SchaakGUI.cpp">
 			<Option target="schaken"/>
 		</Unit>

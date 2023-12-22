@@ -259,5 +259,6 @@ CMakeFiles/schaken.dir/SchaakStuk.cpp.obj: \
  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward/auto_ptr.h \
  C:/Qt/5.15.2/mingw81_64/include/QtGui/qfont.h \
  C:/Qt/5.15.2/mingw81_64/include/QtGui/qpen.h \
+ C:\Users\MCS\ 7390\ LATITUDE\Desktop\UNIV\IP\schaken\Position.h \
  C:\Users\MCS\ 7390\ LATITUDE\Desktop\UNIV\IP\schaken\game.h \
  C:\Users\MCS\ 7390\ LATITUDE\Desktop\UNIV\IP\schaken\consts.h

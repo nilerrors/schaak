@@ -277,6 +277,7 @@ CMakeFiles/schaken.dir/SchaakGUI.cpp.obj: \
  C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QGraphicsScene \
  C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qgraphicsscene.h \
  C:/Qt/5.15.2/mingw81_64/include/QtGui/qpen.h \
+ C:\Users\MCS\ 7390\ LATITUDE\Desktop\UNIV\IP\schaken\Position.h \
  C:\Users\MCS\ 7390\ LATITUDE\Desktop\UNIV\IP\schaken\guicode/ChessWindow.h \
  C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QMainWindow \
  C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qmainwindow.h \
@@ -284,6 +285,7 @@ CMakeFiles/schaken.dir/SchaakGUI.cpp.obj: \
  C:/Users/MCS739~1/Desktop/UNIV/IP/schaken/game.h \
  C:/Users/MCS739~1/Desktop/UNIV/IP/schaken/consts.h \
  C:/Users/MCS739~1/Desktop/UNIV/IP/schaken/SchaakStuk.h \
+ C:/Users/MCS739~1/Desktop/UNIV/IP/schaken/Position.h \
  C:/Users/MCS739~1/Desktop/UNIV/IP/schaken/SchaakStuk.h \
  C:/Qt/5.15.2/mingw81_64/include/QtGui/QCloseEvent \
  C:/Qt/5.15.2/mingw81_64/include/QtGui/qevent.h \

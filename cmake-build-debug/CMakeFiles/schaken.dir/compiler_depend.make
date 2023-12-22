@@ -279,6 +279,7 @@ CMakeFiles/schaken.dir/SchaakGUI.cpp.obj: C:/Users/MCS\ 7390\ LATITUDE/Desktop/U
   C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QGraphicsScene \
   C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qgraphicsscene.h \
   C:/Qt/5.15.2/mingw81_64/include/QtGui/qpen.h \
+  C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/Position.h \
   C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/guicode/ChessWindow.h \
   C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QMainWindow \
   C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qmainwindow.h \
@@ -286,6 +287,7 @@ CMakeFiles/schaken.dir/SchaakGUI.cpp.obj: C:/Users/MCS\ 7390\ LATITUDE/Desktop/U
   C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/game.h \
   C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/consts.h \
   C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/SchaakStuk.h \
+  C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/Position.h \
   C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/SchaakStuk.h \
   C:/Qt/5.15.2/mingw81_64/include/QtGui/QCloseEvent \
   C:/Qt/5.15.2/mingw81_64/include/QtGui/qevent.h \
@@ -577,6 +579,7 @@ CMakeFiles/schaken.dir/SchaakStuk.cpp.obj: C:/Users/MCS\ 7390\ LATITUDE/Desktop/
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward/auto_ptr.h \
   C:/Qt/5.15.2/mingw81_64/include/QtGui/qfont.h \
   C:/Qt/5.15.2/mingw81_64/include/QtGui/qpen.h \
+  C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/Position.h \
   C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/game.h \
   C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/consts.h
 
@@ -715,6 +718,11 @@ CMakeFiles/schaken.dir/game.cpp.obj: C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/I
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/istream \
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/istream.tcc \
   C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/game.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/vector \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_uninitialized.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_vector.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_bvector.h \
+  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/vector.tcc \
   C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/consts.h \
   C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/SchaakStuk.h \
   C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/guicode/chessboard.h \
@@ -788,11 +796,6 @@ CMakeFiles/schaken.dir/game.cpp.obj: C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/I
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_function.h \
   C:/Qt/5.15.2/mingw81_64/include/QtCore/qvector.h \
   C:/Qt/5.15.2/mingw81_64/include/QtCore/qcontainertools_impl.h \
-  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/vector \
-  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_uninitialized.h \
-  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_vector.h \
-  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_bvector.h \
-  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/vector.tcc \
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/list \
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_list.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/allocated_ptr.h \
@@ -855,7 +858,8 @@ CMakeFiles/schaken.dir/game.cpp.obj: C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/I
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/shared_ptr_atomic.h \
   C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward/auto_ptr.h \
   C:/Qt/5.15.2/mingw81_64/include/QtGui/qfont.h \
-  C:/Qt/5.15.2/mingw81_64/include/QtGui/qpen.h
+  C:/Qt/5.15.2/mingw81_64/include/QtGui/qpen.h \
+  C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/Position.h
 
 CMakeFiles/schaken.dir/guicode/ChessWindow.cpp.obj: C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/guicode/ChessWindow.cpp \
   C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/guicode/ChessWindow.h \
@@ -1131,6 +1135,7 @@ CMakeFiles/schaken.dir/guicode/ChessWindow.cpp.obj: C:/Users/MCS\ 7390\ LATITUDE
   C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QGraphicsScene \
   C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qgraphicsscene.h \
   C:/Qt/5.15.2/mingw81_64/include/QtGui/qpen.h \
+  C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/Position.h \
   C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/SchaakStuk.h \
   C:/Qt/5.15.2/mingw81_64/include/QtGui/QCloseEvent \
   C:/Qt/5.15.2/mingw81_64/include/QtGui/qevent.h \
@@ -3904,6 +3909,7 @@ CMakeFiles/schaken.dir/main.cpp.obj: C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/I
   C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QGraphicsScene \
   C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qgraphicsscene.h \
   C:/Qt/5.15.2/mingw81_64/include/QtGui/qpen.h \
+  C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/Position.h \
   C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/guicode/ChessWindow.h \
   C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QMainWindow \
   C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qmainwindow.h \
@@ -3911,6 +3917,7 @@ CMakeFiles/schaken.dir/main.cpp.obj: C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/I
   C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/game.h \
   C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/consts.h \
   C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/SchaakStuk.h \
+  C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/Position.h \
   C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/SchaakStuk.h \
   C:/Qt/5.15.2/mingw81_64/include/QtGui/QCloseEvent \
   C:/Qt/5.15.2/mingw81_64/include/QtGui/qevent.h \
@@ -4196,6 +4203,7 @@ CMakeFiles/schaken.dir/schaken_autogen/mocs_compilation.cpp.obj: schaken_autogen
   C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QGraphicsScene \
   C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qgraphicsscene.h \
   C:/Qt/5.15.2/mingw81_64/include/QtGui/qpen.h \
+  C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/Position.h \
   C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/SchaakStuk.h \
   C:/Qt/5.15.2/mingw81_64/include/QtGui/QCloseEvent \
   C:/Qt/5.15.2/mingw81_64/include/QtGui/qevent.h \
@@ -5220,6 +5228,14 @@ C:/Qt/5.15.2/mingw81_64/include/QtCore/qfuture.h:
 
 C:/Qt/5.15.2/mingw81_64/include/QtGui/qpen.h:
 
+C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/x86_64-w64-mingw32/include/timezoneapi.h:
+
+C:/Qt/5.15.2/mingw81_64/include/QtCore/QtCore:
+
+C:/Qt/5.15.2/mingw81_64/include/QtCore/qfloat16.h:
+
+C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/Position.h:
+
 C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/guicode/ChessWindow.h:
 
 C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QMainWindow:
@@ -5297,12 +5313,6 @@ C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/SchaakStuk.cpp:
 C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QtWidgets:
 
 C:/Qt/5.15.2/mingw81_64/include/QtCore/qmutex.h:
-
-C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/x86_64-w64-mingw32/include/timezoneapi.h:
-
-C:/Qt/5.15.2/mingw81_64/include/QtCore/QtCore:
-
-C:/Qt/5.15.2/mingw81_64/include/QtCore/qfloat16.h:
 
 C:/Qt/5.15.2/mingw81_64/include/QtCore/QtCoreDepends:
 
@@ -5612,13 +5622,13 @@ C:/Qt/5.15.2/mingw81_64/include/QtGui/qimageiohandler.h:
 
 C:/Qt/5.15.2/mingw81_64/include/QtGui/qimagewriter.h:
 
-C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qstackedlayout.h:
-
-C:/Qt/5.15.2/mingw81_64/include/QtGui/qopengl.h:
-
 C:/Qt/5.15.2/mingw81_64/include/QtGui/qvector4d.h:
 
 C:/Qt/5.15.2/mingw81_64/include/QtGui/qmovie.h:
+
+C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qstackedlayout.h:
+
+C:/Qt/5.15.2/mingw81_64/include/QtGui/qopengl.h:
 
 C:/Qt/5.15.2/mingw81_64/include/QtCore/qt_windows.h:
 

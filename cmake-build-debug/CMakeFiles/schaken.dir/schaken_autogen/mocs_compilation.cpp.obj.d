@@ -274,6 +274,7 @@ CMakeFiles/schaken.dir/schaken_autogen/mocs_compilation.cpp.obj: \
  C:/Qt/5.15.2/mingw81_64/include/QtWidgets/QGraphicsScene \
  C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qgraphicsscene.h \
  C:/Qt/5.15.2/mingw81_64/include/QtGui/qpen.h \
+ C:/Users/MCS739~1/Desktop/UNIV/IP/schaken/Position.h \
  C:/Users/MCS739~1/Desktop/UNIV/IP/schaken/SchaakStuk.h \
  C:/Qt/5.15.2/mingw81_64/include/QtGui/QCloseEvent \
  C:/Qt/5.15.2/mingw81_64/include/QtGui/qevent.h \

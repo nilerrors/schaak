@@ -6,23 +6,28 @@
 #ifndef SCHAAK_GAME_H
 #define SCHAAK_GAME_H
 
+#include <vector>
 #include "consts.h"
 #include "SchaakStuk.h"
-#include <vector>
-#include <utility>
+#include "Position.h"
 
 class Game {
     // variabelen om de status van het spel/bord te bewaren
     zw turn = zw::wit;
-    std::pair<int, int> movePosition = std::make_pair(-1, -1); // -1, -1; niet geselecteerd.
+    Position movePosition = std::make_pair(-1, -1); // -1, -1; niet geselecteerd.
     bool gameEnded = false;
+    std::vector<FromTo<SchaakStuk *>> moves;
+    int currentMove = -1;
 
 public:
     Game();
     ~Game();
     Game(const Game& game);  // copy constructor
 
-    bool move(SchaakStuk* s, int r, int k);  // Verplaats stuk s naar rij r en kolom k
+    bool move(SchaakStuk* s, int r, int k, bool saveMove = true);  // Verplaats stuk s naar rij r en kolom k
+
+    bool undoMove();
+    bool redoMove();
 
     bool causesSchaak(SchaakStuk* stuk, int r, int k) const;
     bool schaak(zw kleur);
@@ -31,10 +36,11 @@ public:
     void setStartBord();
 
     // threats and kills
-    std::vector<std::pair<int, int>> threats() const;
-    std::vector<std::pair<int, int>> kills(SchaakStuk* stuk) const;
+    Positions threats() const;
+    Positions kills(SchaakStuk* stuk) const;
 
     std::vector<SchaakStuk *> alleSchaakstukken(zw kleur) const;
+    FromTo<SchaakStuk *> lastMove() const;
 
     void endGame() { gameEnded = true; }
     bool getGameEnded() { return gameEnded; }
@@ -45,13 +51,13 @@ public:
     void setPiece(int r, int k, SchaakStuk* s);
 
     zw getTurn() const;
-    const std::pair<int, int>& getMovePosition() const;
+    const Position& getMovePosition() const;
     bool movePositionUnset() const;
     void changeTurn();
     void clearMovePosition();
     void setMovePosition(int r, int k);
 
-    std::pair<int, int> getKoningPosition(zw kleur) const;
+    Position getKoningPosition(zw kleur) const;
 
 private:
     // 8 rijen, 8 kolommen = 64 plaatsen

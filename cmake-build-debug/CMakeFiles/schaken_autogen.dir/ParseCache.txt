@@ -308,6 +308,7 @@ C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/guicode/ChessWindow.h
  mdp:C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtwidgets-config.h
  mdp:C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qtwidgetsglobal.h
  mdp:C:/Qt/5.15.2/mingw81_64/include/QtWidgets/qwidget.h
+ mdp:C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/Position.h
  mdp:C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/SchaakStuk.h
  mdp:C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/consts.h
  mdp:C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/game.h
@@ -597,6 +598,7 @@ C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/guicode/chessboard.h
 C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/guicode/fileIO.h
 C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/guicode/message.h
 C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/SchaakGUI.cpp
+C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/Position.h
 C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/SchaakStuk.cpp
 C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/game.cpp
 C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/guicode/ChessWindow.cpp

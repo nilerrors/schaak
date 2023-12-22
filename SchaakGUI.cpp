@@ -38,26 +38,28 @@ void SchaakGUI::update() {
         message("Pat! Gelijkspel.");
     } else {
         removeAllMarking();
-        if (displayThreats()) {
-            // kleurt alle bedreigde schaakstukken
-            // van beide kanten
-            for (const auto &zet : g.threats()) {
-                setPieceThreat(zet.first, zet.second, true);
+        if (g.movePositionUnset()) {
+            removeAllPieceThreats();
+            if (displayThreats()) {
+                // kleurt alle bedreigde schaakstukken
+                // van beide kanten
+                for (const auto &zet : g.threats()) {
+                    setPieceThreat(zet.first, zet.second, true);
+                }
             }
-        }
-        if (!g.movePositionUnset()) {
+        } else {
             SchaakStuk* moveStuk = g.getPiece(g.getMovePosition().first,
                                               g.getMovePosition().second);
 
             setTileSelect(g.getMovePosition().first,g.getMovePosition().second, true);
-            if (displayKills()) {
-                for (const auto &zet : g.kills(moveStuk)) {
-                    setTileThreat(zet.first, zet.second, true);
-                }
-            }
             if (displayMoves()) {
                 for (const auto &zet : moveStuk->geldige_zetten(g)) {
                     setTileFocus(zet.first, zet.second, true);
+                }
+            }
+            if (displayKills()) {
+                for (const auto &zet : g.kills(moveStuk)) {
+                    setTileThreat(zet.first, zet.second, true);
                 }
             }
         }
@@ -93,9 +95,11 @@ void SchaakGUI::clicked(int r, int k) {
 
         if (r == moveStuk->getPositie().first && k == moveStuk->getPositie().second) {
             g.clearMovePosition();
-        } else if (stuk == nullptr || (stuk != nullptr && stuk->getKleur() != moveStuk->getKleur())) {
+        } else if (stuk != nullptr && stuk->getKleur() == moveStuk->getKleur()) {
+            message("Deze zet is ongeldig.");
+        } else {
             bool geldigeMove = false;
-            std::vector<std::pair<int, int>> geldigeZetten = moveStuk->geldige_zetten(g);
+            Positions geldigeZetten = moveStuk->geldige_zetten(g);
             for (const auto &zet : geldigeZetten) {
                 if (r == zet.first && k == zet.second) {
                     std::cout << "Beweeg stuk: "
@@ -114,8 +118,6 @@ void SchaakGUI::clicked(int r, int k) {
             if (!geldigeMove) {
                 message("Deze zet is ongeldig.");
             }
-        } else {
-            message("Deze zet is ongeldig.");
         }
     }
 
@@ -149,7 +151,7 @@ void SchaakGUI::save() {
                         out << QString(piece->getKleur() == zw::wit ? "Rw" : "Rb");
                         break;
                     case Piece::King:
-                        out << QString(piece->getKleur() == zw::wit ? "Kw" : "Kb");
+                        out << QString(piece->getKleur() == zw::wit ? "Hw" : "Hb");
                         break;
                     case Piece::Queen:
                         out << QString(piece->getKleur() == zw::wit ? "Qw" : "Qb");
@@ -209,9 +211,15 @@ void SchaakGUI::open() {
     }
 }
 
-void SchaakGUI::undo() { message("UNDO"); }
+void SchaakGUI::undo() {
+    g.undoMove();
+    update();
+}
 
-void SchaakGUI::redo() { message("REDO"); }
+void SchaakGUI::redo() {
+    g.redoMove();
+    update();
+}
 
 void SchaakGUI::visualizationChange() {
     QString visstring = QString(displayMoves() ? "T" : "F") +

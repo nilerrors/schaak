@@ -81,6 +81,12 @@
 	"HEADERS" : 
 	[
 		[
+			"C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/Position.h",
+			"Mu",
+			"EWIEGA46WW/moc_Position.cpp",
+			null
+		],
+		[
 			"C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/SchaakGUI.h",
 			"Mu",
 			"EWIEGA46WW/moc_SchaakGUI.cpp",

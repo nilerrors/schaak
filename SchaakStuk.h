@@ -7,6 +7,8 @@
 #define SCHAKEN_SCHAAKSTUK_H
 #include <guicode/chessboard.h>
 
+#include "Position.h"
+
 class Game;
 
 enum zw {
@@ -26,10 +28,10 @@ public:
 
     zw getKleur() const { return kleur; }
 
-    std::vector<std::pair<int, int>> geldige_zetten(const Game& game);
+    Positions geldige_zetten(const Game& game);
 
-    const std::pair<int, int>& getPositie() const { return positie; }
-    void setPositie(const std::pair<int, int>& newPositie) {
+    const Position& getPositie() const { return positie; }
+    void setPositie(const Position& newPositie) {
         positie = newPositie;
     }
     void setPositie(int rij, int kolom) {
@@ -37,11 +39,11 @@ public:
     }
 
 //protected:
-    virtual std::vector<std::pair<int, int>> alle_mogelijke_zetten(const Game& game) const = 0;
+    virtual Positions alle_mogelijke_zetten(const Game& game) const = 0;
 
 private:
     zw kleur;
-    std::pair<int, int> positie = std::make_pair(-1, -1);
+    Position positie = std::make_pair(-1, -1);
 };
 
 class Pion : public SchaakStuk {
@@ -52,8 +54,7 @@ public:
                      getKleur() == wit ? Piece::White : Piece::Black);
     }
 
-    virtual std::vector<std::pair<int, int>> alle_mogelijke_zetten(
-        const Game& game) const;
+    Positions alle_mogelijke_zetten(const Game& game) const override;
 };
 
 class Toren : public SchaakStuk {
@@ -65,8 +66,7 @@ public:
                      getKleur() == wit ? Piece::White : Piece::Black);
     }
 
-    virtual std::vector<std::pair<int, int>> alle_mogelijke_zetten(
-        const Game& game) const;
+    Positions alle_mogelijke_zetten(const Game& game) const override;
 };
 
 class Paard : public SchaakStuk {
@@ -78,8 +78,7 @@ public:
                      getKleur() == wit ? Piece::White : Piece::Black);
     }
 
-    virtual std::vector<std::pair<int, int>> alle_mogelijke_zetten(
-        const Game& game) const;
+    Positions alle_mogelijke_zetten(const Game& game) const override;
 };
 
 class Loper : public SchaakStuk {
@@ -91,8 +90,7 @@ public:
                      getKleur() == wit ? Piece::White : Piece::Black);
     }
 
-    virtual std::vector<std::pair<int, int>> alle_mogelijke_zetten(
-        const Game& game) const;
+    Positions alle_mogelijke_zetten(const Game& game) const override;
 };
 
 class Koning : public SchaakStuk {
@@ -104,8 +102,7 @@ public:
                      getKleur() == wit ? Piece::White : Piece::Black);
     }
 
-    virtual std::vector<std::pair<int, int>> alle_mogelijke_zetten(
-        const Game& game) const;
+    Positions alle_mogelijke_zetten(const Game& game) const override;
 };
 
 class Koningin : public SchaakStuk {
@@ -117,8 +114,7 @@ public:
                      getKleur() == wit ? Piece::White : Piece::Black);
     }
 
-    virtual std::vector<std::pair<int, int>> alle_mogelijke_zetten(
-        const Game& game) const;
+    Positions alle_mogelijke_zetten(const Game& game) const override;
 };
 
 #endif  // SCHAKEN_SCHAAKSTUK_H
