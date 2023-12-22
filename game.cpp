@@ -42,6 +42,9 @@ Game::Game(const Game& game) {
 
     turn = game.turn;
     movePosition = game.movePosition;
+    moves = game.moves;
+    currentMove = game.currentMove;
+
     for (auto &stuk : game.bord) {
         if (stuk == nullptr) continue;
 
@@ -147,11 +150,11 @@ bool Game::move(SchaakStuk* s, int r, int k, bool saveMove) {
             moves.clear();
         }
         moves.emplace(moves.cbegin() + currentMove,
-                      FromTo<SchaakStuk*>{
-            s,
-            std::make_pair(stukPositie.first, stukPositie.second),
-            std::make_pair(r, k)
-        });
+                      FromTo{
+                    s,
+                    std::make_pair(stukPositie.first, stukPositie.second),
+                    std::make_pair(r, k)
+            });
     }
 
     setPiece(r, k, nullptr);
@@ -316,8 +319,7 @@ bool Game::causesSchaak(SchaakStuk *s, int r, int k) const {
     Game game(*this);
     SchaakStuk* gameSchaakstuk = game.getPiece(stukPositie.first, stukPositie.second);
 
-    game.setPiece(r, k, gameSchaakstuk);
-    game.setPiece(stukPositie.first, stukPositie.second, nullptr);
+    game.move(gameSchaakstuk, r, k);
 
     if (game.schaak(gameSchaakstuk->getKleur())) {
         std::cout << "\tals "
@@ -351,33 +353,37 @@ Positions Game::threats() const {
 }
 
 Positions Game::kills(SchaakStuk* s) const {
+    Game game(*this);
+    s = game.getPiece(s->getPositie().first, s->getPositie().second);
+
     // pair van position en schaakstuk is bewaard voor de output onder
     std::vector<std::pair<Position, SchaakStuk*>> all_kills;
-    auto sGeldigeZetten = s->geldige_zetten(*this);
+    auto sGeldigeZetten = s->geldige_zetten(game);
+    for (auto &sZet : sGeldigeZetten) {
+        game.move(s, sZet.first, sZet.second);
+        for (auto stuk : alleSchaakstukken(s->getKleur() == zw::wit ? zw::zwart : zw::wit)) {
+            for (auto &zet : stuk->alle_mogelijke_zetten(game)) {
+                if (stuk->piece().type() == Piece::Pawn && stuk->getPositie().second == zet.second) {
+                    // de pion kan niet recht voor hem iemand vermoorden
+                    // die zetten moeten we skippen
+                    if (stuk->getKleur() == zw::wit &&
+                        (stuk->getPositie().first - 1 == zet.first ||
+                         stuk->getPositie().first - 2 == zet.first)) {
+                        continue;
+                    } else if (stuk->getKleur() == zw::zwart &&
+                               (stuk->getPositie().first + 1 == zet.first ||
+                                stuk->getPositie().first + 2 == zet.first))
+                        continue;
+                }
 
-    for (auto &stuk : alleSchaakstukken(
-            s->getKleur() == zw::wit ? zw::zwart : zw::wit)) {
-        for (const auto &zet : stuk->geldige_zetten(*this)) {
-            if (stuk->piece().type() == Piece::Pawn && stuk->getPositie().second == zet.second) {
-                // de pion kan niet recht voor hem iemand vermoorden
-                // die zetten moeten we skippen
-                if (stuk->getKleur() == zw::wit &&
-                    (stuk->getPositie().first - 1 == zet.first ||
-                        stuk->getPositie().first - 2 == zet.first)) {
-                    continue;
-                } else if (stuk->getKleur() == zw::zwart &&
-                            (stuk->getPositie().first + 1 == zet.first ||
-                            stuk->getPositie().first + 2 == zet.first))
-                    continue;
-            }
-
-            SchaakStuk* opPositie = getPiece(zet.first, zet.second);
-            for (const auto &sZet : sGeldigeZetten) {
+                SchaakStuk* opPositie = getPiece(zet.first, zet.second);
                 if (sZet.first == zet.first && sZet.second == zet.second) {
                     all_kills.push_back(std::make_pair(zet, stuk));
                 }
             }
         }
+        // herstel originele positie
+        game.undoMove();
     }
 
     std::cout << "Totaal aantal kills van "
@@ -440,9 +446,9 @@ bool Game::redoMove() {
     return true;
 }
 
-FromTo<SchaakStuk *> Game::lastMove() const {
+FromTo Game::lastMove() const {
     if (currentMove < 0 || moves.size() == 0) {
-        return FromTo<SchaakStuk *>{
+        return FromTo{
                 nullptr,
                 std::make_pair(-1, -1),
                 std::make_pair(-1, -1)

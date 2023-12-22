@@ -127,6 +127,9 @@ void SchaakGUI::clicked(int r, int k) {
 void SchaakGUI::newGame() {
     removeAllMarking();
     g.setStartBord();
+    if (g.getTurn() != zw::wit) {
+        g.changeTurn();
+    }
     update();
 }
 
@@ -134,6 +137,8 @@ void SchaakGUI::save() {
     QFile file;
     if (openFileToWrite(file)) {
         QDataStream out(&file);
+
+        out << (g.getTurn() == zw::wit ? QString("TW") : QString("TB"));
 
         for (int r = 0; r < ROW_SIZE; r++) {
             for (int k = 0; k < COL_SIZE; k++) {
@@ -175,6 +180,16 @@ void SchaakGUI::open() {
     if (openFileToRead(file)) {
         try {
             QDataStream in(&file);
+
+            QString turn;
+            in >> turn;
+
+            if (turn == "TW" && g.getTurn() != zw::wit) {
+                g.changeTurn();
+            } else if (turn == "TB" && g.getTurn() != zw::zwart) {
+                g.changeTurn();
+            }
+
             for (int r = 0; r < 8; r++) {
                 for (int k = 0; k < 8; k++) {
                     QString piece;

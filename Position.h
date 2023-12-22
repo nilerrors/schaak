@@ -8,14 +8,15 @@
 #include <utility>
 #include <vector>
 
+class SchaakStuk;
+
 typedef std::pair<int, int> Position;
 
 typedef std::vector<Position> Positions;
 
 
-template<class T>
 struct FromTo {
-    T val;
+    SchaakStuk* val;
     Position from;
     Position to;
 };

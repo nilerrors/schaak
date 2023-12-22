@@ -16,7 +16,7 @@ class Game {
     zw turn = zw::wit;
     Position movePosition = std::make_pair(-1, -1); // -1, -1; niet geselecteerd.
     bool gameEnded = false;
-    std::vector<FromTo<SchaakStuk *>> moves;
+    std::vector<FromTo> moves;
     int currentMove = -1;
 
 public:
@@ -40,7 +40,7 @@ public:
     Positions kills(SchaakStuk* stuk) const;
 
     std::vector<SchaakStuk *> alleSchaakstukken(zw kleur) const;
-    FromTo<SchaakStuk *> lastMove() const;
+    FromTo lastMove() const;
 
     void endGame() { gameEnded = true; }
     bool getGameEnded() { return gameEnded; }
