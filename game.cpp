@@ -128,17 +128,17 @@ void Game::setStartBord() {
 // Als deze move niet mogelijk is, wordt false teruggegeven
 // en verandert er niets aan het schaakbord.
 // Anders wordt de move uitgevoerd en wordt true teruggegeven
-bool Game::move(SchaakStuk* s, int r, int k, bool saveMove) {
+bool Game::move(SchaakStuk* s, Position into, bool saveMove) {
     // Deze functie gaat ervan uit dat de gegeven
     // positie een geldige positie is om naar te bewegen
     // met het gegeven schaakstuk
 
-    if (outOfBounds(r, k)) return false;
+    if (outOfBounds(into.first, into.second)) return false;
     if (s == nullptr) return false;
 
     Position stukPositie = s->getPositie();
 
-    if (stukPositie.first == r && stukPositie.second == k) return false;
+    if (stukPositie.first == into.first && stukPositie.second == into.second) return false;
 
     if (saveMove) {
         currentMove++;
@@ -149,17 +149,37 @@ bool Game::move(SchaakStuk* s, int r, int k, bool saveMove) {
         if (currentMove == 0) {
             moves.clear();
         }
-        moves.emplace(moves.cbegin() + currentMove,
-                      FromTo{
-                    s,
-                    std::make_pair(stukPositie.first, stukPositie.second),
-                    std::make_pair(r, k)
-            });
+
+        moves.emplace(moves.cbegin() + currentMove, FromTo{s,stukPositie,into,into.type});
+
+
+        switch (into.type) {
+            case MoveType::en_passant:
+                if (s->getKleur() == zw::wit) {
+                    // bewaar de zwarte pion die "verwijderd" wordt door en passant
+                    moves[currentMove].pieces.push_back(getPiece(into.first + 1, into.second));
+                } else {
+                    // bewaar de witte pion die "verwijderd" wordt door en passant
+                    moves[currentMove].pieces.push_back(getPiece(into.first - 1, into.second));
+                }
+                break;
+        }
+
     }
 
-    setPiece(r, k, nullptr);
-    setPiece(r, k, s);
+    setPiece(into.first, into.second, nullptr);
+    setPiece(into.first, into.second, s);
     setPiece(stukPositie.first, stukPositie.second, nullptr);
+
+    if (into.type == MoveType::en_passant) {
+        if (s->getKleur() == zw::wit) {
+            // verwijder de zwarte pion door en passant
+            setPiece(into.first + 1, into.second, nullptr);
+        } else {
+            // verwijder de witte pion door en passant
+            setPiece(into.first - 1, into.second, nullptr);
+        }
+    }
 
     return true;
 }
@@ -286,10 +306,10 @@ void Game::changeTurn() {
         turn = zw::wit;
 }
 
-void Game::clearMovePosition() { movePosition = std::make_pair(-1, -1); }
+void Game::clearMovePosition() { movePosition = Position(-1, -1); }
 
 void Game::setMovePosition(int r, int k) {
-    movePosition = std::make_pair(r, k);
+    movePosition = Position(r, k);
 }
 
 bool Game::movePositionUnset() const {
@@ -297,21 +317,21 @@ bool Game::movePositionUnset() const {
 }
 
 Position Game::getKoningPosition(zw kleur) const {
-    Position kingPosition = std::make_pair(-1, -1);
+    Position kingPosition = Position(-1, -1);
     for (const auto &stuk : bord) {
         if (stuk == nullptr) continue;
         if (stuk->piece().type() == Piece::King && stuk->getKleur() == kleur) {
-            kingPosition = std::make_pair(stuk->getPositie().first, stuk->getPositie().second);
+            kingPosition = Position(stuk->getPositie().first, stuk->getPositie().second);
         }
     }
 
     return kingPosition;
 }
 
-bool Game::causesSchaak(SchaakStuk *s, int r, int k) const {
+bool Game::causesSchaak(SchaakStuk *s, Position into) const {
     if (s == nullptr) return false;
     Position stukPositie = s->getPositie();
-    if (stukPositie.first == r && stukPositie.second == k) return false;
+    if (stukPositie.first == into.first && stukPositie.second == into.second) return false;
 
     // Nieuw spel die de huidige spel data meekrijgt,
     // zodat we niet alle functies non-const moeten maken
@@ -319,14 +339,14 @@ bool Game::causesSchaak(SchaakStuk *s, int r, int k) const {
     Game game(*this);
     SchaakStuk* gameSchaakstuk = game.getPiece(stukPositie.first, stukPositie.second);
 
-    game.move(gameSchaakstuk, r, k);
+    game.move(gameSchaakstuk, into);
 
     if (game.schaak(gameSchaakstuk->getKleur())) {
         std::cout << "\tals "
                   << (gameSchaakstuk->getKleur() == zw::wit ? "wit " : "zwart ")
                   << pieceToString(gameSchaakstuk->piece())
                   << " (" << stukPositie.first << ", " << stukPositie.second << ") "
-                  << "bewogen wordt naar (" << r << ", " << k << ")"
+                  << "bewogen wordt naar (" << into.first << ", " << into.second << ")"
                   << std::endl;
 
         return true;
@@ -360,7 +380,7 @@ Positions Game::kills(SchaakStuk* s) const {
     std::vector<std::pair<Position, SchaakStuk*>> all_kills;
     auto sGeldigeZetten = s->geldige_zetten(game);
     for (auto &sZet : sGeldigeZetten) {
-        game.move(s, sZet.first, sZet.second);
+        game.move(s, sZet);
         for (auto stuk : alleSchaakstukken(s->getKleur() == zw::wit ? zw::zwart : zw::wit)) {
             for (auto &zet : stuk->alle_mogelijke_zetten(game)) {
                 if (stuk->piece().type() == Piece::Pawn && stuk->getPositie().second == zet.second) {
@@ -423,7 +443,13 @@ bool Game::undoMove() {
         return false;
     }
 
-    move(moves[currentMove].val, moves[currentMove].from.first, moves[currentMove].from.second, false);
+    move(moves[currentMove].val, moves[currentMove].from, false);
+
+    if (moves[currentMove].type == MoveType::en_passant) {
+        setPiece(moves[currentMove].pieces[0]->getPositie().first,
+                 moves[currentMove].pieces[0]->getPositie().second,
+                 moves[currentMove].pieces[0]);
+    }
 
     currentMove--;
 
@@ -439,20 +465,16 @@ bool Game::redoMove() {
 
     currentMove++;
 
-    move(moves[currentMove].val, moves[currentMove].to.first, moves[currentMove].to.second, false);
+    move(moves[currentMove].val, moves[currentMove].to, false);
 
     changeTurn();
 
     return true;
 }
 
-FromTo Game::lastMove() const {
+const FromTo* Game::lastMove() const {
     if (currentMove < 0 || moves.size() == 0) {
-        return FromTo{
-                nullptr,
-                std::make_pair(-1, -1),
-                std::make_pair(-1, -1)
-        };
+        return nullptr;
     }
-    return moves[currentMove];
+    return &(moves.at(currentMove));
 }

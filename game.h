@@ -14,7 +14,7 @@
 class Game {
     // variabelen om de status van het spel/bord te bewaren
     zw turn = zw::wit;
-    Position movePosition = std::make_pair(-1, -1); // -1, -1; niet geselecteerd.
+    Position movePosition = Position(-1, -1); // -1, -1; niet geselecteerd.
     bool gameEnded = false;
     std::vector<FromTo> moves;
     int currentMove = -1;
@@ -24,7 +24,7 @@ public:
     ~Game();
     Game(const Game& game);  // copy constructor
 
-    bool move(SchaakStuk* s, int r, int k, bool saveMove = true);  // Verplaats stuk s naar rij r en kolom k
+    bool move(SchaakStuk* s, Position into, bool saveMove = true);  // Verplaats stuk s naar rij r en kolom k
 
     const std::vector<FromTo>& allMoves() const { return moves; }
     int currentMoveIndex() const { return currentMove; }
@@ -33,7 +33,7 @@ public:
     bool undoMove();
     bool redoMove();
 
-    bool causesSchaak(SchaakStuk* stuk, int r, int k) const;
+    bool causesSchaak(SchaakStuk* stuk, Position into) const;
     bool schaak(zw kleur);
     bool schaakmat(zw kleur);
     bool pat(zw kleur);
@@ -44,7 +44,7 @@ public:
     Positions kills(SchaakStuk* stuk) const;
 
     std::vector<SchaakStuk *> alleSchaakstukken(zw kleur) const;
-    FromTo lastMove() const;
+    const FromTo* lastMove() const;
 
     void endGame() { gameEnded = true; }
     bool getGameEnded() { return gameEnded; }

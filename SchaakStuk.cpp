@@ -18,41 +18,60 @@ Positions Pion::alle_mogelijke_zetten(const Game& game) const {
 
     if (getKleur() == zw::wit) {
         if (game.getPiece(currentRow - 1, currentCol) == nullptr) {
-            zetten.push_back(std::make_pair(currentRow - 1, currentCol));
+            zetten.push_back(Position(currentRow - 1, currentCol));
             if (currentRow == 6) {
                 if (game.getPiece(currentRow - 2, currentCol) == nullptr) {
-                    zetten.push_back(std::make_pair(currentRow - 2, currentCol));
+                    zetten.push_back(Position(currentRow - 2, currentCol));
                 }
             }
         }
         if (game.getPiece(currentRow - 1, currentCol - 1) != nullptr &&
             game.getPiece(currentRow - 1, currentCol - 1)->getKleur() ==
                 zw::zwart) {
-            zetten.push_back(std::make_pair(currentRow - 1, currentCol - 1));
+            zetten.push_back(Position(currentRow - 1, currentCol - 1));
         }
         if (game.getPiece(currentRow - 1, currentCol + 1) != nullptr &&
             game.getPiece(currentRow - 1, currentCol + 1)->getKleur() ==
                 zw::zwart) {
-            zetten.push_back(std::make_pair(currentRow - 1, currentCol + 1));
+            zetten.push_back(Position(currentRow - 1, currentCol + 1));
         }
     } else {
         if (game.getPiece(currentRow + 1, currentCol) == nullptr) {
-            zetten.push_back(std::make_pair(currentRow + 1, currentCol));
+            zetten.push_back(Position(currentRow + 1, currentCol));
             if (currentRow == 1) {
                 if (game.getPiece(currentRow + 2, currentCol) == nullptr) {
-                    zetten.push_back(std::make_pair(currentRow + 2, currentCol));
+                    zetten.push_back(Position(currentRow + 2, currentCol));
                 }
             }
         }
         if (game.getPiece(currentRow + 1, currentCol - 1) != nullptr &&
             game.getPiece(currentRow + 1, currentCol - 1)->getKleur() ==
                 zw::wit) {
-            zetten.push_back(std::make_pair(currentRow + 1, currentCol - 1));
+            zetten.push_back(Position(currentRow + 1, currentCol - 1));
         }
         if (game.getPiece(currentRow + 1, currentCol + 1) != nullptr &&
             game.getPiece(currentRow + 1, currentCol + 1)->getKleur() ==
                 zw::wit) {
-            zetten.push_back(std::make_pair(currentRow + 1, currentCol + 1));
+            zetten.push_back(Position(currentRow + 1, currentCol + 1));
+        }
+    }
+
+    // en passant
+    const FromTo* lastMove = game.lastMove();
+    if (lastMove != nullptr && lastMove->val->piece().type() == Piece::Pawn &&
+        getKleur() != lastMove->val->getKleur()) {
+        if (getKleur() == zw::wit) {
+            if (lastMove->from.first == 1 && lastMove->to.first == 3 && currentRow == 3) {
+                if (lastMove->to.second - 1 == currentCol || lastMove->to.second + 1 == currentCol) {
+                    zetten.push_back(Position(lastMove->to.first - 1, lastMove->to.second, MoveType::en_passant));
+                }
+            }
+        } else {
+            if (lastMove->from.first == 6 && lastMove->to.first == 4 && currentRow == 4) {
+                if (lastMove->to.second - 1 == currentCol || lastMove->to.second + 1 == currentCol) {
+                    zetten.push_back(Position(lastMove->to.first + 1, lastMove->to.second, MoveType::en_passant));
+                }
+            }
         }
     }
 
@@ -69,9 +88,9 @@ Positions Toren::alle_mogelijke_zetten(const Game& game) const {
     for (int i = currentRow - 1; i < ROW_SIZE; i--) {
         if (game.outOfBounds(i, currentCol)) break;
         if (game.getPiece(i, currentCol) == nullptr) {
-            zetten.push_back(std::make_pair(i, currentCol));
+            zetten.push_back(Position(i, currentCol));
         } else if (game.getPiece(i, currentCol)->getKleur() != getKleur()) {
-            zetten.push_back(std::make_pair(i, currentCol));
+            zetten.push_back(Position(i, currentCol));
             break;
         } else {
             break;
@@ -81,9 +100,9 @@ Positions Toren::alle_mogelijke_zetten(const Game& game) const {
     for (int i = currentRow + 1; i < ROW_SIZE; i++) {
         if (game.outOfBounds(i, currentCol)) break;
         if (game.getPiece(i, currentCol) == nullptr) {
-            zetten.push_back(std::make_pair(i, currentCol));
+            zetten.push_back(Position(i, currentCol));
         } else if (game.getPiece(i, currentCol)->getKleur() != getKleur()) {
-            zetten.push_back(std::make_pair(i, currentCol));
+            zetten.push_back(Position(i, currentCol));
             break;
         } else {
             break;
@@ -93,9 +112,9 @@ Positions Toren::alle_mogelijke_zetten(const Game& game) const {
     for (int i = currentCol - 1; i < COL_SIZE; i--) {
         if (game.outOfBounds(currentRow, i)) break;
         if (game.getPiece(currentRow, i) == nullptr) {
-            zetten.push_back(std::make_pair(currentRow, i));
+            zetten.push_back(Position(currentRow, i));
         } else if (game.getPiece(currentRow, i)->getKleur() != getKleur()) {
-            zetten.push_back(std::make_pair(currentRow, i));
+            zetten.push_back(Position(currentRow, i));
             break;
         } else {
             break;
@@ -105,9 +124,9 @@ Positions Toren::alle_mogelijke_zetten(const Game& game) const {
     for (int i = currentCol + 1; i < COL_SIZE; i++) {
         if (game.outOfBounds(currentRow, i)) break;
         if (game.getPiece(currentRow, i) == nullptr) {
-            zetten.push_back(std::make_pair(currentRow, i));
+            zetten.push_back(Position(currentRow, i));
         } else if (game.getPiece(currentRow, i)->getKleur() != getKleur()) {
-            zetten.push_back(std::make_pair(currentRow, i));
+            zetten.push_back(Position(currentRow, i));
             break;
         } else {
             break;
@@ -124,14 +143,14 @@ Positions Paard::alle_mogelijke_zetten(const Game& game) const {
     int currentCol = this->getPositie().second;
 
     // alle mogelijke zetten
-    zetten.push_back(std::make_pair(currentRow - 2, currentCol - 1));
-    zetten.push_back(std::make_pair(currentRow - 2, currentCol + 1));
-    zetten.push_back(std::make_pair(currentRow - 1, currentCol - 2));
-    zetten.push_back(std::make_pair(currentRow - 1, currentCol + 2));
-    zetten.push_back(std::make_pair(currentRow + 1, currentCol - 2));
-    zetten.push_back(std::make_pair(currentRow + 1, currentCol + 2));
-    zetten.push_back(std::make_pair(currentRow + 2, currentCol - 1));
-    zetten.push_back(std::make_pair(currentRow + 2, currentCol + 1));
+    zetten.push_back(Position(currentRow - 2, currentCol - 1));
+    zetten.push_back(Position(currentRow - 2, currentCol + 1));
+    zetten.push_back(Position(currentRow - 1, currentCol - 2));
+    zetten.push_back(Position(currentRow - 1, currentCol + 2));
+    zetten.push_back(Position(currentRow + 1, currentCol - 2));
+    zetten.push_back(Position(currentRow + 1, currentCol + 2));
+    zetten.push_back(Position(currentRow + 2, currentCol - 1));
+    zetten.push_back(Position(currentRow + 2, currentCol + 1));
 
     return zetten;
 }
@@ -146,10 +165,10 @@ Positions Loper::alle_mogelijke_zetten(const Game& game) const {
     for (int i = 1; i < ROW_SIZE; i++) {
         if (game.outOfBounds(currentRow - i, currentCol - i)) break;
         if (game.getPiece(currentRow - i, currentCol - i) == nullptr) {
-            zetten.push_back(std::make_pair(currentRow - i, currentCol - i));
+            zetten.push_back(Position(currentRow - i, currentCol - i));
         } else if (game.getPiece(currentRow - i, currentCol - i)->getKleur() !=
                    getKleur()) {
-            zetten.push_back(std::make_pair(currentRow - i, currentCol - i));
+            zetten.push_back(Position(currentRow - i, currentCol - i));
             break;
         } else {
             break;
@@ -159,10 +178,10 @@ Positions Loper::alle_mogelijke_zetten(const Game& game) const {
     for (int i = 1; i < ROW_SIZE; i++) {
         if (game.outOfBounds(currentRow - i, currentCol + i)) break;
         if (game.getPiece(currentRow - i, currentCol + i) == nullptr) {
-            zetten.push_back(std::make_pair(currentRow - i, currentCol + i));
+            zetten.push_back(Position(currentRow - i, currentCol + i));
         } else if (game.getPiece(currentRow - i, currentCol + i)->getKleur() !=
                    getKleur()) {
-            zetten.push_back(std::make_pair(currentRow - i, currentCol + i));
+            zetten.push_back(Position(currentRow - i, currentCol + i));
             break;
         } else {
             break;
@@ -172,10 +191,10 @@ Positions Loper::alle_mogelijke_zetten(const Game& game) const {
     for (int i = 1; i < ROW_SIZE; i++) {
         if (game.outOfBounds(currentRow + i, currentCol - i)) break;
         if (game.getPiece(currentRow + i, currentCol - i) == nullptr) {
-            zetten.push_back(std::make_pair(currentRow + i, currentCol - i));
+            zetten.push_back(Position(currentRow + i, currentCol - i));
         } else if (game.getPiece(currentRow + i, currentCol - i)->getKleur() !=
                    getKleur()) {
-            zetten.push_back(std::make_pair(currentRow + i, currentCol - i));
+            zetten.push_back(Position(currentRow + i, currentCol - i));
             break;
         } else {
             break;
@@ -185,10 +204,10 @@ Positions Loper::alle_mogelijke_zetten(const Game& game) const {
     for (int i = 1; i < ROW_SIZE; i++) {
         if (game.outOfBounds(currentRow + i, currentCol + i)) break;
         if (game.getPiece(currentRow + i, currentCol + i) == nullptr) {
-            zetten.push_back(std::make_pair(currentRow + i, currentCol + i));
+            zetten.push_back(Position(currentRow + i, currentCol + i));
         } else if (game.getPiece(currentRow + i, currentCol + i)->getKleur() !=
                    getKleur()) {
-            zetten.push_back(std::make_pair(currentRow + i, currentCol + i));
+            zetten.push_back(Position(currentRow + i, currentCol + i));
             break;
         } else {
             break;
@@ -205,14 +224,14 @@ Positions Koning::alle_mogelijke_zetten(const Game& game) const {
     int currentCol = this->getPositie().second;
 
     // alle mogelijke zetten
-    zetten.push_back(std::make_pair(currentRow - 1, currentCol - 1));
-    zetten.push_back(std::make_pair(currentRow - 1, currentCol));
-    zetten.push_back(std::make_pair(currentRow - 1, currentCol + 1));
-    zetten.push_back(std::make_pair(currentRow, currentCol - 1));
-    zetten.push_back(std::make_pair(currentRow, currentCol + 1));
-    zetten.push_back(std::make_pair(currentRow + 1, currentCol - 1));
-    zetten.push_back(std::make_pair(currentRow + 1, currentCol));
-    zetten.push_back(std::make_pair(currentRow + 1, currentCol + 1));
+    zetten.push_back(Position(currentRow - 1, currentCol - 1));
+    zetten.push_back(Position(currentRow - 1, currentCol));
+    zetten.push_back(Position(currentRow - 1, currentCol + 1));
+    zetten.push_back(Position(currentRow, currentCol - 1));
+    zetten.push_back(Position(currentRow, currentCol + 1));
+    zetten.push_back(Position(currentRow + 1, currentCol - 1));
+    zetten.push_back(Position(currentRow + 1, currentCol));
+    zetten.push_back(Position(currentRow + 1, currentCol + 1));
 
     return zetten;
 }
@@ -227,9 +246,9 @@ Positions Koningin::alle_mogelijke_zetten(const Game& game) const {
     for (int i = currentRow - 1; i < ROW_SIZE; i--) {
         if (game.outOfBounds(i, currentCol)) break;
         if (game.getPiece(i, currentCol) == nullptr) {
-            zetten.push_back(std::make_pair(i, currentCol));
+            zetten.push_back(Position(i, currentCol));
         } else if (game.getPiece(i, currentCol)->getKleur() != getKleur()) {
-            zetten.push_back(std::make_pair(i, currentCol));
+            zetten.push_back(Position(i, currentCol));
             break;
         } else {
             break;
@@ -239,9 +258,9 @@ Positions Koningin::alle_mogelijke_zetten(const Game& game) const {
     for (int i = currentRow + 1; i < ROW_SIZE; i++) {
         if (game.outOfBounds(i, currentCol)) break;
         if (game.getPiece(i, currentCol) == nullptr) {
-            zetten.push_back(std::make_pair(i, currentCol));
+            zetten.push_back(Position(i, currentCol));
         } else if (game.getPiece(i, currentCol)->getKleur() != getKleur()) {
-            zetten.push_back(std::make_pair(i, currentCol));
+            zetten.push_back(Position(i, currentCol));
             break;
         } else {
             break;
@@ -251,9 +270,9 @@ Positions Koningin::alle_mogelijke_zetten(const Game& game) const {
     for (int i = currentCol - 1; i < COL_SIZE; i--) {
         if (game.outOfBounds(currentRow, i)) break;
         if (game.getPiece(currentRow, i) == nullptr) {
-            zetten.push_back(std::make_pair(currentRow, i));
+            zetten.push_back(Position(currentRow, i));
         } else if (game.getPiece(currentRow, i)->getKleur() != getKleur()) {
-            zetten.push_back(std::make_pair(currentRow, i));
+            zetten.push_back(Position(currentRow, i));
             break;
         } else {
             break;
@@ -263,9 +282,9 @@ Positions Koningin::alle_mogelijke_zetten(const Game& game) const {
     for (int i = currentCol + 1; i < COL_SIZE; i++) {
         if (game.outOfBounds(currentRow, i)) break;
         if (game.getPiece(currentRow, i) == nullptr) {
-            zetten.push_back(std::make_pair(currentRow, i));
+            zetten.push_back(Position(currentRow, i));
         } else if (game.getPiece(currentRow, i)->getKleur() != getKleur()) {
-            zetten.push_back(std::make_pair(currentRow, i));
+            zetten.push_back(Position(currentRow, i));
             break;
         } else {
             break;
@@ -275,10 +294,10 @@ Positions Koningin::alle_mogelijke_zetten(const Game& game) const {
     for (int i = 1; i < ROW_SIZE; i++) {
         if (game.outOfBounds(currentRow - i, currentCol - i)) break;
         if (game.getPiece(currentRow - i, currentCol - i) == nullptr) {
-            zetten.push_back(std::make_pair(currentRow - i, currentCol - i));
+            zetten.push_back(Position(currentRow - i, currentCol - i));
         } else if (game.getPiece(currentRow - i, currentCol - i)->getKleur() !=
                    getKleur()) {
-            zetten.push_back(std::make_pair(currentRow - i, currentCol - i));
+            zetten.push_back(Position(currentRow - i, currentCol - i));
             break;
         } else {
             break;
@@ -288,10 +307,10 @@ Positions Koningin::alle_mogelijke_zetten(const Game& game) const {
     for (int i = 1; i < ROW_SIZE; i++) {
         if (game.outOfBounds(currentRow - i, currentCol + i)) break;
         if (game.getPiece(currentRow - i, currentCol + i) == nullptr) {
-            zetten.push_back(std::make_pair(currentRow - i, currentCol + i));
+            zetten.push_back(Position(currentRow - i, currentCol + i));
         } else if (game.getPiece(currentRow - i, currentCol + i)->getKleur() !=
                    getKleur()) {
-            zetten.push_back(std::make_pair(currentRow - i, currentCol + i));
+            zetten.push_back(Position(currentRow - i, currentCol + i));
             break;
         } else {
             break;
@@ -301,10 +320,10 @@ Positions Koningin::alle_mogelijke_zetten(const Game& game) const {
     for (int i = 1; i < ROW_SIZE; i++) {
         if (game.outOfBounds(currentRow + i, currentCol - i)) break;
         if (game.getPiece(currentRow + i, currentCol - i) == nullptr) {
-            zetten.push_back(std::make_pair(currentRow + i, currentCol - i));
+            zetten.push_back(Position(currentRow + i, currentCol - i));
         } else if (game.getPiece(currentRow + i, currentCol - i)->getKleur() !=
                    getKleur()) {
-            zetten.push_back(std::make_pair(currentRow + i, currentCol - i));
+            zetten.push_back(Position(currentRow + i, currentCol - i));
             break;
         } else {
             break;
@@ -314,10 +333,10 @@ Positions Koningin::alle_mogelijke_zetten(const Game& game) const {
     for (int i = 1; i < ROW_SIZE; i++) {
         if (game.outOfBounds(currentRow + i, currentCol + i)) break;
         if (game.getPiece(currentRow + i, currentCol + i) == nullptr) {
-            zetten.push_back(std::make_pair(currentRow + i, currentCol + i));
+            zetten.push_back(Position(currentRow + i, currentCol + i));
         } else if (game.getPiece(currentRow + i, currentCol + i)->getKleur() !=
                    getKleur()) {
-            zetten.push_back(std::make_pair(currentRow + i, currentCol + i));
+            zetten.push_back(Position(currentRow + i, currentCol + i));
             break;
         } else {
             break;
@@ -332,7 +351,7 @@ Positions SchaakStuk::geldige_zetten(const Game& game) {
     Positions validZetten;
     for (const auto& pos : alle_mogelijke_zetten(game)) {
         if (game.outOfBounds(pos.first, pos.second)) continue;
-        if (game.causesSchaak(this, pos.first, pos.second)) continue;
+        if (game.causesSchaak(this, pos)) continue;
         SchaakStuk* stuk = game.getPiece(pos.first, pos.second);
         if (stuk == nullptr || (stuk != nullptr && stuk->getKleur() != getKleur())) {
             validZetten.push_back(pos);

@@ -109,7 +109,7 @@ void SchaakGUI::clicked(int r, int k) {
                     << std::endl;
 
                     geldigeMove = true;
-                    g.move(moveStuk, r, k);
+                    g.move(moveStuk, zet);
                     g.clearMovePosition();
                     g.changeTurn();
                     break;
@@ -283,7 +283,7 @@ void SchaakGUI::open() {
                     throw QString("Ongeldig formaat");
                 }
 
-                g.move(g.getPiece(fromRow, fromCol), toRow, toCol);
+                g.move(g.getPiece(fromRow, fromCol), Position(toRow, toCol));
                 g.changeTurn();
             }
 

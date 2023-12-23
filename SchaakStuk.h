@@ -35,7 +35,7 @@ public:
         positie = newPositie;
     }
     void setPositie(int rij, int kolom) {
-        positie = std::make_pair(rij, kolom);
+        positie = Position(rij, kolom);
     }
 
 //protected:
@@ -43,7 +43,7 @@ public:
 
 private:
     zw kleur;
-    Position positie = std::make_pair(-1, -1);
+    Position positie = Position(-1, -1);
 };
 
 class Pion : public SchaakStuk {
