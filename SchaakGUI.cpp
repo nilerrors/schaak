@@ -125,6 +125,8 @@ void SchaakGUI::clicked(int r, int k) {
 }
 
 void SchaakGUI::newGame() {
+    g.clearMoves();
+    g.clearMovePosition();
     removeAllMarking();
     g.setStartBord();
     if (g.getTurn() != zw::wit) {
@@ -133,44 +135,116 @@ void SchaakGUI::newGame() {
     update();
 }
 
+
+/// Save en open methods door het bord te bewaren
+//void SchaakGUI::save() {
+//    QFile file;
+//    if (openFileToWrite(file)) {
+//        QDataStream out(&file);
+//
+//        out << (g.getTurn() == zw::wit ? QString("TW") : QString("TB"));
+//
+//        for (int r = 0; r < ROW_SIZE; r++) {
+//            for (int k = 0; k < COL_SIZE; k++) {
+//                SchaakStuk* piece = g.getPiece(r, k);
+//                if (piece == nullptr) {
+//                    out << QString(".");
+//                    continue;
+//                }
+//
+//                switch (piece->piece().type()) {
+//                    case Piece::Pawn:
+//                        out << QString(piece->getKleur() == zw::wit ? "Pw" : "Pb");
+//                        break;
+//                    case Piece::Rook:
+//                        out << QString(piece->getKleur() == zw::wit ? "Rw" : "Rb");
+//                        break;
+//                    case Piece::King:
+//                        out << QString(piece->getKleur() == zw::wit ? "Hw" : "Hb");
+//                        break;
+//                    case Piece::Queen:
+//                        out << QString(piece->getKleur() == zw::wit ? "Qw" : "Qb");
+//                        break;
+//                    case Piece::Bishop:
+//                        out << QString(piece->getKleur() == zw::wit ? "Bw" : "Bb");
+//                        break;
+//                    case Piece::Knight:
+//                        out << QString(piece->getKleur() == zw::wit ? "Kw" : "Kb");
+//                        break;
+//                    case Piece::None:
+//                        break;
+//                }
+//            }
+//        }
+//    }
+//}
+//
+//void SchaakGUI::open() {
+//    QFile file;
+//    if (openFileToRead(file)) {
+//        try {
+//            QDataStream in(&file);
+//
+//            QString turn;
+//            in >> turn;
+//
+//            if (turn == "TW" && g.getTurn() != zw::wit) {
+//                g.changeTurn();
+//            } else if (turn == "TB" && g.getTurn() != zw::zwart) {
+//                g.changeTurn();
+//            }
+//
+//            for (int r = 0; r < 8; r++) {
+//                for (int k = 0; k < 8; k++) {
+//                    QString piece;
+//                    in >> piece;
+//                    if (piece == ".") {
+//                        g.setPiece(r, k, nullptr);
+//                    } else {
+//                        zw kleur = piece.endsWith("w") ? zw::wit : zw::zwart;
+//                        if (piece.startsWith("P")) {
+//                            g.setPiece(r, k, new Pion(kleur));
+//                        } else if (piece.startsWith("R")) {
+//                            g.setPiece(r, k, new Toren(kleur));
+//                        } else if (piece.startsWith("K")) {
+//                            g.setPiece(r, k, new Paard(kleur));
+//                        } else if (piece.startsWith("B")) {
+//                            g.setPiece(r, k, new Loper(kleur));
+//                        } else if (piece.startsWith("H")) {
+//                            g.setPiece(r, k, new Koning(kleur));
+//                        } else if (piece.startsWith("Q")) {
+//                            g.setPiece(r, k, new Koningin(kleur));
+//                        } else {
+//                            throw QString("Ongeldige formaat");
+//                        }
+//                    }
+//                    if (in.status() != QDataStream::Ok) {
+//                        throw QString("Ongeldig formaat");
+//                    }
+//                }
+//            }
+//            update();
+//        } catch (QString& Q) {
+//            message(Q);
+//        }
+//    }
+//}
+
+
+/// Save en open, door het bewaren van:
+///     * het aantal zetten
+///     * de index van de huidige zet
+///     * alle zetten
 void SchaakGUI::save() {
     QFile file;
     if (openFileToWrite(file)) {
         QDataStream out(&file);
 
-        out << (g.getTurn() == zw::wit ? QString("TW") : QString("TB"));
-
-        for (int r = 0; r < ROW_SIZE; r++) {
-            for (int k = 0; k < COL_SIZE; k++) {
-                SchaakStuk* piece = g.getPiece(r, k);
-                if (piece == nullptr) {
-                    out << QString(".");
-                    continue;
-                }
-
-                switch (piece->piece().type()) {
-                    case Piece::Pawn:
-                        out << QString(piece->getKleur() == zw::wit ? "Pw" : "Pb");
-                        break;
-                    case Piece::Rook:
-                        out << QString(piece->getKleur() == zw::wit ? "Rw" : "Rb");
-                        break;
-                    case Piece::King:
-                        out << QString(piece->getKleur() == zw::wit ? "Hw" : "Hb");
-                        break;
-                    case Piece::Queen:
-                        out << QString(piece->getKleur() == zw::wit ? "Qw" : "Qb");
-                        break;
-                    case Piece::Bishop:
-                        out << QString(piece->getKleur() == zw::wit ? "Bw" : "Bb");
-                        break;
-                    case Piece::Knight:
-                        out << QString(piece->getKleur() == zw::wit ? "Kw" : "Kb");
-                        break;
-                    case Piece::None:
-                        break;
-                }
-            }
+        out << (int) g.allMoves().size();
+        out << g.currentMoveIndex();
+        for (auto move : g.allMoves()) {
+            out << move.from.first << move.from.second;
+            out << move.to.first << move.to.second;
         }
     }
 }
@@ -181,50 +255,51 @@ void SchaakGUI::open() {
         try {
             QDataStream in(&file);
 
-            QString turn;
-            in >> turn;
+            g.setStartBord();
+            g.getMovePosition();
+            g.clearMoves();
 
-            if (turn == "TW" && g.getTurn() != zw::wit) {
-                g.changeTurn();
-            } else if (turn == "TB" && g.getTurn() != zw::zwart) {
-                g.changeTurn();
+            int totalMoveSize;
+            int currentMove;
+
+            in >> totalMoveSize;
+            in >> currentMove;
+
+            if (totalMoveSize == -1) {
+                throw QString("Ongeldig formaat");
+            } else {
+                std::cout << totalMoveSize << std::endl;
+                std::cout << currentMove << std::endl;
             }
 
-            for (int r = 0; r < 8; r++) {
-                for (int k = 0; k < 8; k++) {
-                    QString piece;
-                    in >> piece;
-                    if (piece == ".") {
-                        g.setPiece(r, k, nullptr);
-                    } else {
-                        zw kleur = piece.endsWith("w") ? zw::wit : zw::zwart;
-                        if (piece.startsWith("P")) {
-                            g.setPiece(r, k, new Pion(kleur));
-                        } else if (piece.startsWith("R")) {
-                            g.setPiece(r, k, new Toren(kleur));
-                        } else if (piece.startsWith("K")) {
-                            g.setPiece(r, k, new Paard(kleur));
-                        } else if (piece.startsWith("B")) {
-                            g.setPiece(r, k, new Loper(kleur));
-                        } else if (piece.startsWith("H")) {
-                            g.setPiece(r, k, new Koning(kleur));
-                        } else if (piece.startsWith("Q")) {
-                            g.setPiece(r, k, new Koningin(kleur));
-                        } else {
-                            throw QString("Ongeldige formaat");
-                        }
-                    }
-                    if (in.status() != QDataStream::Ok) {
-                        throw QString("Ongeldig formaat");
-                    }
+            for (int i = 0; i < totalMoveSize; i++) {
+                int fromRow = -1, fromCol = -1;
+                int toRow = -1, toCol = -1;
+
+                in >> fromRow >> fromCol;
+                in >> toRow >> toCol;
+
+                if (fromRow == -1 || fromCol == -1 || toRow == -1 || toCol == -1) {
+                    throw QString("Ongeldig formaat");
                 }
+
+                g.move(g.getPiece(fromRow, fromCol), toRow, toCol);
+                g.changeTurn();
             }
+
+            int currentGameMoveIndex = g.currentMoveIndex();
+            while (currentGameMoveIndex != currentMove && currentMove >= 0 && currentGameMoveIndex >= 0) {
+                g.undoMove();
+                currentGameMoveIndex = g.currentMoveIndex();
+            }
+
             update();
         } catch (QString& Q) {
             message(Q);
         }
     }
 }
+
 
 void SchaakGUI::undo() {
     g.undoMove();

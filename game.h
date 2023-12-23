@@ -26,6 +26,10 @@ public:
 
     bool move(SchaakStuk* s, int r, int k, bool saveMove = true);  // Verplaats stuk s naar rij r en kolom k
 
+    const std::vector<FromTo>& allMoves() const { return moves; }
+    int currentMoveIndex() const { return currentMove; }
+    void clearMoves() { moves.clear(); currentMove = -1; }
+
     bool undoMove();
     bool redoMove();
 
