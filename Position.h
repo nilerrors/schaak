@@ -13,7 +13,8 @@ class SchaakStuk;
 enum MoveType {
     none,
     normal,
-    en_passant
+    en_passant,
+    pawn_promotion
 };
 
 //typedef std::pair<int, int> Position;
@@ -37,7 +38,8 @@ struct FromTo {
     // Dit is gebruikt om de waarden van de speciale moves te bewaren
     // bv. bij en passant, moeten we weten welke schaakstuk er verwijderd is,
     // zodat bij undoMove, dit hersteld kan worden.
-    std::vector<SchaakStuk*> pieces;
+    std::vector<SchaakStuk *> pieces;
+    std::vector<SchaakStuk *> kills;
 
     FromTo(SchaakStuk* s, const Position& f, const Position& t) {
         val = s;

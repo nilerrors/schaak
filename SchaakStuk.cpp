@@ -75,6 +75,18 @@ Positions Pion::alle_mogelijke_zetten(const Game& game) const {
         }
     }
 
+    // promotie:
+    //          gaat de pion direct naar een koningin veranderen,
+    //          dus er kan niet gekozen worden
+    // zoek naar alle promoties in de zetten en veranderen ze naar promoties
+    for (auto &zet : zetten) {
+        if (getKleur() == zw::wit && zet.first == 0) {
+            zet.type = MoveType::pawn_promotion;
+        } else if (getKleur() == zw::zwart && zet.first == 7) {
+            zet.type = MoveType::pawn_promotion;
+        }
+    }
+
     return zetten;
 }
 

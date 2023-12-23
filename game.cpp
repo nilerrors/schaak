@@ -6,6 +6,18 @@
 ///                 die een schaakstuk* en een positie (r, k) krijgt en gebaseerd daarop
 ///                 teruggeeft of dat het schaak is.
 
+///             * De volgende features ondersteund:
+///                 1. Basis bewegingen en huidige geselecteerde vakje aanduiden
+///                 2. De bedreigde schaakstukken kleuren
+///                 3. De posities waar het schaakstuk naar toe kan gaan aanduiden en
+///                    ook de posities waar het schaakstuk dood kan gaan
+///                 4. Nieuw spel starten
+///                 5. Bewaren en laden van een schaakspel, met de zetten,
+///                    zodat undo en redo zelfs na het laden mogelijk is
+///                 6. Geavanceerde zetten:
+///                     a. En passant
+///                     b. Promotie (wordt automatisch naar een koningin veranderd)
+
 #include <iostream>
 #include "game.h"
 
@@ -151,20 +163,26 @@ bool Game::move(SchaakStuk* s, Position into, bool saveMove) {
         }
 
         moves.emplace(moves.cbegin() + currentMove, FromTo{s,stukPositie,into,into.type});
+        moves[currentMove].kills.push_back(getPiece(into.first, into.second));
 
 
         switch (into.type) {
             case MoveType::en_passant:
                 if (s->getKleur() == zw::wit) {
                     // bewaar de zwarte pion die "verwijderd" wordt door en passant
-                    moves[currentMove].pieces.push_back(getPiece(into.first + 1, into.second));
+                    moves[currentMove].kills.push_back(getPiece(into.first + 1, into.second));
                 } else {
                     // bewaar de witte pion die "verwijderd" wordt door en passant
-                    moves[currentMove].pieces.push_back(getPiece(into.first - 1, into.second));
+                    moves[currentMove].kills.push_back(getPiece(into.first - 1, into.second));
                 }
                 break;
+            case MoveType::pawn_promotion:
+                moves[currentMove].pieces.push_back(s);
+                s = new Koningin(s->getKleur());
+                s->setPositie(stukPositie.first, stukPositie.second);
+                moves[currentMove].val = s;
+                break;
         }
-
     }
 
     setPiece(into.first, into.second, nullptr);
@@ -445,10 +463,14 @@ bool Game::undoMove() {
 
     move(moves[currentMove].val, moves[currentMove].from, false);
 
-    if (moves[currentMove].type == MoveType::en_passant) {
-        setPiece(moves[currentMove].pieces[0]->getPositie().first,
-                 moves[currentMove].pieces[0]->getPositie().second,
-                 moves[currentMove].pieces[0]);
+    for (auto &stuk : moves[currentMove].kills) {
+        if (stuk == nullptr) continue;
+        setPiece(stuk->getPositie().first, stuk->getPositie().second, stuk);
+    }
+
+    for (auto &stuk : moves[currentMove].pieces) {
+        if (stuk == nullptr) continue;
+        setPiece(stuk->getPositie().first, stuk->getPositie().second, stuk);
     }
 
     currentMove--;
@@ -464,6 +486,11 @@ bool Game::redoMove() {
     }
 
     currentMove++;
+
+    for (auto &stuk : moves[currentMove].pieces) {
+        if (stuk == nullptr) continue;
+        setPiece(stuk->getPositie().first, stuk->getPositie().second, stuk);
+    }
 
     move(moves[currentMove].val, moves[currentMove].to, false);
 
