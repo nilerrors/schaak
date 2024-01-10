@@ -35,10 +35,11 @@ struct FromTo {
     Position from;
     Position to;
     MoveType type;
-    // Dit is gebruikt om de waarden van de speciale moves te bewaren
-    // bv. bij en passant, moeten we weten welke schaakstuk er verwijderd is,
-    // zodat bij undoMove, dit hersteld kan worden.
+    // Dit is voor de stukken die er vroeger waren en weg zijn door een beweging te bewaren
+    // bv. bij promotie de pion
     std::vector<SchaakStuk *> pieces;
+    // Dit is om de stukken die opgegeten worden door een beweging van een schaakstuk te bewaren.
+    // zodat bij undoMove, de schaakstuk herteld kan worden op zijn eigen positie.
     std::vector<SchaakStuk *> kills;
 
     FromTo(SchaakStuk* s, const Position& f, const Position& t) {

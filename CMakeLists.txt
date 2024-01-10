@@ -20,9 +20,9 @@ set(CMAKE_AUTOMOC ON)
 
 #For other linux variants locate local installation directory Qt5; e.g.:
 #=====================================================
-#set(Qt5Core_DIR "/home/administrator/Qt/5.15.2/gcc_64/lib/cmake/Qt5Core")
-#set(Qt5Widgets_DIR "/home/administrator/Qt/5.15.2/gcc_64/lib/cmake/Qt5Widgets")
-#set(Qt5Gui_DIR "/home/administrator/Qt/5.15.2/gcc_64/lib/cmake/Qt5Gui")
+set(Qt5Core_DIR "/home/nilerrors/Qt/5.15.2/gcc_64/lib/cmake/Qt5Core")
+set(Qt5Widgets_DIR "/home/nilerrors/Qt/5.15.2/gcc_64/lib/cmake/Qt5Widgets")
+set(Qt5Gui_DIR "/home/nilerrors/Qt/5.15.2/gcc_64/lib/cmake/Qt5Gui")
 
 
 #=====================================================
@@ -35,9 +35,9 @@ set(CMAKE_AUTOMOC ON)
 #=====================================================
 # Windows
 #=====================================================
-set(Qt5Core_DIR "C:\\Qt\\5.15.2\\mingw81_64\\lib\\cmake\\Qt5Core")
-set(Qt5Widgets_DIR "C:\\Qt\\5.15.2\\mingw81_64\\lib\\cmake\\Qt5Widgets")
-set(Qt5Gui_DIR "C:\\Qt\\5.15.2\\mingw81_64\\lib\\cmake\\Qt5Gui")
+#set(Qt5Core_DIR "C:\\Qt\\5.15.2\\mingw81_64\\lib\\cmake\\Qt5Core")
+#set(Qt5Widgets_DIR "C:\\Qt\\5.15.2\\mingw81_64\\lib\\cmake\\Qt5Widgets")
+#set(Qt5Gui_DIR "C:\\Qt\\5.15.2\\mingw81_64\\lib\\cmake\\Qt5Gui")
 
 find_package( Qt5Core REQUIRED )
 find_package( Qt5Widgets REQUIRED )

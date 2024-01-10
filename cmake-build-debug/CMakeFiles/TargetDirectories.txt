@@ -1,4 +1,4 @@
-C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/CMakeFiles/schaken.dir
-C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-C:/Users/MCS 7390 LATITUDE/Desktop/UNIV/IP/schaken/cmake-build-debug/CMakeFiles/schaken_autogen.dir
+/home/nilerrors/Desktop/schaak/cmake-build-debug/CMakeFiles/schaken.dir
+/home/nilerrors/Desktop/schaak/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/nilerrors/Desktop/schaak/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/nilerrors/Desktop/schaak/cmake-build-debug/CMakeFiles/schaken_autogen.dir
