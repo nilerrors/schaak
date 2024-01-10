@@ -93,6 +93,12 @@
 	"HEADERS" : 
 	[
 		[
+			"/home/nilerrors/Desktop/schaak/Logging.h",
+			"Mu",
+			"EWIEGA46WW/moc_Logging.cpp",
+			null
+		],
+		[
 			"/home/nilerrors/Desktop/schaak/Position.h",
 			"Mu",
 			"EWIEGA46WW/moc_Position.cpp",
@@ -200,6 +206,7 @@
 	"SETTINGS_FILE" : "/home/nilerrors/Desktop/schaak/cmake-build-debug/CMakeFiles/schaken_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[ "/home/nilerrors/Desktop/schaak/Logging.cpp", "Mu", null ],
 		[ "/home/nilerrors/Desktop/schaak/SchaakGUI.cpp", "Mu", null ],
 		[ "/home/nilerrors/Desktop/schaak/SchaakStuk.cpp", "Mu", null ],
 		[ "/home/nilerrors/Desktop/schaak/game.cpp", "Mu", null ],

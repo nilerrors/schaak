@@ -114,6 +114,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/nilerrors/Desktop/schaak/Logging.cpp">
+			<Option target="schaken"/>
+		</Unit>
+		<Unit filename="/home/nilerrors/Desktop/schaak/Logging.h">
+			<Option target="schaken"/>
+		</Unit>
 		<Unit filename="/home/nilerrors/Desktop/schaak/Position.h">
 			<Option target="schaken"/>
 		</Unit>

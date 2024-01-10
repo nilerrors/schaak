@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/nilerrors/Desktop/schaak/Logging.cpp" "CMakeFiles/schaken.dir/Logging.cpp.o" "gcc" "CMakeFiles/schaken.dir/Logging.cpp.o.d"
   "/home/nilerrors/Desktop/schaak/SchaakGUI.cpp" "CMakeFiles/schaken.dir/SchaakGUI.cpp.o" "gcc" "CMakeFiles/schaken.dir/SchaakGUI.cpp.o.d"
   "/home/nilerrors/Desktop/schaak/SchaakStuk.cpp" "CMakeFiles/schaken.dir/SchaakStuk.cpp.o" "gcc" "CMakeFiles/schaken.dir/SchaakStuk.cpp.o.d"
   "/home/nilerrors/Desktop/schaak/game.cpp" "CMakeFiles/schaken.dir/game.cpp.o" "gcc" "CMakeFiles/schaken.dir/game.cpp.o.d"

@@ -1,5 +1,5 @@
-CMakeFiles/schaken.dir/game.cpp.o: \
- /home/nilerrors/Desktop/schaak/game.cpp /usr/include/stdc-predef.h \
+CMakeFiles/schaken.dir/Logging.cpp.o: \
+ /home/nilerrors/Desktop/schaak/Logging.cpp /usr/include/stdc-predef.h \
  /usr/include/c++/11/iostream \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/11/bits/os_defines.h \
@@ -144,13 +144,7 @@ CMakeFiles/schaken.dir/game.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /home/nilerrors/Desktop/schaak/game.h /usr/include/c++/11/vector \
- /usr/include/c++/11/bits/stl_uninitialized.h \
- /usr/include/c++/11/bits/stl_vector.h \
- /usr/include/c++/11/bits/stl_bvector.h \
- /usr/include/c++/11/bits/vector.tcc \
- /home/nilerrors/Desktop/schaak/consts.h \
- /home/nilerrors/Desktop/schaak/SchaakStuk.h \
+ /home/nilerrors/Desktop/schaak/Logging.h \
  /home/nilerrors/Desktop/schaak/guicode/chessboard.h \
  /home/nilerrors/Qt/5.15.2/gcc_64/include/QtWidgets/QGraphicsScene \
  /home/nilerrors/Qt/5.15.2/gcc_64/include/QtWidgets/qgraphicsscene.h \
@@ -211,7 +205,11 @@ CMakeFiles/schaken.dir/game.cpp.o: \
  /usr/include/c++/11/bits/std_function.h \
  /home/nilerrors/Qt/5.15.2/gcc_64/include/QtCore/qvector.h \
  /home/nilerrors/Qt/5.15.2/gcc_64/include/QtCore/qcontainertools_impl.h \
- /usr/include/c++/11/list /usr/include/c++/11/bits/stl_list.h \
+ /usr/include/c++/11/vector /usr/include/c++/11/bits/stl_uninitialized.h \
+ /usr/include/c++/11/bits/stl_vector.h \
+ /usr/include/c++/11/bits/stl_bvector.h \
+ /usr/include/c++/11/bits/vector.tcc /usr/include/c++/11/list \
+ /usr/include/c++/11/bits/stl_list.h \
  /usr/include/c++/11/bits/allocated_ptr.h \
  /usr/include/c++/11/ext/aligned_buffer.h \
  /usr/include/c++/11/bits/list.tcc \
@@ -274,5 +272,4 @@ CMakeFiles/schaken.dir/game.cpp.o: \
  /usr/include/c++/11/backward/auto_ptr.h \
  /home/nilerrors/Qt/5.15.2/gcc_64/include/QtGui/qfont.h \
  /home/nilerrors/Qt/5.15.2/gcc_64/include/QtGui/qpen.h \
- /home/nilerrors/Desktop/schaak/Position.h \
- /home/nilerrors/Desktop/schaak/Logging.h
+ /home/nilerrors/Desktop/schaak/Position.h

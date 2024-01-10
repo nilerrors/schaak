@@ -142,6 +142,30 @@ schaken_autogen/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/schaken_autogen.dir/build.make CMakeFiles/schaken_autogen.dir/build
 .PHONY : schaken_autogen/fast
 
+Logging.o: Logging.cpp.o
+.PHONY : Logging.o
+
+# target to build an object file
+Logging.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/schaken.dir/build.make CMakeFiles/schaken.dir/Logging.cpp.o
+.PHONY : Logging.cpp.o
+
+Logging.i: Logging.cpp.i
+.PHONY : Logging.i
+
+# target to preprocess a source file
+Logging.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/schaken.dir/build.make CMakeFiles/schaken.dir/Logging.cpp.i
+.PHONY : Logging.cpp.i
+
+Logging.s: Logging.cpp.s
+.PHONY : Logging.s
+
+# target to generate assembly for a file
+Logging.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/schaken.dir/build.make CMakeFiles/schaken.dir/Logging.cpp.s
+.PHONY : Logging.cpp.s
+
 SchaakGUI.o: SchaakGUI.cpp.o
 .PHONY : SchaakGUI.o
 
@@ -368,6 +392,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... schaken_autogen"
 	@echo "... schaken"
+	@echo "... Logging.o"
+	@echo "... Logging.i"
+	@echo "... Logging.s"
 	@echo "... SchaakGUI.o"
 	@echo "... SchaakGUI.i"
 	@echo "... SchaakGUI.s"

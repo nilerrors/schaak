@@ -3,6 +3,7 @@
 //
 
 #include "SchaakGUI.h"
+#include "Logging.h"
 
 #include "guicode/fileIO.h"
 #include "guicode/message.h"
@@ -81,11 +82,7 @@ void SchaakGUI::clicked(int r, int k) {
         }
     }
 
-    std::cout << "Geklikte positie: (" << std::to_string(r) << ", " << std::to_string(k) << ")" << std::endl;
-    std::cout << "\tEr staat: " << (stuk == nullptr ? "Niets" :
-                                    (stuk->getKleur() == zw::wit ? "wit " : "zwart ") +
-                                        pieceToString(stuk->piece()))
-                                << std::endl;
+    logClickedPosition(r, k, stuk != nullptr ? stuk->piece() : Piece{Piece::None, Piece::Color::White});
 
     if (g.movePositionUnset()) {
         g.setMovePosition(r, k);
@@ -102,11 +99,7 @@ void SchaakGUI::clicked(int r, int k) {
             Positions geldigeZetten = moveStuk->geldige_zetten(g);
             for (const auto &zet : geldigeZetten) {
                 if (r == zet.first && k == zet.second) {
-                    std::cout << "Beweeg stuk: "
-                    << (moveStuk->getKleur() == zw::wit ? "wit " : "zwart ")
-                    << pieceToString(moveStuk->piece())
-                    << " naar (" << std::to_string(r) << ", " << std::to_string(k) << ")"
-                    << std::endl;
+                    logBeweegStuk(r, k, moveStuk->piece());
 
                     geldigeMove = true;
                     g.move(moveStuk, zet);
@@ -267,11 +260,7 @@ void SchaakGUI::open() {
 
             if (totalMoveSize == -1) {
                 throw QString("Ongeldig formaat");
-            } else {
-                std::cout << totalMoveSize << std::endl;
-                std::cout << currentMove << std::endl;
             }
-
             for (int i = 0; i < totalMoveSize; i++) {
                 int fromRow = -1, fromCol = -1;
                 int toRow = -1, toCol = -1;

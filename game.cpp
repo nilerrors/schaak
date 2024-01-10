@@ -20,24 +20,8 @@
 
 #include <iostream>
 #include "game.h"
+#include "Logging.h"
 
-std::string pieceToString(Piece piece) {
-    switch (piece.type()) {
-        case Piece::Pawn:
-            return "Pion";
-        case Piece::King:
-            return "Koning";
-        case Piece::Bishop:
-            return "Loper";
-        case Piece::Knight:
-            return "Paard";
-        case Piece::Queen:
-            return "Koningin";
-        case Piece::Rook:
-            return "Toren";
-    }
-    return "Niets";
-}
 
 Game::Game() {
     for (int i = 0; i < BORD_SIZE; i++) {
@@ -213,13 +197,7 @@ bool Game::schaak(zw kleur) {
             for (const auto &zet : stuk->alle_mogelijke_zetten(*this)) {
                 if (outOfBounds(zet.first, zet.second)) continue;
                 if (zet.first == koningPosition.first && zet.second == koningPosition.second) {
-                    std::cout << (kleurComplement == zw::wit ? "Witte " : "Zwarte ")
-                    << pieceToString(stuk->piece())
-                    << " (" << stuk->getPositie().first << ", " << stuk->getPositie().second << ")"
-                    << " staat in schaak positie tegenover de "
-                    << (kleur == zw::wit ? "witte " : "zwarte ") << "Koning"
-                    << " (" << koningPosition.first << ", " << koningPosition.second << ") "
-                    << std::endl;
+                    logSchaakPosities(stuk->piece(), stuk->getPositie(), koningPosition);
 
                     return true;
                 }
@@ -252,12 +230,7 @@ bool Game::schaakmat(zw kleur) {
             if (!game.schaak(gameSchaakstuk->getKleur())) {
                 return false;
             }
-            std::cout << "als "
-            << (gameSchaakstuk->getKleur() == zw::wit ? "wit " : "zwart ")
-            << pieceToString(gameSchaakstuk->piece())
-            << " (" << stukPositie.first << ", " << stukPositie.second << ") "
-            << "bewogen wordt naar (" << zet.first << ", " << zet.second << ")"
-            << std::endl;
+            logSchaakmatAls(gameSchaakstuk->piece(), stukPositie, zet);
 
             // herstel originele positie
             game.setPiece(stukPositie.first, stukPositie.second, gameSchaakstuk);
@@ -360,12 +333,7 @@ bool Game::causesSchaak(SchaakStuk *s, Position into) const {
     game.move(gameSchaakstuk, into);
 
     if (game.schaak(gameSchaakstuk->getKleur())) {
-        std::cout << "\tals "
-                  << (gameSchaakstuk->getKleur() == zw::wit ? "wit " : "zwart ")
-                  << pieceToString(gameSchaakstuk->piece())
-                  << " (" << stukPositie.first << ", " << stukPositie.second << ") "
-                  << "bewogen wordt naar (" << into.first << ", " << into.second << ")"
-                  << std::endl;
+        logSchaakAls(gameSchaakstuk->piece(), stukPositie, into);
 
         return true;
     }
@@ -424,18 +392,7 @@ Positions Game::kills(SchaakStuk* s) const {
         game.undoMove();
     }
 
-    std::cout << "Totaal aantal kills van "
-    << (s->getKleur() == zw::wit ? "wit " : "zwart ")
-    << pieceToString(s->piece()) << " : "
-    << all_kills.size()
-    << std::endl;
-    for (auto zet : all_kills) {
-        std::cout << "\t(" << zet.first.first << ", " << zet.first.second << ")"
-        << " door " << (zet.second->getKleur() == zw::wit ? "wit " : "zwart ")
-        << pieceToString(zet.second->piece())
-        << " (" << zet.second->getPositie().first << ", " << zet.second->getPositie().second << ") "
-        << std::endl;
-    }
+    logTotalKills(s->piece(), all_kills.size());
 
     Positions kills;
     for (const auto &kill : all_kills) {

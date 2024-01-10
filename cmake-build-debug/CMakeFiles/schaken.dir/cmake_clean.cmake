@@ -2,6 +2,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/schaken_autogen.dir/AutogenUsed.txt"
   "CMakeFiles/schaken_autogen.dir/ParseCache.txt"
   "schaken_autogen"
+  "CMakeFiles/schaken.dir/Logging.cpp.o"
+  "CMakeFiles/schaken.dir/Logging.cpp.o.d"
   "CMakeFiles/schaken.dir/SchaakGUI.cpp.o"
   "CMakeFiles/schaken.dir/SchaakGUI.cpp.o.d"
   "CMakeFiles/schaken.dir/SchaakStuk.cpp.o"

@@ -298,6 +298,7 @@ CMakeFiles/schaken.dir/SchaakGUI.cpp.o: \
  /home/nilerrors/Qt/5.15.2/gcc_64/include/QtCore/qfiledevice.h \
  /home/nilerrors/Qt/5.15.2/gcc_64/include/QtGui/qvector2d.h \
  /home/nilerrors/Qt/5.15.2/gcc_64/include/QtGui/qtouchdevice.h \
+ /home/nilerrors/Desktop/schaak/Logging.h \
  /home/nilerrors/Desktop/schaak/guicode/fileIO.h \
  /home/nilerrors/Qt/5.15.2/gcc_64/include/QtCore/QFile \
  /home/nilerrors/Qt/5.15.2/gcc_64/include/QtCore/qfile.h \
