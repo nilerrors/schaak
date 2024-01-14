@@ -4,15 +4,18 @@
 
 #include "SchaakGUI.h"
 #include "Logging.h"
+#include "consts.h"
 
 #include "guicode/fileIO.h"
 #include "guicode/message.h"
-#include <iostream>
+
+#include <QElapsedTimer>
+#include <QEventLoop>
+#include <QCoreApplication>
+
 
 // Constructor
 SchaakGUI::SchaakGUI() : ChessWindow(nullptr) { update(); }
-
-std::string pieceToString(Piece piece);
 
 // Update de inhoud van de grafische weergave van het schaakbord (scene)
 // en maak het consistent met de game state in variabele g.
@@ -31,13 +34,20 @@ void SchaakGUI::update() {
     if (g.schaakmat(zw::wit)) {
         g.endGame();
         message("Schaakmat! Zwart heeft gewonnen.");
+        removeAllMarking();
+        return;
     } else if (g.schaakmat(zw::zwart)) {
         g.endGame();
         message("Schaakmat! Wit heeft gewonnen.");
+        removeAllMarking();
+        return;
     } else if (g.pat(zw::wit) || g.pat(zw::zwart)) {
         g.endGame();
         message("Pat! Gelijkspel.");
-    } else {
+        removeAllMarking();
+        return;
+    }
+    if ((g.isAI_game() && g.getTurn() != zw::zwart) || !g.isAI_game()) {
         removeAllMarking();
         if (g.movePositionUnset()) {
             removeAllPieceThreats();
@@ -115,6 +125,26 @@ void SchaakGUI::clicked(int r, int k) {
     }
 
     update();
+
+    // het gedeelte waar de AI speelt.
+    if (g.isAI_game() && g.getTurn() == zw::zwart) {
+        removeAllMarking();
+
+        // credit to Kartik Sharma: https://stackoverflow.com/a/11487434
+        QCoreApplication::processEvents(QEventLoop::AllEvents);
+
+        QElapsedTimer timer;
+        timer.start();
+        while (true) {
+            if (timer.elapsed() > AI_PAUSE) {
+                g.AI_move();
+                g.clearMovePosition();
+                g.changeTurn();
+                update();
+                break;
+            }
+        }
+    }
 }
 
 void SchaakGUI::newGame() {

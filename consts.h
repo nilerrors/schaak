@@ -12,4 +12,7 @@
 // het aantal blokken in een schaakbord
 #define BORD_SIZE 64
 
+// De pauze in ms die de AI neemt voor een stuk te bewegen
+#define AI_PAUSE 350
+
 #endif //SCHAKEN_CONSTS_H

@@ -245,6 +245,58 @@ Positions Koning::alle_mogelijke_zetten(const Game& game) const {
     zetten.push_back(Position(currentRow + 1, currentCol));
     zetten.push_back(Position(currentRow + 1, currentCol + 1));
 
+    // Rokade
+//    const SchaakStuk* koning = game.getPiece(currentRow, currentCol);
+//    if (!game.hasMoved(koning)) {
+//        if (koning->getKleur() == zw::wit) {
+//            if (game.getPiece(currentRow, currentCol + 1) == nullptr &&
+//                game.getPiece(currentRow, currentCol + 2) == nullptr &&
+//                game.getPiece(7, 7)->piece().type() == Piece::Type::Rook &&
+//                !game.hasMoved(game.getPiece(7, 7)) &&
+//                !game.causesSchaak(koning, Position(currentRow, currentCol + 1)) &&
+//                !game.causesSchaak(koning, Position(currentRow, currentRow + 2)) &&
+//                !game.schaak(koning->getKleur())
+//                ) {
+//                zetten.push_back(Position(currentRow, currentCol + 2, MoveType::rochade));
+//            }
+//            if (game.getPiece(currentRow, currentCol - 1) == nullptr &&
+//                game.getPiece(currentRow, currentCol - 2) == nullptr &&
+//                game.getPiece(currentRow, currentCol - 3) == nullptr &&
+//                !game.causesSchaak(koning, Position(currentRow, currentCol - 1)) &&
+//                !game.causesSchaak(koning, Position(currentRow, currentRow - 2)) &&
+//                    !game.causesSchaak(koning, Position(currentRow, currentRow - 3)) &&
+//                    game.getPiece(7, 0)->piece().type() == Piece::Type::Rook &&
+//                    !game.hasMoved(game.getPiece(7, 0))  &&
+//                    !game.schaak(koning->getKleur())
+//                    ) {
+//                zetten.push_back(Position(currentRow, currentCol - 3, MoveType::rochade));
+//            }
+//        } else {
+//            if (game.getPiece(currentRow, currentCol + 1) == nullptr &&
+//                game.getPiece(currentRow, currentCol + 2) == nullptr &&
+//                game.getPiece(currentRow, currentCol + 3) == nullptr &&
+//                game.getPiece(0, 0)->piece().type() == Piece::Type::Rook &&
+//                !game.hasMoved(game.getPiece(0, 0)) &&
+//                !game.causesSchaak(koning, Position(currentRow, currentCol + 1)) &&
+//                !game.causesSchaak(koning, Position(currentRow, currentCol + 2)) &&
+//                !game.causesSchaak(koning, Position(currentRow, currentRow + 3)) &&
+//                !game.schaak(koning->getKleur())
+//                    ) {
+//                zetten.push_back(Position(currentRow, currentCol + 3, MoveType::rochade));
+//            }
+//            if (game.getPiece(currentRow, currentCol - 1) == nullptr &&
+//                game.getPiece(currentRow, currentCol - 2) == nullptr &&
+//                !game.causesSchaak(koning, Position(currentRow, currentCol - 1)) &&
+//                !game.causesSchaak(koning, Position(currentRow, currentRow - 2)) &&
+//                game.getPiece(0, 7)->piece().type() == Piece::Type::Rook &&
+//                !game.hasMoved(game.getPiece(0, 7)) &&
+//                !game.schaak(koning->getKleur())
+//                    ) {
+//                zetten.push_back(Position(currentRow, currentCol - 2, MoveType::rochade));
+//            }
+//        }
+//    }
+
     return zetten;
 }
 

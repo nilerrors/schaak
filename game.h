@@ -19,10 +19,15 @@ class Game {
     std::vector<FromTo> moves;
     int currentMove = -1;
 
+    bool AI_GAME = true;
+
 public:
     Game();
     ~Game();
     Game(const Game& game);  // copy constructor
+
+    bool isAI_game() const { return AI_GAME; }
+    void AI_move();
 
     bool move(SchaakStuk* s, Position into, bool saveMove = true);  // Verplaats stuk s naar rij r en kolom k
 
@@ -30,13 +35,18 @@ public:
     int currentMoveIndex() const { return currentMove; }
     void clearMoves() { moves.clear(); currentMove = -1; }
 
+    // Voor rokade
+//    bool hasMoved(const SchaakStuk* stuk) const;
+
     bool undoMove();
     bool redoMove();
 
-    bool causesSchaak(SchaakStuk* stuk, Position into) const;
-    bool schaak(zw kleur);
-    bool schaakmat(zw kleur);
-    bool pat(zw kleur);
+    bool causesSchaak(const SchaakStuk* stuk, Position into) const { return causesSchaak(stuk, into, stuk->getKleur()); }
+    bool causesSchaak(const SchaakStuk* stuk, Position into, zw kant) const;
+    bool causesSchaakmat(const SchaakStuk* stuk, Position into, zw kant) const;
+    bool schaak(zw kleur) const;
+    bool schaakmat(zw kleur) const;
+    bool pat(zw kleur) const;
     void setStartBord();
 
     // threats and kills

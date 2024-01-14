@@ -14,7 +14,8 @@ enum MoveType {
     none,
     normal,
     en_passant,
-    pawn_promotion
+    pawn_promotion,
+//    rochade
 };
 
 //typedef std::pair<int, int> Position;

@@ -17,10 +17,15 @@
 ///                 6. Geavanceerde zetten:
 ///                     a. En passant
 ///                     b. Promotie (wordt automatisch naar een koningin veranderd)
+///                 7. Tegen AI spelen
 
 #include <iostream>
 #include "game.h"
 #include "Logging.h"
+
+// voor AI
+#include <random>
+#include <algorithm>
 
 
 Game::Game() {
@@ -187,7 +192,7 @@ bool Game::move(SchaakStuk* s, Position into, bool saveMove) {
 }
 
 // Geeft true als kleur schaak staat
-bool Game::schaak(zw kleur) {
+bool Game::schaak(zw kleur) const {
     Position koningPosition = getKoningPosition(kleur);
     zw kleurComplement = kleur == zw::wit ? zw::zwart : zw::wit;
 
@@ -209,7 +214,7 @@ bool Game::schaak(zw kleur) {
 }
 
 // Geeft true als kleur schaakmat staat
-bool Game::schaakmat(zw kleur) {
+bool Game::schaakmat(zw kleur) const {
     // Nieuw spel die de huidige spel data meekrijgt,
     // zodat we niet alle functies non-const moeten maken
     // en ook de huidige data niet overschrijven
@@ -244,7 +249,7 @@ bool Game::schaakmat(zw kleur) {
 // Geeft true als kleur pat staat
 // (pat = geen geldige zet mogelijk, maar kleur staat niet schaak;
 // dit resulteert in een gelijkspel)
-bool Game::pat(zw kleur) {
+bool Game::pat(zw kleur) const {
     // Nieuw spel die de huidige spel data meekrijgt,
     // zodat we niet alle functies non-const moeten maken
     // en ook de huidige data niet overschrijven
@@ -319,7 +324,7 @@ Position Game::getKoningPosition(zw kleur) const {
     return kingPosition;
 }
 
-bool Game::causesSchaak(SchaakStuk *s, Position into) const {
+bool Game::causesSchaak(const SchaakStuk *s, Position into, zw kant) const {
     if (s == nullptr) return false;
     Position stukPositie = s->getPositie();
     if (stukPositie.first == into.first && stukPositie.second == into.second) return false;
@@ -332,8 +337,30 @@ bool Game::causesSchaak(SchaakStuk *s, Position into) const {
 
     game.move(gameSchaakstuk, into);
 
-    if (game.schaak(gameSchaakstuk->getKleur())) {
+    if (game.schaak(kant)) {
         logSchaakAls(gameSchaakstuk->piece(), stukPositie, into);
+
+        return true;
+    }
+
+    return false;
+}
+
+bool Game::causesSchaakmat(const SchaakStuk *stuk, Position into, zw kant) const {
+    if (stuk == nullptr) return false;
+    Position stukPositie = stuk->getPositie();
+    if (stukPositie.first == into.first && stukPositie.second == into.second) return false;
+
+    // Nieuw spel die de huidige spel data meekrijgt,
+    // zodat we niet alle functies non-const moeten maken
+    // en ook de huidige data niet overschrijven
+    Game game(*this);
+    SchaakStuk* gameSchaakstuk = game.getPiece(stukPositie.first, stukPositie.second);
+
+    game.move(gameSchaakstuk, into);
+
+    if (game.schaakmat(kant)) {
+        logSchaakmatAls(gameSchaakstuk->piece(), stukPositie, into);
 
         return true;
     }
@@ -461,4 +488,59 @@ const FromTo* Game::lastMove() const {
         return nullptr;
     }
     return &(moves.at(currentMove));
+}
+
+//bool Game::hasMoved(const SchaakStuk *stuk) const {
+//    for (auto move : moves) {
+//        if (move.val == stuk) return true;
+//    }
+//    return false;
+//}
+
+void Game::AI_move() {
+    // de AI is zwart
+
+    // we gaan de schaakstukken random shufflen, zodat een random schaakstuk gekozen wordt.
+    std::vector<SchaakStuk *> stukken = alleSchaakstukken(zw::zwart);
+    std::shuffle(stukken.begin(), stukken.end(), std::default_random_engine {});
+
+    // check of dat we schaakmat kunnen zetten
+    for (auto stuk : stukken) {
+        for (auto zet : stuk->geldige_zetten(*this)) {
+            if (causesSchaakmat(stuk, Position(zet.first, zet.second), zw::wit)) {
+                move(stuk, Position(zet.first, zet.second));
+                return;
+            }
+        }
+    }
+
+    // check of dat we schaak kunnen zetten
+    for (auto stuk : stukken) {
+        for (auto zet : stuk->geldige_zetten(*this)) {
+            if (causesSchaak(stuk, Position(zet.first, zet.second), zw::wit)) {
+                move(stuk, Position(zet.first, zet.second));
+                return;
+            }
+        }
+    }
+
+    // check of dat we stuk kunnen slaan
+    for (auto stuk : stukken) {
+        for (auto zet : stuk->geldige_zetten(*this)) {
+            if (getPiece(zet.first, zet.second) != nullptr &&
+                getPiece(zet.first, zet.second)->getKleur() == zw::wit) {
+                move(stuk, Position(zet.first, zet.second));
+                return;
+            }
+        }
+    }
+
+    // andere zet
+    // we willen
+    for (auto stuk : stukken) {
+        for (auto zet : stuk->geldige_zetten(*this)) {
+            move(stuk, Position(zet.first, zet.second));
+            return;
+        }
+    }
 }
