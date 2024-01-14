@@ -575,26 +575,13 @@ CMakeFiles/schaken.dir/SchaakGUI.cpp.obj: C:/Users/MCS\ 7390\ LATITUDE/Desktop/U
   C:/Qt/5.15.2/mingw81_64/include/QtGui/qvector2d.h \
   C:/Qt/5.15.2/mingw81_64/include/QtGui/qtouchdevice.h \
   C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/Logging.h \
+  C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/consts.h \
   C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/guicode/fileIO.h \
   C:/Qt/5.15.2/mingw81_64/include/QtCore/QFile \
   C:/Qt/5.15.2/mingw81_64/include/QtCore/qfile.h \
   C:/Users/MCS\ 7390\ LATITUDE/Desktop/UNIV/IP/schaken/guicode/message.h \
   C:/Qt/5.15.2/mingw81_64/include/QtCore/QString \
   C:/Qt/5.15.2/mingw81_64/include/QtCore/qstring.h \
-  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iostream \
-  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ostream \
-  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ios \
-  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/basic_ios.h \
-  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/locale_facets.h \
-  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cwctype \
-  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/x86_64-w64-mingw32/include/wctype.h \
-  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/ctype_base.h \
-  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/ctype_inline.h \
-  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/locale_facets.tcc \
-  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/basic_ios.tcc \
-  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/ostream.tcc \
-  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/istream \
-  C:/Program\ Files/JetBrains/CLion\ 2023.2.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/istream.tcc \
   C:/Qt/5.15.2/mingw81_64/include/QtCore/QElapsedTimer \
   C:/Qt/5.15.2/mingw81_64/include/QtCore/qelapsedtimer.h \
   C:/Qt/5.15.2/mingw81_64/include/QtCore/QEventLoop \

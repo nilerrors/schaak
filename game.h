@@ -19,7 +19,7 @@ class Game {
     std::vector<FromTo> moves;
     int currentMove = -1;
 
-    bool AI_GAME = true;
+    bool AI_GAME = false;
 
 public:
     Game();
@@ -27,6 +27,7 @@ public:
     Game(const Game& game);  // copy constructor
 
     bool isAI_game() const { return AI_GAME; }
+    void setAI_game(bool isAI) { AI_GAME = isAI; }
     void AI_move();
 
     bool move(SchaakStuk* s, Position into, bool saveMove = true);  // Verplaats stuk s naar rij r en kolom k

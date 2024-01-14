@@ -15,7 +15,20 @@
 
 
 // Constructor
-SchaakGUI::SchaakGUI() : ChessWindow(nullptr) { update(); }
+SchaakGUI::SchaakGUI() : ChessWindow(nullptr) {
+    update();
+
+    QMessageBox box;
+    box.setText("Wilt u tegen AI spelen?");
+    box.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    box.setDefaultButton(QMessageBox::Yes);
+    int ret = box.exec();
+
+    g.setAI_game(false);
+    if (ret == QMessageBox::Yes) {
+        g.setAI_game(true);
+    }
+}
 
 // Update de inhoud van de grafische weergave van het schaakbord (scene)
 // en maak het consistent met de game state in variabele g.
@@ -148,6 +161,17 @@ void SchaakGUI::clicked(int r, int k) {
 }
 
 void SchaakGUI::newGame() {
+    QMessageBox box;
+    box.setText("Wilt u tegen AI spelen?");
+    box.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+    box.setDefaultButton(QMessageBox::Yes);
+    int ret = box.exec();
+
+    g.setAI_game(false);
+    if (ret == QMessageBox::Yes) {
+        g.setAI_game(true);
+    }
+
     g.clearMoves();
     g.clearMovePosition();
     removeAllMarking();
