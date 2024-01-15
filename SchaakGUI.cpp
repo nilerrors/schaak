@@ -88,6 +88,26 @@ void SchaakGUI::update() {
             }
         }
     }
+
+    // het gedeelte waar de AI speelt.
+    if (g.isAI_game() && g.getTurn() == zw::zwart) {
+        removeAllMarking();
+
+        // credit to Kartik Sharma: https://stackoverflow.com/a/11487434
+        QCoreApplication::processEvents(QEventLoop::AllEvents);
+
+        QElapsedTimer timer;
+        timer.start();
+        while (true) {
+            if (timer.elapsed() > AI_PAUSE) {
+                g.AI_move();
+                g.clearMovePosition();
+                g.changeTurn();
+                update();
+                break;
+            }
+        }
+    }
 }
 
 // Deze functie wordt opgeroepen telkens er op het schaakbord
@@ -138,26 +158,6 @@ void SchaakGUI::clicked(int r, int k) {
     }
 
     update();
-
-    // het gedeelte waar de AI speelt.
-    if (g.isAI_game() && g.getTurn() == zw::zwart) {
-        removeAllMarking();
-
-        // credit to Kartik Sharma: https://stackoverflow.com/a/11487434
-        QCoreApplication::processEvents(QEventLoop::AllEvents);
-
-        QElapsedTimer timer;
-        timer.start();
-        while (true) {
-            if (timer.elapsed() > AI_PAUSE) {
-                g.AI_move();
-                g.clearMovePosition();
-                g.changeTurn();
-                update();
-                break;
-            }
-        }
-    }
 }
 
 void SchaakGUI::newGame() {
@@ -287,6 +287,7 @@ void SchaakGUI::save() {
     if (openFileToWrite(file)) {
         QDataStream out(&file);
 
+        out << g.isAI_game();
         out << (int) g.allMoves().size();
         out << g.currentMoveIndex();
         for (auto move : g.allMoves()) {
@@ -306,11 +307,15 @@ void SchaakGUI::open() {
             g.getMovePosition();
             g.clearMoves();
 
+            bool isAI_game;
             int totalMoveSize;
             int currentMove;
 
+            in >> isAI_game;
             in >> totalMoveSize;
             in >> currentMove;
+
+            g.setAI_game(isAI_game);
 
             if (totalMoveSize == -1) {
                 throw QString("Ongeldig formaat");
@@ -346,11 +351,17 @@ void SchaakGUI::open() {
 
 void SchaakGUI::undo() {
     g.undoMove();
+    if (g.isAI_game()) {
+        g.undoMove();
+    }
     update();
 }
 
 void SchaakGUI::redo() {
     g.redoMove();
+    if (g.isAI_game()) {
+        g.redoMove();
+    }
     update();
 }
 
