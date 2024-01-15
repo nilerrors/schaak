@@ -506,9 +506,11 @@ void Game::AI_move() {
 
     // check of dat we schaakmat kunnen zetten
     for (auto stuk : stukken) {
-        for (auto zet : stuk->geldige_zetten(*this)) {
+        auto zetten = stuk->geldige_zetten(*this);
+        std::shuffle(zetten.begin(), zetten.end(), std::default_random_engine {});
+        for (auto zet : zetten) {
             if (causesSchaakmat(stuk, Position(zet.first, zet.second), zw::wit)) {
-                move(stuk, Position(zet.first, zet.second));
+                move(stuk, zet);
                 return;
             }
         }
@@ -516,9 +518,11 @@ void Game::AI_move() {
 
     // check of dat we schaak kunnen zetten
     for (auto stuk : stukken) {
-        for (auto zet : stuk->geldige_zetten(*this)) {
+        auto zetten = stuk->geldige_zetten(*this);
+        std::shuffle(zetten.begin(), zetten.end(), std::default_random_engine {});
+        for (auto zet : zetten) {
             if (causesSchaak(stuk, Position(zet.first, zet.second), zw::wit)) {
-                move(stuk, Position(zet.first, zet.second));
+                move(stuk, zet);
                 return;
             }
         }
@@ -526,10 +530,12 @@ void Game::AI_move() {
 
     // check of dat we stuk kunnen slaan
     for (auto stuk : stukken) {
-        for (auto zet : stuk->geldige_zetten(*this)) {
+        auto zetten = stuk->geldige_zetten(*this);
+        std::shuffle(zetten.begin(), zetten.end(), std::default_random_engine {});
+        for (auto zet : zetten) {
             if (getPiece(zet.first, zet.second) != nullptr &&
                 getPiece(zet.first, zet.second)->getKleur() == zw::wit) {
-                move(stuk, Position(zet.first, zet.second));
+                move(stuk, zet);
                 return;
             }
         }
@@ -538,8 +544,10 @@ void Game::AI_move() {
     // andere zet
     // we willen
     for (auto stuk : stukken) {
-        for (auto zet : stuk->geldige_zetten(*this)) {
-            move(stuk, Position(zet.first, zet.second));
+        auto zetten = stuk->geldige_zetten(*this);
+        std::shuffle(zetten.begin(), zetten.end(), std::default_random_engine {});
+        for (auto zet : zetten) {
+            move(stuk, zet);
             return;
         }
     }
