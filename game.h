@@ -58,9 +58,9 @@ public:
     const FromTo* lastMove() const;
 
     void endGame() { gameEnded = true; }
-    bool getGameEnded() { return gameEnded; }
+    bool getGameEnded() const { return gameEnded; }
 
-    bool outOfBounds(int r, int k) const;
+    static bool outOfBounds(int r, int k) ;
 
     SchaakStuk* getPiece(int r, int k) const;
     void setPiece(int r, int k, SchaakStuk* s);

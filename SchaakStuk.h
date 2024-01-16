@@ -28,7 +28,7 @@ public:
 
     zw getKleur() const { return kleur; }
 
-    Positions geldige_zetten(const Game& game);
+    Positions geldige_zetten(const Game& game) const;
 
     const Position& getPositie() const { return positie; }
     void setPositie(const Position& newPositie) {

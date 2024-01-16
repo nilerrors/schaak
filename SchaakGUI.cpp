@@ -290,7 +290,7 @@ void SchaakGUI::save() {
         out << g.isAI_game();
         out << (int) g.allMoves().size();
         out << g.currentMoveIndex();
-        for (auto move : g.allMoves()) {
+        for (const auto &move : g.allMoves()) {
             out << move.from.first << move.from.second;
             out << move.to.first << move.to.second;
         }

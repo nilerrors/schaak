@@ -69,9 +69,13 @@ Game::Game(const Game& game) {
             case Piece::Rook:
                 schaakStuk = new Toren(stuk->getKleur());
                 break;
+            default:
+                break;
         }
-        schaakStuk->setPositie(stuk->getPositie());
-        setPiece(stuk->getPositie().first, stuk->getPositie().second, schaakStuk);
+        if (schaakStuk!= nullptr) {
+            schaakStuk->setPositie(stuk->getPositie());
+            setPiece(stuk->getPositie().first, stuk->getPositie().second, schaakStuk);
+        }
     }
 }
 
@@ -151,7 +155,8 @@ bool Game::move(SchaakStuk* s, Position into, bool saveMove) {
             moves.clear();
         }
 
-        moves.emplace(moves.cbegin() + currentMove, FromTo{s,stukPositie,into,into.type});
+        moves.emplace(moves.cbegin() + currentMove,
+                      s,stukPositie,into,into.type);
         moves[currentMove].kills.push_back(getPiece(into.first, into.second));
 
 
@@ -170,6 +175,8 @@ bool Game::move(SchaakStuk* s, Position into, bool saveMove) {
                 s = new Koningin(s->getKleur());
                 s->setPositie(stukPositie.first, stukPositie.second);
                 moves[currentMove].val = s;
+                break;
+            default:
                 break;
         }
     }
@@ -285,7 +292,7 @@ void Game::setPiece(int r, int k, SchaakStuk* s) {
     bord[r * COL_SIZE + k] = s;
 }
 
-bool Game::outOfBounds(int r, int k) const {
+bool Game::outOfBounds(int r, int k) {
     return r < 0 || k < 0 || r >= ROW_SIZE || k >= COL_SIZE;
 }
 
@@ -399,19 +406,16 @@ Positions Game::kills(SchaakStuk* s) const {
                 if (stuk->piece().type() == Piece::Pawn && stuk->getPositie().second == zet.second) {
                     // de pion kan niet recht voor hem iemand vermoorden
                     // die zetten moeten we skippen
-                    if (stuk->getKleur() == zw::wit &&
-                        (stuk->getPositie().first - 1 == zet.first ||
-                         stuk->getPositie().first - 2 == zet.first)) {
-                        continue;
-                    } else if (stuk->getKleur() == zw::zwart &&
-                               (stuk->getPositie().first + 1 == zet.first ||
-                                stuk->getPositie().first + 2 == zet.first))
+                    int stukR = stuk->getPositie().first;
+                    if ((stuk->getKleur() == zw::wit &&
+                        (stukR - 1 == zet.first || stukR - 2 == zet.first)) ||
+                        (stuk->getKleur() == zw::zwart &&
+                        (stukR + 1 == zet.first || stukR + 2 == zet.first)))
                         continue;
                 }
 
-                SchaakStuk* opPositie = getPiece(zet.first, zet.second);
-                if (sZet.first == zet.first && sZet.second == zet.second) {
-                    all_kills.push_back(std::make_pair(zet, stuk));
+                if (sZet == zet) {
+                    all_kills.emplace_back(zet, stuk);
                 }
             }
         }
@@ -484,7 +488,7 @@ bool Game::redoMove() {
 }
 
 const FromTo* Game::lastMove() const {
-    if (currentMove < 0 || moves.size() == 0) {
+    if (currentMove < 0 || moves.empty()) {
         return nullptr;
     }
     return &(moves.at(currentMove));
@@ -502,12 +506,12 @@ void Game::AI_move() {
 
     // we gaan de schaakstukken random shufflen, zodat een random schaakstuk gekozen wordt.
     std::vector<SchaakStuk *> stukken = alleSchaakstukken(zw::zwart);
-    std::shuffle(stukken.begin(), stukken.end(), std::default_random_engine {});
+    std::shuffle(stukken.begin(), stukken.end(), std::random_device {});
 
     // check of dat we schaakmat kunnen zetten
     for (auto stuk : stukken) {
         auto zetten = stuk->geldige_zetten(*this);
-        std::shuffle(zetten.begin(), zetten.end(), std::default_random_engine {});
+        std::shuffle(zetten.begin(), zetten.end(), std::random_device {});
         for (auto zet : zetten) {
             if (causesSchaakmat(stuk, Position(zet.first, zet.second), zw::wit)) {
                 move(stuk, zet);
@@ -519,7 +523,7 @@ void Game::AI_move() {
     // check of dat we schaak kunnen zetten
     for (auto stuk : stukken) {
         auto zetten = stuk->geldige_zetten(*this);
-        std::shuffle(zetten.begin(), zetten.end(), std::default_random_engine {});
+        std::shuffle(zetten.begin(), zetten.end(), std::random_device {});
         for (auto zet : zetten) {
             if (causesSchaak(stuk, Position(zet.first, zet.second), zw::wit)) {
                 move(stuk, zet);
@@ -531,7 +535,7 @@ void Game::AI_move() {
     // check of dat we stuk kunnen slaan
     for (auto stuk : stukken) {
         auto zetten = stuk->geldige_zetten(*this);
-        std::shuffle(zetten.begin(), zetten.end(), std::default_random_engine {});
+        std::shuffle(zetten.begin(), zetten.end(), std::random_device {});
         for (auto zet : zetten) {
             if (getPiece(zet.first, zet.second) != nullptr &&
                 getPiece(zet.first, zet.second)->getKleur() == zw::wit) {
@@ -545,7 +549,7 @@ void Game::AI_move() {
     // we willen
     for (auto stuk : stukken) {
         auto zetten = stuk->geldige_zetten(*this);
-        std::shuffle(zetten.begin(), zetten.end(), std::default_random_engine {});
+        std::shuffle(zetten.begin(), zetten.end(), std::random_device {});
         for (auto zet : zetten) {
             move(stuk, zet);
             return;
